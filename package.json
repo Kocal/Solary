@@ -1,0 +1,35 @@
+{
+  "name": "solary",
+  "version": "1.0.0",
+  "description": "Extension navigateur pour la WebTV Solary",
+  "author": "Hugo Alliaume <kocal@live.fr>",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --hide-modules",
+    "build:env": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --hide-modules",
+    "build-zip": "node scripts/build-zip.js",
+    "watch": "npm run build -- --watch"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.3.1",
+    "vue": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-latest": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.1",
+    "webpack": "^3.3.0",
+    "webpack-shell-plugin": "^0.5.0",
+    "zip-folder": "^1.0.0"
+  }
+}
