@@ -31,14 +31,13 @@
   body {
     $gutter: 4px;
 
-    height: calc(580px - 2 * #{$gutter});
-    min-width: calc(780px - 2 * #{$gutter});
+    height: calc(580px - #{$gutter});
+    min-width: 780px;
 
     margin: $gutter;
-    padding: 2 * $gutter;
 
     font-size: 1.6rem;
 
-    color: lighten(#222, 60%);
+    color: lighten(#222, 70%);
   }
 </style>
