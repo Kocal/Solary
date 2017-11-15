@@ -12,8 +12,15 @@
     components: {
       Navigation
     },
-    data() {
-      return {}
+    methods: {
+      retrieveChannels() {
+        chrome.runtime.sendMessage({type: 'GET_CHANNELS'}, response => {
+          this.$root.channels = response.data.channels;
+        });
+      }
+    },
+    created() {
+      this.retrieveChannels();
     }
   }
 </script>

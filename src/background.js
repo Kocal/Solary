@@ -11,3 +11,17 @@ const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesMan
 
 channelsManager.requestTwitchApi();
 channelsManager.enableAutoRequestTwitchApi();
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  switch (request.type) {
+    case 'GET_CHANNELS':
+      sendResponse({
+        data: {
+          channels: channelsManager.channels
+        }
+      });
+      break;
+    default:
+      sendResponse('Unknown request type.');
+  }
+});
