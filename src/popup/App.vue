@@ -43,6 +43,7 @@
 
     margin: $gutter;
 
+    font-family: 'Gotham Book', sans-serif;
     font-size: 1.6rem;
 
     color: lighten(#222, 70%);
