@@ -6,6 +6,8 @@ import clientIds from './store/clientIds';
 import channels from './store/channels';
 
 const clientIdsManager = new ClientIdsManager(clientIds);
-const channelsManager = new ChannelsManager(channels, clientIdsManager);
 const gamesManager = new GamesManager(clientIdsManager);
+const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesManager);
 
+channelsManager.requestTwitchApi();
+channelsManager.enableAutoRequestTwitchApi();
