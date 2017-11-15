@@ -1,5 +1,6 @@
 class Channel {
-  constructor(username, nickname, networks = {}) {
+  constructor(id, username, nickname, networks = {}) {
+    this.id = id;
     this.username = username;
     this.nickname = nickname;
     this.networks = networks;
