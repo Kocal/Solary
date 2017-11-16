@@ -7,6 +7,7 @@
 
 <script>
   import Navigation from './components/Navigation.vue';
+  import Channel from "../entities/Channel";
 
   export default {
     components: {
@@ -15,7 +16,10 @@
     methods: {
       retrieveChannels() {
         chrome.runtime.sendMessage({type: 'GET_CHANNELS'}, response => {
-          this.$root.channels = response.data.channels;
+          this.$root.channels = response.data.channels.map(channel => {
+            channel.__proto__ = Channel.prototype;
+            return channel;
+          });
         });
       }
     },
