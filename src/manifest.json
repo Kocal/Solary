@@ -5,7 +5,9 @@
   "manifest_version": 2,
   "permissions": [
     "notifications",
-    "tabs"
+    "tabs",
+    "https://solary.fr/",
+    "https://www.solary.fr/"
   ],
   "icons": {
     "48": "icons/icon_48.png",
