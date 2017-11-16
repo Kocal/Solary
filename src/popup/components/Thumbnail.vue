@@ -1,14 +1,18 @@
 <template>
-  <img
-      :src="url.replace('{width}', width).replace('{height}', height)"
+  <s-image
+      :url="url.replace('{width}', width).replace('{height}', height)"
       :width="width"
       :height="height"
-      :class="{loading}"
-  >
+  ></s-image>
 </template>
 
 <script>
+  import Image from './Image.vue';
+
   export default {
+    components: {
+      's-image': Image,
+    },
     props: {
       url: {
         type: String,
@@ -23,32 +27,5 @@
         'default': 125
       }
     },
-    data() {
-      return {
-        loading: true
-      }
-    }
   }
 </script>
-
-<style scoped lang="scss">
-  img {
-  }
-
-  img.loading {
-    animation-iteration-count: infinite;
-    animation-name: fade;
-    animation-duration: 1.5s;
-    animation-timing-function: linear;
-  }
-
-  @keyframes fade {
-    0%, 100% {
-      background-color: rgba(#fff, .1);
-    }
-
-    50% {
-      background-color: rgba(#fff, .3);
-    }
-  }
-</style>
