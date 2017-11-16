@@ -40,13 +40,12 @@
   }
 
   body {
-    height: 580px;
     min-width: 780px;
 
     margin: 0;
 
     font-family: 'Gotham Book', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 
     color: lighten(#222, 70%);
   }
