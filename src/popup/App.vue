@@ -1,7 +1,9 @@
 <template>
   <div>
     <navigation></navigation>
-    <router-view class="router-view"></router-view>
+    <keep-alive>
+      <router-view class="router-view"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -40,8 +42,7 @@
   }
 
   body {
-    min-width: 780px;
-
+    min-width: 800px;
     margin: 0;
 
     font-family: 'Gotham Book', sans-serif;
