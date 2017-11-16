@@ -1,7 +1,7 @@
 <template>
   <div>
     <navigation></navigation>
-    <router-view></router-view>
+    <router-view class="router-view"></router-view>
   </div>
 </template>
 
@@ -40,16 +40,23 @@
   }
 
   body {
-    $gutter: 4px;
-
-    height: calc(580px - #{$gutter});
+    height: 580px;
     min-width: 780px;
 
-    margin: $gutter;
+    margin: 0;
 
     font-family: 'Gotham Book', sans-serif;
     font-size: 1.6rem;
 
     color: lighten(#222, 70%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .router-view {
+    margin: 4px;
   }
 </style>
