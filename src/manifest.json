@@ -3,6 +3,10 @@
   "description": "Extension navigateur pour la WebTV Solary",
   "version": "1.0.0",
   "manifest_version": 2,
+  "permissions": [
+    "notifications",
+    "tabs"
+  ],
   "icons": {
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
