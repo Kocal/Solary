@@ -47,7 +47,7 @@ class ChannelsManager {
             channel.markAsOnline({
               game,
               title: onlineChannel.title,
-              viewers: onlineChannel.viewers,
+              viewers: onlineChannel.viewer_count,
               thumbnail_url: onlineChannel.thumbnail_url,
             });
           })
