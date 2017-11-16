@@ -3,10 +3,11 @@ import axios from 'axios';
 const qs = require('qs');
 
 class ChannelsManager {
-  constructor(channels, clientIdsManager, gamesManager) {
+  constructor(channels, clientIdsManager, gamesManager, notificationsManager) {
     this.channels = channels;
     this.clientIdsManager = clientIdsManager;
     this.gamesManager = gamesManager;
+    this.notificationsManager = notificationsManager;
     this._autoRequestTwitchApiInterval = null;
   }
 
@@ -44,12 +45,19 @@ class ChannelsManager {
       if (isOnline) {
         this.gamesManager.getNameById(onlineChannel['game_id'])
           .then(game => {
+            const wasOffline = !channel.online;
+            const oldTitle = (channel.stream || {}).title;
+
             channel.markAsOnline({
               game,
               title: onlineChannel.title,
               viewers: onlineChannel.viewer_count,
               thumbnail_url: onlineChannel.thumbnail_url,
             });
+
+            if (wasOffline || oldTitle !== channel.stream.title) {
+              this.notificationsManager.show(channel);
+            }
           })
           .catch(console.error)
       } else {

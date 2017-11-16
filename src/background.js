@@ -8,8 +8,8 @@ import channels from './store/channels';
 
 const clientIdsManager = new ClientIdsManager(clientIds);
 const gamesManager = new GamesManager(clientIdsManager);
-const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesManager);
 const notificationsManager = new NotificationsManager(channels);
+const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesManager, notificationsManager);
 
 channelsManager.requestTwitchApi();
 channelsManager.enableAutoRequestTwitchApi();
