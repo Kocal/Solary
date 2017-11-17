@@ -3,11 +3,12 @@ import axios from 'axios';
 const qs = require('qs');
 
 class ChannelsManager {
-  constructor(channels, clientIdsManager, gamesManager, notificationsManager) {
+  constructor(channels, clientIdsManager, gamesManager, notificationsManager, browserActionManager) {
     this.channels = channels;
     this.clientIdsManager = clientIdsManager;
     this.gamesManager = gamesManager;
     this.notificationsManager = notificationsManager;
+    this.browserActionManager = browserActionManager;
     this._autoRequestTwitchApiInterval = null;
   }
 
@@ -38,12 +39,14 @@ class ChannelsManager {
   }
 
   onSuccess(onlineChannels) {
+    const promises = [];
+
     this.channels.forEach(channel => {
       const onlineChannel = onlineChannels.find(onlineChannel => +onlineChannel.user_id === channel.id);
       const isOnline = !!onlineChannel;
 
       if (isOnline) {
-        this.gamesManager.getNameById(onlineChannel['game_id'])
+        const promise = this.gamesManager.getNameById(onlineChannel['game_id'])
           .then(game => {
             const wasOffline = !channel.online;
             const oldTitle = (channel.stream || {}).title;
@@ -60,9 +63,15 @@ class ChannelsManager {
             }
           })
           .catch(console.error)
+
+        promises.push(promise);
       } else {
         channel.markAsOffline();
       }
+    });
+
+    Promise.all(promises).then(() => {
+      this.browserActionManager.update();
     });
   }
 
