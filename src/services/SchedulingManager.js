@@ -7,9 +7,10 @@ const timestamp = () => {
 class SchedulingManager {
   constructor() {
     this.ttl = 86400; // 1 jour
+    this.pageUrl = 'https://www.solary.fr/programme/';
   }
 
-  getScheduling(pageUrl) {
+  getScheduling() {
     return new Promise((resolve, reject) => {
       const imageUrl = this.read();
 
@@ -18,7 +19,7 @@ class SchedulingManager {
         return;
       }
 
-      axios.get(pageUrl)
+      axios.get(this.pageUrl)
         .then(response => response.data)
         .then(html => {
           let [_, imageUrl] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);

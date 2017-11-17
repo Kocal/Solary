@@ -26,7 +26,7 @@
     created() {
       const schedulingManager = new SchedulingManager;
 
-      schedulingManager.getScheduling(this.pageUrl)
+      schedulingManager.getScheduling()
         .then(imageUrl => this.imageUrl = imageUrl)
         .catch(error => this.error = true);
     }
