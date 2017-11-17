@@ -34,11 +34,11 @@ class GamesManager {
     const url = 'https://api.twitch.tv/helix/games';
     const config = {
       headers: {
-        'Client-ID': this.clientIdsManager.pickOne()
+        'Client-ID': this.clientIdsManager.pickOne(),
       },
       params: {
-        id
-      }
+        id,
+      },
     };
 
     return axios.get(url, config)
@@ -46,4 +46,4 @@ class GamesManager {
   }
 }
 
-export default GamesManager
+export default GamesManager;

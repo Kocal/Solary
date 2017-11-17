@@ -23,4 +23,4 @@ class Channel {
   }
 }
 
-export default Channel
+export default Channel;

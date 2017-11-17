@@ -9,26 +9,26 @@
 
 <script>
   import Navigation from './components/Navigation.vue';
-  import Channel from "../entities/Channel";
+  import Channel from '../entities/Channel';
 
   export default {
     components: {
-      Navigation
+      Navigation,
     },
     methods: {
       retrieveChannels() {
-        chrome.runtime.sendMessage({type: 'GET_CHANNELS'}, response => {
+        chrome.runtime.sendMessage({ type: 'GET_CHANNELS' }, response => {
           this.$root.channels = response.data.channels.map(channel => {
             channel.__proto__ = Channel.prototype;
             return channel;
           });
         });
-      }
+      },
     },
     created() {
       this.retrieveChannels();
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="scss">

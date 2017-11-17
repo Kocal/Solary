@@ -11,7 +11,7 @@ class NotificationsManager {
 
       chrome.tabs.create({
         url: channel.url(),
-        active: true
+        active: true,
       });
     });
   }
@@ -29,4 +29,4 @@ class NotificationsManager {
   }
 }
 
-export default NotificationsManager
+export default NotificationsManager;

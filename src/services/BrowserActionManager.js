@@ -10,10 +10,10 @@ class BrowserActionManager {
 
     if (solaryChannel.online) {
       this.markAsOnline();
-      this.setTitle(`${solaryChannel.stream.title}\n\nJoue à ${solaryChannel.stream.game} devant ${solaryChannel.stream.viewers} viewers`)
+      this.setTitle(`${solaryChannel.stream.title}\n\nJoue à ${solaryChannel.stream.game} devant ${solaryChannel.stream.viewers} viewers`);
     } else {
       this.markAsOffline();
-      this.setTitle('Personne ne stream actuellement sur la TV !')
+      this.setTitle('Personne ne stream actuellement sur la TV !');
     }
   }
 

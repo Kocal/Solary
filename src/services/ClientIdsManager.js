@@ -1,6 +1,6 @@
 class ClientIdsManager {
   constructor(clientIds) {
-    this.clientIds = clientIds
+    this.clientIds = clientIds;
   }
 
   pickOne() {
@@ -8,4 +8,4 @@ class ClientIdsManager {
   }
 }
 
-export default ClientIdsManager
+export default ClientIdsManager;

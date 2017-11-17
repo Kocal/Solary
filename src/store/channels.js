@@ -38,7 +38,7 @@ export default [
   new Channel(47676258, 'melonlol', 'Melon', {
     twitter: 'LoL_Melon',
     facebook: 'LolMelonGG',
-    youtube: 'channel/UCGz4BodvVtOC6Ch-3gNLsQA'
+    youtube: 'channel/UCGz4BodvVtOC6Ch-3gNLsQA',
   }),
 
   new Channel(39194732, 'narkuss_lol', 'Narkuss', {
@@ -48,7 +48,7 @@ export default [
   }),
 
   new Channel(50977632, 'tioolol', 'Tio', {
-    twitter: 'TioooLol'
+    twitter: 'TioooLol',
   }),
 
   new Channel(103762288, 'wakzlol', 'Wakz', {
@@ -56,4 +56,4 @@ export default [
     facebook: 'wakzlol',
     youtube: 'channel/UCNLTFDLglK_OO1b-mzY0gWQ',
   }),
-]
+];

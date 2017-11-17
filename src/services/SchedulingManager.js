@@ -50,11 +50,11 @@ class SchedulingManager {
   write(url) {
     const data = {
       url,
-      timestamp: timestamp() + this.ttl
+      timestamp: timestamp() + this.ttl,
     };
 
     return localStorage.setItem(`solary_scheduling`, JSON.stringify(data));
   };
 }
 
-export default SchedulingManager
+export default SchedulingManager;

@@ -16,25 +16,25 @@ class ChannelsManager {
     const url = 'https://api.twitch.tv/helix/streams';
     const config = {
       headers: {
-        'Client-ID': this.clientIdsManager.pickOne()
+        'Client-ID': this.clientIdsManager.pickOne(),
       },
       params: {
-        user_id: this.channels.map(channel => channel.id)
+        user_id: this.channels.map(channel => channel.id),
       },
       paramsSerializer(params) {
-        return qs.stringify(params, {arrayFormat: 'repeat'})
-      }
+        return qs.stringify(params, { arrayFormat: 'repeat' });
+      },
     };
 
     axios.get(url, config)
       .then(response => response.data.data)
       .then(this.onSuccess.bind(this))
-      .catch(this.onError.bind(this))
+      .catch(this.onError.bind(this));
   }
 
   enableAutoRequestTwitchApi() {
     this._autoRequestTwitchApiInterval = setInterval(() => {
-      this.requestTwitchApi()
+      this.requestTwitchApi();
     }, 1.5 * 60 * 1000);
   }
 
@@ -62,7 +62,7 @@ class ChannelsManager {
               this.notificationsManager.show(channel);
             }
           })
-          .catch(console.error)
+          .catch(console.error);
 
         promises.push(promise);
       } else {
@@ -94,4 +94,4 @@ class ChannelsManager {
   }
 }
 
-export default ChannelsManager
+export default ChannelsManager;

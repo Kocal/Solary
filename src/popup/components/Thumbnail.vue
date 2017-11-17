@@ -16,7 +16,7 @@
     props: {
       url: {
         type: String,
-        required: true
+        required: true,
       },
       width: {
         type: Number,
@@ -24,8 +24,8 @@
       },
       height: {
         type: Number,
-        'default': 125
-      }
+        'default': 125,
+      },
     },
-  }
+  };
 </script>

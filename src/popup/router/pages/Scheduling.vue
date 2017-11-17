@@ -21,7 +21,7 @@
         pageUrl: 'https://www.solary.fr/programme/',
         imageUrl: null,
         error: null,
-      }
+      };
     },
     created() {
       const schedulingManager = new SchedulingManager;
@@ -29,8 +29,8 @@
       schedulingManager.getScheduling()
         .then(imageUrl => this.imageUrl = imageUrl)
         .catch(error => this.error = true);
-    }
-  }
+    },
+  };
 </script>
 
 <style scoped>

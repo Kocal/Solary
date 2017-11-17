@@ -4,14 +4,14 @@ import PageScheduling from './pages/Scheduling.vue';
 export default [
   {
     path: '/',
-    redirect: '/streams'
+    redirect: '/streams',
   },
   {
     path: '/streams',
-    component: PageStreams
+    component: PageStreams,
   },
   {
     path: '/scheduling',
-    component: PageScheduling
+    component: PageScheduling,
   },
 ];

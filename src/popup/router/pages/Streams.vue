@@ -22,9 +22,9 @@
       },
       allChannelsExceptSolary() {
         return this.$root.channels.filter(channel => channel.nickname !== 'Solary');
-      }
+      },
     },
-  }
+  };
 </script>
 
 <style scoped>

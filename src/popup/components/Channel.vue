@@ -37,10 +37,10 @@
       },
       size: {
         type: String,
-        'default': 'normal'
-      }
-    }
-  }
+        'default': 'normal',
+      },
+    },
+  };
 </script>
 
 <style scoped lang="scss">

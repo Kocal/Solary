@@ -11,15 +11,15 @@
     props: {
       url: {
         type: String,
-        required: true
+        required: true,
       },
     },
     data() {
       return {
-        loading: true
-      }
+        loading: true,
+      };
     },
-  }
+  };
 </script>
 
 <style scoped lang="scss">

@@ -2,7 +2,7 @@ import ClientIdsManager from './services/ClientIdsManager';
 import ChannelsManager from './services/ChannelsManager';
 import GamesManager from './services/GamesManager';
 import NotificationsManager from './services/NotificationsManager';
-import SchedulingManager from "./services/SchedulingManager";
+import SchedulingManager from './services/SchedulingManager';
 import BrowserActionManager from './services/BrowserActionManager';
 
 import clientIds from './store/clientIds';
@@ -24,8 +24,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     case 'GET_CHANNELS':
       sendResponse({
         data: {
-          channels: channelsManager.channels
-        }
+          channels: channelsManager.channels,
+        },
       });
       break;
     default:

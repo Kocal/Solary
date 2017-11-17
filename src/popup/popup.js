@@ -10,7 +10,7 @@ new Vue({
   data() {
     return {
       channels,
-    }
+    };
   },
   render: h => h(App),
 });
