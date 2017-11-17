@@ -9,6 +9,7 @@
 
 <script>
   import axios from 'axios';
+  import SchedulingManager from '../../../services/SchedulingManager';
   import Image from '../../components/Image.vue';
 
   export default {
@@ -23,18 +24,11 @@
       }
     },
     created() {
-      axios.get(this.pageUrl)
-        .then(response => response.data)
-        .then(html => {
-          console.log(html);
-          const [_, imageUrl] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
+      const schedulingManager = new SchedulingManager;
 
-          this.imageUrl = `https://www.solary.fr/${imageUrl}`
-        })
-        .catch(error => {
-          this.error = true;
-          console.error(error);
-        })
+      schedulingManager.getScheduling(this.pageUrl)
+        .then(imageUrl => this.imageUrl = imageUrl)
+        .catch(error => this.error = true);
     }
   }
 </script>
