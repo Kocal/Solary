@@ -6,7 +6,6 @@
   "permissions": [
     "notifications",
     "tabs",
-    "https://solary.fr/",
     "https://www.solary.fr/"
   ],
   "icons": {
