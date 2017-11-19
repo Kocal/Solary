@@ -1,24 +1,16 @@
 <template>
   <a :href="channel.url()" class="channel" :class="[size, {offline: !channel.online}]" target="_blank">
-    <div v-if="channel.online" class="grid">
-      <div v-if="size === 'big'" class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"></thumbnail>
-      </div>
-      <div class="grid__main">
-        <h2 class="channel__nickname">
-          <a :href="channel.url()" target="_blank">{{ channel.nickname }}</a>
-        </h2>
-        <p class="channel__stream-title">{{ channel.stream.title }}</p>
-        <span class="channel__stream-status">
-            Joue à
-            <a :href="'https://www.twitch.tv/directory/game/' + channel.stream.game" target="_blank">{{ channel.stream.game }}</a>
-            devant <em>{{ channel.stream.viewers }}</em> viewers
-          </span>
-      </div>
-    </div>
-    <template v-else>
-      <h2 class="channel__nickname">{{ channel.nickname }}</h2>
-      <span class="channel__state--offline">Actuellement hors-ligne</span>
+    <template v-if="channel.online">
+      <h2 class="channel__nickname">
+        <a :href="channel.url()" target="_blank">{{ channel.nickname }}</a>
+      </h2>
+      <p class="channel__stream-title">{{ channel.stream.title }}</p>
+      <p class="channel__stream-status">
+        Joue à
+        <a :href="'https://www.twitch.tv/directory/game/' + channel.stream.game" target="_blank">{{ channel.stream.game }}</a>
+        devant <em>{{ channel.stream.viewers }}</em> viewers
+      </p>
+      <thumbnail :url="channel.stream.thumbnail_url" style="display: block"></thumbnail>
     </template>
   </a>
 </template>
@@ -69,14 +61,18 @@
   }
 
   .channel__nickname {
-    margin: .25em 0;
+    margin: .25em;
+  }
+
+  .channel__stream-title,
+  .channel__stream-status {
+    margin: .5em;
+  }
+
+  .channel__nickname {
     font-size: 2rem;
     font-weight: 400;
     color: #ffcc00;
-  }
-
-  .channel__stream-title {
-    margin: .5em 0;
   }
 
   .channel__stream-status {
@@ -97,14 +93,5 @@
   .channel__state--offline {
     color: rgba(255, 255, 255, .5);
     font-style: italic;
-  }
-
-  .grid {
-    display: flex;
-  }
-
-  .grid__main {
-    flex: 1;
-    padding: 0 8px 8px;
   }
 </style>
