@@ -20,11 +20,11 @@
       },
       width: {
         type: Number,
-        'default': 776,
+        'default': 405,
       },
       height: {
         type: Number,
-        'default': 410,
+        'default': 225,
       },
     },
   };
