@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li class="divider"></li>
-      <router-link to="/streams" tag="li">Streams</router-link>
+      <router-link to="/streams" tag="li">Stream</router-link>
       <li class="divider"></li>
       <router-link to="/scheduling" tag="li">Programmation</router-link>
       <li class="divider"></li>
