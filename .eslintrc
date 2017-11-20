@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "max-len": ["error", 220],
+    "no-console": "off",
+    "class-methods-use-this": "off"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "webextensions": true
+  }
+}
