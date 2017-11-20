@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "pm2 start index.js --name solary",
+    "watch": "pm2 start index.js --name solary --watch",
+    "stop": "pm2 stop index.js solary",
+    "stop:watch": "pm2 stop index.js solary --watch"
+  },
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "http-auth": "^3.2.3"
+  },
+  "devDependencies": {
+    "pm2": "^2.7.2"
+  }
+}
