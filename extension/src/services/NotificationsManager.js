@@ -2,7 +2,7 @@ class NotificationsManager {
   constructor(channels) {
     this.channels = channels;
 
-    chrome.notifications.onClicked.addListener(channelUsername => {
+    chrome.notifications.onClicked.addListener((channelUsername) => {
       const channel = this.channels.find(c => c.username === channelUsername);
 
       if (!channel) {

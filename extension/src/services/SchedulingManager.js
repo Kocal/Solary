@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const timestamp = () => {
-  return parseInt((+new Date()) / 1000, 10);
-};
+const timestamp = () => parseInt((+new Date()) / 1000, 10);
 
 class SchedulingManager {
   constructor() {
@@ -21,10 +19,11 @@ class SchedulingManager {
 
       axios.get(this.pageUrl)
         .then(response => response.data)
-        .then(html => {
-          let [_, imageUrl] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
-
-          imageUrl = `https://www.solary.fr/${imageUrl}`;
+        .then((html) => {
+          /* eslint no-unused-vars: "off" */
+          /* eslint no-shadow: "off" */
+          const [_, imageUri] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
+          const imageUrl = `https://www.solary.fr/${imageUri}`;
 
           this.write(imageUrl);
           resolve(imageUrl);
@@ -34,7 +33,7 @@ class SchedulingManager {
   }
 
   read() {
-    const data = JSON.parse(localStorage.getItem(`solary_scheduling`));
+    const data = JSON.parse(localStorage.getItem('solary_scheduling'));
 
     if (data === null) {
       return null;
@@ -45,7 +44,7 @@ class SchedulingManager {
     }
 
     return data.url;
-  };
+  }
 
   write(url) {
     const data = {
@@ -53,8 +52,8 @@ class SchedulingManager {
       timestamp: timestamp() + this.ttl,
     };
 
-    return localStorage.setItem(`solary_scheduling`, JSON.stringify(data));
-  };
+    return localStorage.setItem('solary_scheduling', JSON.stringify(data));
+  }
 }
 
 export default SchedulingManager;
