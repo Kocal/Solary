@@ -7,6 +7,9 @@
     "stop:watch": "pm2 stop index.js solary --watch"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "http-auth": "^3.2.3",
