@@ -30,7 +30,12 @@ const wss = new WebSocketServer({
 });
 
 wss.on('connection', (ws) => {
-  ws.send('Connected to WebSocket server.');
+  ws.send(JSON.stringify({
+    type: 'INFO',
+    data: {
+      message: 'Connected to WebSocket server.',
+    },
+  }));
 });
 
 // Auth
