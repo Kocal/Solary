@@ -53,6 +53,14 @@ app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
 });
 
 app.post('/send_notification', parseForm, csrfProtection, (req, res) => {
+  wss.broadcast(JSON.stringify({
+    type: 'NOTIFICATION',
+    data: {
+      title: req.body['notification[title]'],
+      message: req.body['notification[message]'],
+    },
+  }));
+
   res.redirect('/');
 });
 
