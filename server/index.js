@@ -1,14 +1,20 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const auth = require('http-auth');
 const https = require('https');
 const WebSocketServer = require('uws').Server;
-
 const config = require('./config.js');
+
 const port = process.env.PORT || 3000;
 
 // Express
+const csrfProtection = csrf({ cookie: true });
+const parseForm = bodyParser.urlencoded({ extended: false });
 const app = express();
+app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 const httpsServer = https.createServer({
@@ -33,10 +39,15 @@ const basic = auth.basic({
 });
 
 // App
-app.get('/', auth.connect(basic), (req, res) => {
+app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
   res.render('home', {
     user: req.user,
+    csrfToken: req.csrfToken(),
   });
+});
+
+app.post('/send_notification', parseForm, csrfProtection, (req, res) => {
+  res.redirect('/');
 });
 
 app.get('/logout', auth.connect(basic), (req, res) => {
