@@ -27,6 +27,15 @@ class NotificationsManager {
       message: channel.stream.title || ' ',
     });
   }
+
+  showByTitleAndMessage(title, message) {
+    chrome.notifications.create('solary', {
+      type: 'basic',
+      iconUrl: '../icons/icon_128.png',
+      title: title || '',
+      message: message || '',
+    });
+  }
 }
 
 export default NotificationsManager;
