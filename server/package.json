@@ -1,10 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "pm2 start index.js --name solary",
-    "watch": "pm2 start index.js --name solary --watch",
-    "stop": "pm2 stop index.js solary",
-    "stop:watch": "pm2 stop index.js solary --watch"
+    "start": "pm2 start ecosystem.config.js --env production",
+    "start:dev": "pm2 start ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
