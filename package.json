@@ -1,6 +1,10 @@
 {
   "name": "solary",
   "private": true,
+  "version": "1.0.0",
+  "description": "Extension navigateur pour la WebTV Solary",
+  "author": "Hugo Alliaume <kocal@live.fr>",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint extension/src"
   },
@@ -8,8 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/Kocal/Solary.git"
   },
-  "author": "Hugo Alliaume <kocal@live.fr>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kocal/Solary/issues"
   },
