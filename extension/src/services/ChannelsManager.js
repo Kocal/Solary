@@ -9,7 +9,7 @@ class ChannelsManager {
     this.gamesManager = gamesManager;
     this.notificationsManager = notificationsManager;
     this.browserActionManager = browserActionManager;
-    this._autoRequestTwitchApiInterval = null;
+    this.autoRequestTwitchApiInterval = null;
   }
 
   requestTwitchApi() {
@@ -33,7 +33,7 @@ class ChannelsManager {
   }
 
   enableAutoRequestTwitchApi() {
-    this._autoRequestTwitchApiInterval = setInterval(() => {
+    this.autoRequestTwitchApiInterval = setInterval(() => {
       this.requestTwitchApi();
     }, 1.5 * 60 * 1000);
   }
@@ -41,13 +41,13 @@ class ChannelsManager {
   onSuccess(onlineChannels) {
     const promises = [];
 
-    this.channels.forEach(channel => {
-      const onlineChannel = onlineChannels.find(onlineChannel => +onlineChannel.user_id === channel.id);
+    this.channels.forEach((channel) => {
+      const onlineChannel = onlineChannels.find(oc => +oc.user_id === channel.id);
       const isOnline = !!onlineChannel;
 
       if (isOnline) {
-        const promise = this.gamesManager.getNameById(onlineChannel['game_id'])
-          .then(game => {
+        const promise = this.gamesManager.getNameById(onlineChannel.game_id)
+          .then((game) => {
             const wasOffline = !channel.online;
             const oldTitle = (channel.stream || {}).title;
 

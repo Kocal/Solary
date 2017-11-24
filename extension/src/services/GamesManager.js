@@ -1,12 +1,8 @@
 import axios from 'axios';
 
-const read = (id) => {
-  return localStorage.getItem(`solary_twitch_game_${id}`);
-};
+const read = id => localStorage.getItem(`solary_twitch_game_${id}`);
 
-const write = (id, name) => {
-  return localStorage.setItem(`solary_twitch_game_${id}`, name);
-};
+const write = (id, name) => localStorage.setItem(`solary_twitch_game_${id}`, name);
 
 class GamesManager {
   constructor(clientIdsManager) {
@@ -21,8 +17,8 @@ class GamesManager {
         return resolve(name);
       }
 
-      this.requestTwitchApi(id)
-        .then(game => {
+      return this.requestTwitchApi(id)
+        .then((game) => {
           write(id, game.name);
           resolve(game.name);
         })

@@ -4,6 +4,7 @@ import router from './router';
 
 import channels from '../store/channels';
 
+/* eslint no-new: "off" */
 new Vue({
   el: '#app',
   router,
