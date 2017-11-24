@@ -4,7 +4,9 @@ import GamesManager from './services/GamesManager';
 import NotificationsManager from './services/NotificationsManager';
 import SchedulingManager from './services/SchedulingManager';
 import BrowserActionManager from './services/BrowserActionManager';
+import WebSocketManager from './services/WebSocketManager';
 
+import webSocketConfig from './config/webSocket';
 import clientIds from './store/clientIds';
 import channels from './store/channels';
 
@@ -14,10 +16,12 @@ const notificationsManager = new NotificationsManager(channels);
 const browserActionManager = new BrowserActionManager(channels);
 const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesManager, notificationsManager, browserActionManager);
 const schedulingManager = new SchedulingManager();
+const webSocketManager = new WebSocketManager(webSocketConfig, notificationsManager);
 
 channelsManager.requestTwitchApi();
 channelsManager.enableAutoRequestTwitchApi();
 schedulingManager.getScheduling();
+webSocketManager.connect();
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.type) {
