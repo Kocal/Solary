@@ -21,6 +21,7 @@ const webSocketManager = new WebSocketManager(webSocketConfig, notificationsMana
 channelsManager.requestTwitchApi();
 channelsManager.enableAutoRequestTwitchApi();
 schedulingManager.getScheduling();
+webSocketManager.connect();
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.type) {

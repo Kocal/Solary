@@ -3,7 +3,6 @@ class WebSocketManager {
     this.config = config;
     this.notificationsManager = notificationsManager;
     this.reconnecting = false;
-    this.connect();
   }
 
   connect() {
