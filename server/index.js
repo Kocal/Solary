@@ -2,6 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const bodyParser = require('body-parser');
+const flash = require('express-flash');
+const session = require('express-session');
 const fs = require('fs');
 const auth = require('http-auth');
 const https = require('https');
@@ -16,6 +18,12 @@ const parseForm = bodyParser.urlencoded({ extended: false });
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  resave: true,
+  secret: 'solary admin',
+  cookie: { maxAge: 60000 },
+}));
+app.use(flash());
 app.set('view engine', 'ejs');
 
 const httpsServer = https.createServer({
@@ -53,13 +61,31 @@ app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
 });
 
 app.post('/send_notification', parseForm, csrfProtection, (req, res) => {
-  wss.broadcast(JSON.stringify({
-    type: 'NOTIFICATION',
-    data: {
-      title: req.body['notification[title]'],
-      message: req.body['notification[message]'],
-    },
-  }));
+  const errors = [];
+  const notificationTitle = (req.body['notification[title]'] || '').trim();
+  const notificationMessage = (req.body['notification[message]'] || '').trim();
+
+  if (notificationTitle === '') {
+    errors.push('Le titre de notification est vide');
+  }
+
+  if (notificationMessage === '') {
+    errors.push('Le message de notification est vide');
+  }
+
+  if (errors.length === 0) {
+    wss.broadcast(JSON.stringify({
+      type: 'NOTIFICATION',
+      data: {
+        title: notificationTitle,
+        message: notificationMessage,
+      },
+    }));
+
+    req.flash('send_notification_success', 'La notification a bien été envoyée !');
+  } else {
+    errors.forEach(error => req.flash('send_notification_error', error));
+  }
 
   res.redirect('/');
 });

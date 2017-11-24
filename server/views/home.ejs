@@ -21,6 +21,21 @@
 	</nav>
 	<main class="content">
 		<div class="container">
+			<% if (messages.send_notification_success) { %>
+				<div class="alert alert-success">
+					<%= messages.send_notification_success %>
+				</div>
+			<% } else if (messages.send_notification_error) { %>
+				<div class="alert alert-danger">
+					<p>Une erreur s'est produite lors de l'envoi de la notification</p>
+					<ul>
+						<% messages.send_notification_error.forEach(function(error) { %>
+							<li><%= error %></li>
+						<% }) %>
+					</ul>
+				</div>
+			<% } %>
+
 			<div class="row">
 				<div class="col-sm-8 offset-sm-2">
 					<h2>Envoyer une notification</h2>
