@@ -3,7 +3,7 @@ class NotificationsManager {
     this.channels = channels;
 
     chrome.notifications.onClicked.addListener((channelUsername) => {
-      const channel = this.channels.find(c => c.username === channelUsername);
+      const channel = this.channels.find(c => c.username === channelUsername) || this.channels.find(c => c.username === 'solary');
 
       if (!channel) {
         return;
@@ -29,7 +29,7 @@ class NotificationsManager {
   }
 
   showByTitleAndMessage(title, message) {
-    chrome.notifications.create('solary', {
+    chrome.notifications.create({
       type: 'basic',
       iconUrl: '../icons/icon_128.png',
       title: title || '',
