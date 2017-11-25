@@ -4,6 +4,7 @@ const csrf = require('csurf');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 const fs = require('fs');
 const auth = require('http-auth');
 const https = require('https');
@@ -20,7 +21,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   resave: true,
+  saveUninitialized: true,
   secret: 'solary admin',
+  store: new MemoryStore({
+    checkPeriod: 86400000,
+  }),
   cookie: { maxAge: 60000 },
 }));
 app.use(flash());
