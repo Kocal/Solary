@@ -65,7 +65,7 @@ app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
   });
 });
 
-app.post('/send_notification', parseForm, csrfProtection, (req, res) => {
+app.post('/send_notification', auth.connect(basic), parseForm, csrfProtection, (req, res) => {
   const errors = [];
   const notificationTitle = (req.body['notification[title]'] || '').trim();
   const notificationMessage = (req.body['notification[message]'] || '').trim();

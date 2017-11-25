@@ -3,15 +3,16 @@
 set -e
 
 yarn
+cd extension && yarn && cd ..
+cd server && yarn && cd ..
 yarn lint
 
 cd extension
-yarn
 yarn build
 yarn build-zip
 cd ..
 
 cd server
-yarn
 yarn stop
 yarn start
+cd ..
