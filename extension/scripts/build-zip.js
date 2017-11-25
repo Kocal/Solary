@@ -8,11 +8,11 @@ const DEST_DIR = path.join(__dirname, '../dist');
 const DEST_ZIP_DIR = path.join(__dirname, '../dist-zip');
 
 const extractExtensionData = () => {
-  const extPackageJson = require('../package.json');
+  const manifest = require('../dist/manifest.json');
 
   return {
-    name: extPackageJson.name,
-    version: extPackageJson.version,
+    name: manifest.name,
+    version: manifest.version,
   };
 };
 
