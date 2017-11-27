@@ -49,7 +49,6 @@ class ChannelsManager {
         const promise = this.gamesManager.getNameById(onlineChannel.game_id)
           .then((game) => {
             const wasOffline = !channel.online;
-            const oldTitle = (channel.stream || {}).title;
 
             channel.markAsOnline({
               game,
@@ -58,7 +57,7 @@ class ChannelsManager {
               thumbnail_url: onlineChannel.thumbnail_url,
             });
 
-            if (wasOffline || oldTitle !== channel.stream.title) {
+            if (wasOffline) {
               this.notificationsManager.show(channel);
             }
           })
