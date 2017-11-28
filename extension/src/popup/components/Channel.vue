@@ -53,10 +53,6 @@
 
     transition: background-color .1s linear;
 
-    &:hover {
-      background-color: rgba(#1b1c1d, .90);
-    }
-
     &.offline {
       filter: grayscale(1);
     }
