@@ -1,17 +1,23 @@
 <template>
-  <s-image
-      :url="url.replace('{width}', width).replace('{height}', height)"
-      :width="width"
-      :height="height"
-  ></s-image>
+  <div class="thumbnail">
+    <s-image
+        :url="url.replace('{width}', width).replace('{height}', height)"
+        :width="width"
+        :height="height"
+        class="thumbnail__image"
+    ></s-image>
+    <s-icon-play class="thumbnail__play-button"></s-icon-play>
+  </div>
 </template>
 
 <script>
   import Image from './Image.vue';
+  import IconPlay from './IconPlay.vue';
 
   export default {
     components: {
       's-image': Image,
+      's-icon-play': IconPlay,
     },
     props: {
       url: {
@@ -29,3 +35,20 @@
     },
   };
 </script>
+
+<style scoped lang="scss">
+  .thumbnail {
+    position: relative;
+  }
+
+  .thumbnail__image {
+    opacity: .5;
+  }
+
+  .thumbnail__play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3D(-50%, -50%, 0);
+  }
+</style>
