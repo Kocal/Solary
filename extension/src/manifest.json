@@ -1,7 +1,7 @@
 {
   "name": "Solary",
   "description": "Extension navigateur pour la WebTV Solary",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "manifest_version": 2,
   "permissions": [
     "notifications",
@@ -14,7 +14,8 @@
   },
   "browser_action": {
     "default_title": "Solary",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/icon_48.png"
   },
   "background": {
     "scripts": [

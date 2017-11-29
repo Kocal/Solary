@@ -4,7 +4,7 @@ const timestamp = () => parseInt((+new Date()) / 1000, 10);
 
 class SchedulingManager {
   constructor() {
-    this.ttl = 86400; // 1 jour
+    this.ttl = 1000 * 60 * 60;
     this.pageUrl = 'https://www.solary.fr/programme/';
   }
 
