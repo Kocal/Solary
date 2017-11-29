@@ -14,7 +14,8 @@
   },
   "browser_action": {
     "default_title": "Solary",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/icon_48.png"
   },
   "background": {
     "scripts": [
