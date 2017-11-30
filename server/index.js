@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
+const { check, validationResult } = require('express-validator/check');
+const { sanitize } = require('express-validator/filter');
 const fs = require('fs');
 const auth = require('http-auth');
 const https = require('https');
@@ -65,31 +67,26 @@ app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
   });
 });
 
-app.post('/send_notification', auth.connect(basic), parseForm, csrfProtection, (req, res) => {
-  const errors = [];
-  const notificationTitle = (req.body['notification[title]'] || '').trim();
-  const notificationMessage = (req.body['notification[message]'] || '').trim();
+app.post('/send_notification', auth.connect(basic), parseForm, csrfProtection, [
+  sanitize('notification.title').trim(),
+  sanitize('notification.message').trim(),
+  check('notification.title').exists().withMessage('Le titre de notification est vide'),
+  check('notification.message').exists().withMessage('Le message de notification est vide'),
+], (req, res) => {
+  const errors = validationResult(req);
 
-  if (notificationTitle === '') {
-    errors.push('Le titre de notification est vide');
-  }
-
-  if (notificationMessage === '') {
-    errors.push('Le message de notification est vide');
-  }
-
-  if (errors.length === 0) {
+  if (errors.isEmpty()) {
     wss.broadcast(JSON.stringify({
       type: 'NOTIFICATION',
       data: {
-        title: notificationTitle,
-        message: notificationMessage,
+        title: req.body.notification.title,
+        message: req.body.notification.message,
       },
     }));
 
     req.flash('send_notification_success', 'La notification a bien été envoyée !');
   } else {
-    errors.forEach(error => req.flash('send_notification_error', error));
+    errors.array().forEach(error => req.flash('send_notification_error', error.msg));
   }
 
   res.redirect('/');
