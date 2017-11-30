@@ -70,8 +70,8 @@ app.get('/', auth.connect(basic), csrfProtection, (req, res) => {
 app.post('/send_notification', auth.connect(basic), parseForm, csrfProtection, [
   sanitize('notification.title').trim(),
   sanitize('notification.message').trim(),
-  check('notification.title').exists().withMessage('Le titre de notification est vide'),
-  check('notification.message').exists().withMessage('Le message de notification est vide'),
+  check('notification.title').exists().not().isEmpty().withMessage('Le titre de notification est vide'),
+  check('notification.message').exists().not().isEmpty().withMessage('Le message de notification est vide'),
 ], (req, res) => {
   const errors = validationResult(req);
 
