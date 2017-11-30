@@ -34,11 +34,6 @@
 <style lang="scss">
   html {
     font-size: 62.5%;
-
-    background: #1196ff;
-    background: -moz-linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
-    background: -webkit-linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
-    background: linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
   }
 
   body {
@@ -58,5 +53,12 @@
 
   .router-view {
     margin: 4px;
+  }
+
+  .solary-gradient {
+    background-color: #1196ff;
+    background-image: -moz-linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
+    background-image: -webkit-linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
+    background-image: linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
   }
 </style>
