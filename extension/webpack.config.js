@@ -62,7 +62,16 @@ const config = {
     new CopyWebpackPlugin([
       {from: 'icons', to: 'icons'},
       {from: 'popup/popup.html', to: 'popup/popup.html'},
-      {from: 'manifest.json', to: 'manifest.json'}
+      {
+        from: 'manifest.json',
+        to: 'manifest.json',
+        transform(content, path) {
+          content = JSON.parse(content);
+          content.version = require('../package.json').version;
+
+          return JSON.stringify(content, null, 2);
+        }
+      }
     ]),
     new WebpackShellPlugin({
       onBuildEnd: ['node scripts/remove-evals.js']
