@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Panel d'admin de l'extension Solary</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark fixed-top justify-content-between">
+    <span class="navbar-brand mb-0 h1">Panel d'admin de l'extension Solary</span>
+    <div>
+        <span class="navbar-text">Connecté en tant que <%= user %></span>
+        <a href="/logout" class="btn btn-danger">Se déconnecter</a>
+    </div>
+</nav>
+<main class="content">
+    <div class="container">
+        <% if (messages.send_notification_success) { %>
+        <div class="alert alert-success">
+            <%= messages.send_notification_success %>
+        </div>
+        <% } else if (messages.send_notification_error) { %>
+        <div class="alert alert-danger">
+            <p>Une erreur s'est produite lors de l'envoi de la notification</p>
+            <ul>
+                <% messages.send_notification_error.forEach(function(error) { %>
+                <li><%= error %></li>
+                <% }) %>
+            </ul>
+        </div>
+        <% } %>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h2>Envoyer une notification</h2>
+                <div id="app">
+                    <form method="post" action="/send_notification" @submit="onSubmit">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group">
+                            <label for="input-notification-title">Titre de la notification</label>
+                            <input id="input-notification-title" name="notification[title]" class="form-control" required :disabled="isSending">
+                        </div>
+                        <div class="form-group">
+                            <label for="input-notification-message">Contenu de la notification</label>
+                            <textarea id="input-notification-message" name="notification[message]" class="form-control" required
+                                      :disabled="isSending"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button
+                                class="btn btn-default"
+                                :disabled="!isWaiting || isSending"
+                                @click.prevent="onCancelSending"
+                            >Annuler</button>
+
+                            <button
+                                class="btn btn-primary"
+                                :disabled="!isIdle || isSending"
+                                @click.prevent="onPrepareSend"
+                            >
+                                <template v-if="isIdle">
+                                    Préparer à envoyer
+                                </template>
+                                <template v-else-if="isWaiting">
+                                    Envoi dans {{ countdown }} seconde{{ countdown !== 1 ? 's' : '' }}...
+                                </template>
+                                <template v-else-if="isSending">
+                                    Envoi en cours...
+                                </template>
+                            </button>
+
+                            <button
+                                class="btn btn-danger"
+                                type="submit"
+                                :disabled="!isWaiting || isSending"
+                            >Forcer l'envoi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+  const STATUS_IDLE = 'STATUS_IDLE';
+  const STATUS_WAITING = 'STATUS_WAITING';
+  const STATUS_SENDING = 'STATUS_SENDING';
+
+  const COUNTDOWN = 60;
+
+  new Vue({
+    el: '#app',
+    data: () => ({
+      status: STATUS_IDLE,
+      countdown: COUNTDOWN,
+      countdownInterval: null,
+    }),
+    computed: {
+      isIdle() {
+        return this.status === STATUS_IDLE;
+      },
+      isWaiting() {
+        return this.status === STATUS_WAITING;
+      },
+      isSending() {
+        return this.status === STATUS_SENDING;
+      },
+      $form() {
+        return this.$el.querySelector('form');
+      }
+    },
+    methods: {
+      onCancelSending() {
+        this.status = STATUS_IDLE;
+        this.stopCountdown();
+        this.resetCountdown();
+      },
+      onPrepareSend() {
+        this.status = STATUS_WAITING;
+        this.startCountdown();
+      },
+      onSubmit() {
+        this.status = STATUS_SENDING;
+        this.stopCountdown();
+      },
+      startCountdown() {
+        this.countdownInterval = setInterval(() => {
+          this.countdown -= 1;
+
+          if (this.countdown === 0) {
+            this.$form.submit();
+          }
+        }, 1000);
+      },
+      stopCountdown() {
+        clearInterval(this.countdownInterval);
+      },
+      resetCountdown() {
+        this.countdown = COUNTDOWN;
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -2,16 +2,17 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const version = require('../../lerna.json').version;
 
 const config = {
-  context: __dirname + '/src',
+  context: `${__dirname}/src`,
   entry: {
-    'background': './background.js',
-    'popup/popup': './popup/popup.js'
+    background: './background.js',
+    'popup/popup': './popup/popup.js',
   },
   output: {
-    path: __dirname + '/dist',
-    filename: '[name].js'
+    path: `${__dirname}/dist`,
+    filename: '[name].js',
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -25,49 +26,58 @@ const config = {
           loaders: {
             scss: ExtractTextPlugin.extract({
               use: 'css-loader!sass-loader',
-              fallback: 'vue-style-loader'
+              fallback: 'vue-style-loader',
             }),
             sass: ExtractTextPlugin.extract({
               use: 'css-loader!sass-loader?indentedSyntax',
-              fallback: 'vue-style-loader'
+              fallback: 'vue-style-loader',
             }),
-          }
-        }
+          },
+        },
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           use: 'css-loader',
           fallback: 'vue-loader',
-        })
+        }),
       },
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?emitFile=false'
-        }
-      }
+          name: '[name].[ext]?emitFile=false',
+        },
+      },
     ],
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: '[name].css',
     }),
     new CopyWebpackPlugin([
-      {from: 'icons', to: 'icons'},
-      {from: 'popup/popup.html', to: 'popup/popup.html'},
-      {from: 'manifest.json', to: 'manifest.json'}
+      { from: 'icons', to: 'icons' },
+      { from: 'popup/popup.html', to: 'popup/popup.html' },
+      {
+        from: 'manifest.json',
+        to: 'manifest.json',
+        transform(content) {
+          const contentJson = JSON.parse(content);
+          contentJson.version = version;
+
+          return JSON.stringify(content, null, 2);
+        },
+      },
     ]),
     new WebpackShellPlugin({
-      onBuildEnd: ['node scripts/remove-evals.js']
+      onBuildEnd: ['node scripts/remove-evals.js'],
     }),
-  ]
+  ],
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -76,18 +86,18 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = (config.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+      minimize: true,
+    }),
   ]);
 }
 

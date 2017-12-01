@@ -1,7 +1,7 @@
 {
   "name": "Solary",
+  "version": null,
   "description": "Extension navigateur pour la WebTV Solary",
-  "version": "1.2.0",
   "manifest_version": 2,
   "permissions": [
     "notifications",
