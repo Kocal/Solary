@@ -67,7 +67,7 @@ const config = {
         to: 'manifest.json',
         transform(content, path) {
           content = JSON.parse(content);
-          content.version = require('../package.json').version;
+          content.version = require('../../lerna.json').version;
 
           return JSON.stringify(content, null, 2);
         }
