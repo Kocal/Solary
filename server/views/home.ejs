@@ -40,7 +40,7 @@
 				<div class="col-sm-8 offset-sm-2">
 					<h2>Envoyer une notification</h2>
 					<div id="app">
-						<form method="post" action="/send_notification">
+						<form method="post" action="/send_notification" @submit="onSubmit">
 							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 							<div class="form-group">
 								<label for="input-notification-title">Titre de la notification</label>
@@ -75,8 +75,8 @@
 								</button>
 								<button
 									class="btn btn-danger"
+									type="submit"
 									:disabled="!isWaiting || isSending"
-									@click.prevent="onForceSend"
 								>Forcer l'envoi</button>
 							</div>
 						</form>
@@ -109,6 +109,9 @@
           },
           isSending() {
             return this.status === STATUS_SENDING;
+          },
+          $form() {
+            return this.$el.querySelector('form');
           }
         },
         methods: {
@@ -121,13 +124,17 @@
             this.status = STATUS_WAITING;
             this.startCountdown();
           },
-          onForceSend() {
+          onSubmit() {
             this.status = STATUS_SENDING;
             this.stopCountdown();
           },
           startCountdown() {
             this.countdownInterval = setInterval(() => {
               this.countdown -= 1;
+
+              if (this.countdown === 0) {
+                this.$form.submit();
+              }
             }, 1000);
           },
           stopCountdown() {
