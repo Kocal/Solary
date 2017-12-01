@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const version = require('../../lerna.json').version;
+const { version } = require('../../lerna.json');
 
 const config = {
   context: `${__dirname}/src`,
@@ -70,7 +70,7 @@ const config = {
           const contentJson = JSON.parse(content);
           contentJson.version = version;
 
-          return JSON.stringify(content, null, 2);
+          return JSON.stringify(contentJson, null, 2);
         },
       },
     ]),
