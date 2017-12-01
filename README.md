@@ -27,10 +27,11 @@ Just run `lerna bootstrap`, it will install dependencies for all projects locate
 
 ### Server Bootstraping
 
-You can ignore this part if you know that you won't work with a development server.
+You can ignore this part if you won't work on server.
 
 #### Set-up host
-If you need to work on server, you will need to add `localhost.ssl` host in your `/etc/hosts`:
+
+Add `localhost.ssl` host in your `/etc/hosts`:
 
 ```
 127.0.0.1 localhost.ssl
