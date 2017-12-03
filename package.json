@@ -5,7 +5,8 @@
   "author": "Hugo Alliaume <kocal@live.fr>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint extension/src"
+    "bootstrap": "lerna bootstrap",
+    "lint": "eslint packages/extension/src"
   },
   "repository": {
     "type": "git",
