@@ -8,7 +8,7 @@ cd "../packages/server"
 
 # Generate SSL certificate
 openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 1 -keyout localhost.key -out localhost.crt \
-		--subj "/C=FR/ST=France/L=Lyon/CN=localhost"
+		-subj "/C=FR/ST=France/L=Lyon/CN=localhost"
 
 cat >config.js <<EOL
 module.exports = {
