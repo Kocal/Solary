@@ -30,6 +30,7 @@
     "sass-loader": "^6.0.6",
     "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.2",
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.1",
     "webpack": "^3.9.1",
