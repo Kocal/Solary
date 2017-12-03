@@ -1,15 +1,16 @@
 import axios from 'axios';
+import ClientIdsManager from './ClientIdsManager';
+import { TwitchApi } from '../../typings/TwitchApi';
 
-const read = id => localStorage.getItem(`solary_twitch_game_${id}`);
+const read = (id: string) => localStorage.getItem(`solary_twitch_game_${id}`);
 
-const write = (id, name) => localStorage.setItem(`solary_twitch_game_${id}`, name);
+const write = (id: string, name: string) => localStorage.setItem(`solary_twitch_game_${id}`, name);
 
-class GamesManager {
-  constructor(clientIdsManager) {
-    this.clientIdsManager = clientIdsManager;
+export default class GamesManager {
+  constructor(private clientIdsManager: ClientIdsManager) {
   }
 
-  getNameById(id) {
+  public getNameById(id: string): Promise<string> {
     return new Promise((resolve, reject) => {
       const name = read(id);
 
@@ -17,8 +18,8 @@ class GamesManager {
         return resolve(name);
       }
 
-      return this.requestTwitchApi(id)
-        .then((game) => {
+      this.requestTwitchApi(id)
+        .then((game: TwitchApi.Game) => {
           write(id, game.name);
           resolve(game.name);
         })
@@ -26,7 +27,7 @@ class GamesManager {
     });
   }
 
-  requestTwitchApi(id) {
+  private requestTwitchApi(id: string): Promise<TwitchApi.Game> {
     const url = 'https://api.twitch.tv/helix/games';
     const config = {
       headers: {
@@ -41,5 +42,3 @@ class GamesManager {
       .then(response => response.data.data[0]);
   }
 }
-
-export default GamesManager;
