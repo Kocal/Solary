@@ -7,8 +7,8 @@ const { version } = require('../../lerna.json');
 const config = {
   context: `${__dirname}/src`,
   entry: {
-    background: './background.js',
-    'popup/popup': './popup/popup.js',
+    background: './background.ts',
+    'popup/popup': './popup/popup.ts',
   },
   output: {
     path: `${__dirname}/dist`,
