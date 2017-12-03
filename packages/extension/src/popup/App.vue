@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script type="ts">
   import Navigation from './components/Navigation.vue';
   import Channel from '../entities/Channel';
 

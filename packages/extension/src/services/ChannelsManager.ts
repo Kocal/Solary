@@ -1,18 +1,26 @@
 import axios from 'axios';
+import Channel from '../entities/Channel';
+import ClientIdsManager from './ClientIdsManager';
+import GamesManager from './GamesManager';
+import NotificationsManager from './NotificationsManager';
+import BrowserActionManager from './BrowserActionManager';
+import Stream from '../entities/Stream';
+import { TwitchApi } from '../../typings/TwitchApi';
 
-const qs = require('qs');
+const qs: any = require('qs');
 
-class ChannelsManager {
-  constructor(channels, clientIdsManager, gamesManager, notificationsManager, browserActionManager) {
-    this.channels = channels;
-    this.clientIdsManager = clientIdsManager;
-    this.gamesManager = gamesManager;
-    this.notificationsManager = notificationsManager;
-    this.browserActionManager = browserActionManager;
+export default class ChannelsManager {
+  private autoRequestTwitchApiInterval: NodeJS.Timer | null;
+
+  constructor(private channels: Array<Channel>,
+              private clientIdsManager: ClientIdsManager,
+              private gamesManager: GamesManager,
+              private notificationsManager: NotificationsManager,
+              private browserActionManager: BrowserActionManager) {
     this.autoRequestTwitchApiInterval = null;
   }
 
-  requestTwitchApi() {
+  public requestTwitchApi() {
     const url = 'https://api.twitch.tv/helix/streams';
     const config = {
       headers: {
@@ -21,7 +29,7 @@ class ChannelsManager {
       params: {
         user_id: this.channels.map(channel => channel.id),
       },
-      paramsSerializer(params) {
+      paramsSerializer(params: object) {
         return qs.stringify(params, { arrayFormat: 'repeat' });
       },
     };
@@ -32,30 +40,29 @@ class ChannelsManager {
       .catch(this.onError.bind(this));
   }
 
-  enableAutoRequestTwitchApi() {
+  public enableAutoRequestTwitchApi() {
     this.autoRequestTwitchApiInterval = setInterval(() => {
       this.requestTwitchApi();
     }, 1.5 * 60 * 1000);
   }
 
-  onSuccess(onlineChannels) {
-    const promises = [];
+  private onSuccess(onlineChannels: Array<TwitchApi.Stream>) {
+    const promises: Array<Promise<void>> = [];
 
     this.channels.forEach((channel) => {
-      const onlineChannel = onlineChannels.find(oc => +oc.user_id === channel.id);
-      const isOnline = !!onlineChannel;
+      const onlineChannel: TwitchApi.Stream | undefined = onlineChannels.find(oc => +oc.user_id === channel.id);
+      const isOnline: boolean = !!onlineChannel;
+
+      if (onlineChannel === undefined) {
+        return console.error(`Impossible de trouver le channel n°${channel.id}.`);
+      }
 
       if (isOnline) {
         const promise = this.gamesManager.getNameById(onlineChannel.game_id)
           .then((game) => {
             const wasOffline = !channel.online;
 
-            channel.markAsOnline({
-              game,
-              title: onlineChannel.title,
-              viewers: onlineChannel.viewer_count,
-              thumbnail_url: onlineChannel.thumbnail_url,
-            });
+            channel.markAsOnline(new Stream(game, onlineChannel.title, onlineChannel.viewer_count, onlineChannel.thumbnail_url));
 
             if (wasOffline) {
               this.notificationsManager.show(channel);
@@ -74,7 +81,7 @@ class ChannelsManager {
     });
   }
 
-  onError(error) {
+  private onError(error: any) {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
@@ -92,5 +99,3 @@ class ChannelsManager {
     }
   }
 }
-
-export default ChannelsManager;

@@ -1,7 +1,11 @@
-class WebSocketManager {
-  constructor(config, notificationsManager) {
-    this.config = config;
-    this.notificationsManager = notificationsManager;
+import NotificationsManager from './NotificationsManager';
+import { WebSocketConfig } from '../../typings/configs';
+
+export default class WebSocketManager {
+  private reconnecting: boolean;
+  private websocket: WebSocket;
+
+  constructor(public config: WebSocketConfig, public notificationsManager: NotificationsManager) {
     this.reconnecting = false;
   }
 
@@ -28,11 +32,11 @@ class WebSocketManager {
     }, minutes * 60 * 1000);
   }
 
-  onOpen() {
+  private onOpen(): void {
     console.info('WS: open');
   }
 
-  onMessage(message) {
+  private onMessage(message: MessageEvent): void {
     console.info('WS: message', message);
     const parsedData = JSON.parse(message.data);
     const { type, data } = parsedData;
@@ -49,15 +53,13 @@ class WebSocketManager {
     }
   }
 
-  onError(error) {
+  private onError(error: Event): void {
     console.error('WS: error', error);
     this.reconnect();
   }
 
-  onClose() {
+  private onClose(): void {
     console.info('WS: closed');
     this.reconnect();
   }
 }
-
-export default WebSocketManager;
