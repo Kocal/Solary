@@ -18,6 +18,10 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
 
+"@types/node@^8.0.53":
+  version "8.0.53"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
