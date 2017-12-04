@@ -2,20 +2,21 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackUglifyPlugin = require('uglifyjs-webpack-plugin');
 const { version } = require('../../lerna.json');
 
 const config = {
   context: `${__dirname}/src`,
   entry: {
-    background: './background.js',
-    'popup/popup': './popup/popup.js',
+    background: './background.ts',
+    'popup/popup': './popup/popup.ts',
   },
   output: {
     path: `${__dirname}/dist`,
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.ts', '.js', '.vue'],
   },
   module: {
     loaders: [
@@ -35,10 +36,18 @@ const config = {
           },
         },
       },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   exclude: /node_modules/,
+      // },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
       },
       {
         test: /\.css$/,
@@ -89,11 +98,9 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"',
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
+    new WebpackUglifyPlugin({
+      parallel: true,
       sourceMap: true,
-      compress: {
-        warnings: false,
-      },
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

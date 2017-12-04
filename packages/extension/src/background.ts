@@ -23,12 +23,12 @@ channelsManager.enableAutoRequestTwitchApi();
 schedulingManager.getScheduling();
 webSocketManager.connect();
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
   switch (request.type) {
     case 'GET_CHANNELS':
       sendResponse({
         data: {
-          channels: channelsManager.channels,
+          channels,
         },
       });
       break;
