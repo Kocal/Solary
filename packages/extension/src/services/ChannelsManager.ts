@@ -10,7 +10,7 @@ import { TwitchApi } from '../../typings/TwitchApi';
 const qs: any = require('qs');
 
 export default class ChannelsManager {
-  private autoRequestTwitchApiInterval: NodeJS.Timer | null;
+  private autoRequestTwitchApiInterval: number | null;
 
   constructor(private channels: Array<Channel>,
               private clientIdsManager: ClientIdsManager,
@@ -41,7 +41,7 @@ export default class ChannelsManager {
   }
 
   public enableAutoRequestTwitchApi() {
-    this.autoRequestTwitchApiInterval = setInterval(() => {
+    this.autoRequestTwitchApiInterval = window.setInterval(() => {
       this.requestTwitchApi();
     }, 1.5 * 60 * 1000);
   }
