@@ -7,3 +7,6 @@ cd "$DIR"
 cd "../packages/server"
 
 yarn stop
+
+rm localhost.crt
+rm localhost.key
