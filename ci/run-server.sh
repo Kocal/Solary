@@ -18,7 +18,7 @@ module.exports = {
 EOL
 
 # Generate .htpasswd
-echo 'test:$apr1$5/dYaSP9$mVdB6dbv6dlyCRhhQhtDN1' > .htpasswd
+echo "test:\$apr1\$5/dYaSP9\$mVdB6dbv6dlyCRhhQhtDN1" > .htpasswd
 
 # Start server
 yarn stop
