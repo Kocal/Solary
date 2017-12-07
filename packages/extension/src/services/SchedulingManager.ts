@@ -12,7 +12,7 @@ export default class SchedulingManager {
   private pageUrl: string;
 
   constructor() {
-    this.ttl = 1000 * 60 * 60;
+    this.ttl = 60 * 60;
     this.pageUrl = 'https://www.solary.fr/programme/';
   }
 
