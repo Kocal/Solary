@@ -24,7 +24,11 @@
       "node"
     ],
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ]
   },
   "dependencies": {
     "axios": "^0.16.2",
