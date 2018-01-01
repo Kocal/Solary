@@ -1,16 +1,5 @@
 import Channel from '../entities/Channel';
-
-const setTitle = (title: string): void => chrome.browserAction.setTitle({
-  title,
-});
-
-const setBadgeText = (text: string): void => chrome.browserAction.setBadgeText({
-  text,
-});
-
-const setBadgeColor = (color: string): void => chrome.browserAction.setBadgeBackgroundColor({
-  color,
-});
+import { setBadgeColor, setBadgeText, setTitle } from '../utils/ChromeBrowserAction';
 
 const markAsOnline = (): void => {
   setBadgeText('ON');
@@ -22,7 +11,7 @@ const markAsOffline = (): void => {
   setBadgeColor('gray');
 };
 
-export default class BrowserActionManager {
+class BrowserActionManager {
   constructor(private channels: Array<Channel>) {
     setBadgeText('...');
   }
@@ -43,3 +32,7 @@ export default class BrowserActionManager {
     }
   }
 }
+
+export {
+  BrowserActionManager,
+};

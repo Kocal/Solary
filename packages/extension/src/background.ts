@@ -3,8 +3,8 @@ import ChannelsManager from './services/ChannelsManager';
 import GamesManager from './services/GamesManager';
 import NotificationsManager from './services/NotificationsManager';
 import SchedulingManager from './services/SchedulingManager';
-import BrowserActionManager from './services/BrowserActionManager';
 import WebSocketManager from './services/WebSocketManager';
+import { BrowserActionManager } from './services/BrowserActionManager';
 
 import webSocketConfig from './config/webSocket';
 import clientIds from './store/clientIds';
