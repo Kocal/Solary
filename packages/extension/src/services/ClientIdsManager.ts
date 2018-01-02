@@ -1,4 +1,4 @@
-export default class ClientIdsManager {
+class ClientIdsManager {
   constructor(private clientIds: Array<string>) {
   }
 
@@ -6,3 +6,7 @@ export default class ClientIdsManager {
     return this.clientIds[this.clientIds.length - 1];
   }
 }
+
+export {
+  ClientIdsManager,
+};
