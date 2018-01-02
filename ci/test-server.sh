@@ -17,7 +17,7 @@ test "${RESPONSE}" = "401 Unauthorized" # .htpasswd
 # Check websocket
 set +e # timeout command will exit with status != 124, so it will stop script execution
 WEBSOCKET_RESPONSE=$(NODE_TLS_REJECT_UNAUTHORIZED=0 timeout 1s npx wsc -er wss://localhost:3000)
-sleep 1
+sleep 2
 test $? = 124 # timeout
 set -e # re-enable error control
 
