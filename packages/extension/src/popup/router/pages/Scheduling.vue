@@ -3,7 +3,7 @@
     <a v-if="imageUrl" :href="pageUrl" target="_blank">
       <s-image :url="imageUrl"></s-image>
     </a>
-    <p v-if="error">{{ error }}</p>
+    <p v-if="error" class="alert alert-error">{{ error }}</p>
   </div>
 </template>
 

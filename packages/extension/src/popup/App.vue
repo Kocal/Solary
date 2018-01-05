@@ -61,4 +61,19 @@
     background-image: -webkit-linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
     background-image: linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
   }
+
+  .alert {
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+
+    & .alert {
+      margin-top: 5px;
+    }
+
+    &.alert-error {
+      background-color: #c91122;
+      color: #faeaeb;
+    }
+  }
 </style>
