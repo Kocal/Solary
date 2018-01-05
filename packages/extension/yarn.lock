@@ -2900,6 +2900,10 @@ jest-validate@^22.0.3:
     leven "^2.1.0"
     pretty-format "^22.0.3"
 
+jest-webextension-mock@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jest-webextension-mock/-/jest-webextension-mock-3.0.0.tgz#f04feaae21ae3a7065ca657d3c7ca0911758c1c4"
+
 jest-worker@^22.0.3:
   version "22.0.3"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-22.0.3.tgz#30433faca67814a8f80559f75ab2ceaa61332fd2"
