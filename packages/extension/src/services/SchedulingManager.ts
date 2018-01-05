@@ -29,14 +29,23 @@ export default class SchedulingManager {
         .then(response => response.data)
         .then((html) => {
           /* eslint no-unused-vars: "off" */
-          /* eslint no-shadow: "off" */
-          const [_, imageUri] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
+          const matches = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
+
+          if (matches === null) {
+            return reject('Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu\'il a été modifié ?');
+          }
+
+          const [_, imageUri] = matches;
           const imageUrl = `https://www.solary.fr/${imageUri}`;
 
           this.write(imageUrl);
           resolve(imageUrl);
         })
-        .catch(error => reject(error));
+        .catch(error => {
+          const message = 'Une erreur fatale s\'est produite lors de la récupération de la programmation.';
+          reject(message);
+          console.error(message, error);
+        });
     });
   }
 
