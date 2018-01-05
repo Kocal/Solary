@@ -12,7 +12,8 @@
   },
   "jest": {
     "setupFiles": [
-      "jest-webextension-mock"
+      "jest-webextension-mock",
+      "jest-localstorage-mock"
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
@@ -54,6 +55,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "jest": "^22.0.4",
+    "jest-localstorage-mock": "^2.1.0",
     "jest-webextension-mock": "^3.0.0",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
