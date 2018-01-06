@@ -7,7 +7,7 @@ interface Payload {
 
 const timestamp = () => Math.floor((+new Date()) / 1000);
 
-export default class SchedulingManager {
+class SchedulingManager {
   private ttl: number;
   private pageUrl: string;
 
@@ -68,3 +68,7 @@ export default class SchedulingManager {
     return localStorage.setItem('solary_scheduling', JSON.stringify(data));
   }
 }
+
+export {
+  SchedulingManager,
+};

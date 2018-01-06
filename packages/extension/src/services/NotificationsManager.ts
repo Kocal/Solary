@@ -1,6 +1,6 @@
 import Channel from '../entities/Channel';
 
-export default class NotificationsManager {
+class NotificationsManager {
   constructor(private channels: Array<Channel>) {
     this.setupNotificationClickHandler();
   }
@@ -46,3 +46,7 @@ export default class NotificationsManager {
     return this.channels.find(c => c.username === username) || this.channels.find(c => c.username === 'solary');
   }
 }
+
+export {
+  NotificationsManager,
+};

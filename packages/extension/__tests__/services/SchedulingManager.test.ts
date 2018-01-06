@@ -1,4 +1,4 @@
-import SchedulingManager from '../../src/services/SchedulingManager';
+import { SchedulingManager } from '../../src/services/SchedulingManager';
 import axios from 'axios';
 
 const AxiosMockAdapter = require('axios-mock-adapter');
