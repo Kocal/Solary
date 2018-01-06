@@ -36,7 +36,7 @@ export default class SchedulingManager {
           }
 
           const [_, imageUri] = matches;
-          const imageUrl = `https://www.solary.fr/${imageUri}`;
+          const imageUrl = new URL(imageUri, 'https://www.solary.fr').href;
 
           this.write(imageUrl);
           resolve(imageUrl);
