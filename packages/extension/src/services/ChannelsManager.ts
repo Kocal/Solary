@@ -9,7 +9,7 @@ import { TwitchApi } from '../../typings/TwitchApi';
 
 const qs: any = require('qs');
 
-export default class ChannelsManager {
+class ChannelsManager {
   private autoRequestTwitchApiInterval: number | null;
 
   constructor(private channels: Array<Channel>,
@@ -34,10 +34,13 @@ export default class ChannelsManager {
       },
     };
 
-    axios.get(url, config)
+    return axios.get(url, config)
       .then(response => response.data.data)
       .then(this.onSuccess.bind(this))
-      .catch(this.onError.bind(this));
+      .catch((error) => {
+        const message = 'Une erreur s\'est produite lors de la récupération de l\'état des streams.';
+        console.error(message, error);
+      });
   }
 
   public enableAutoRequestTwitchApi() {
@@ -50,12 +53,8 @@ export default class ChannelsManager {
     const promises: Array<Promise<void>> = [];
 
     this.channels.forEach((channel) => {
-      const onlineChannel: TwitchApi.Stream | undefined = onlineChannels.find(oc => +oc.user_id === channel.id);
+      const onlineChannel: TwitchApi.Stream = onlineChannels.find(oc => +oc.user_id === channel.id) as TwitchApi.Stream;
       const isOnline: boolean = !!onlineChannel;
-
-      if (onlineChannel === undefined) {
-        return console.error(`Impossible de trouver le channel n°${channel.id}.`);
-      }
 
       if (isOnline) {
         const promise = this.gamesManager.getNameById(onlineChannel.game_id)
@@ -76,26 +75,12 @@ export default class ChannelsManager {
       }
     });
 
-    Promise.all(promises).then(() => {
+    return Promise.all(promises).then(() => {
       this.browserActionManager.update();
     });
   }
-
-  private onError(error: any) {
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.warn(error.response.data);
-      console.warn(error.response.status);
-      console.warn(error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-      // http.ClientRequest in node.js
-      console.warn('Error during request', error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.warn('Error', error.message);
-    }
-  }
 }
+
+export {
+  ChannelsManager,
+};
