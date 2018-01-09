@@ -9,7 +9,7 @@
 
 <script>
   import axios from 'axios';
-  import SchedulingManager from '../../../services/SchedulingManager';
+  import { SchedulingManager } from '../../../services/SchedulingManager';
   import Image from '../../components/Image.vue';
 
   export default {
