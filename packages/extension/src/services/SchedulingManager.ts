@@ -7,7 +7,7 @@ interface Payload {
 
 const timestamp = () => Math.floor((+new Date()) / 1000);
 
-export default class SchedulingManager {
+class SchedulingManager {
   private ttl: number;
   private pageUrl: string;
 
@@ -29,14 +29,23 @@ export default class SchedulingManager {
         .then(response => response.data)
         .then((html) => {
           /* eslint no-unused-vars: "off" */
-          /* eslint no-shadow: "off" */
-          const [_, imageUri] = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
-          const imageUrl = `https://www.solary.fr/${imageUri}`;
+          const matches = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
+
+          if (matches === null) {
+            return reject('Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu\'il a été modifié ?');
+          }
+
+          const [_, imageUri] = matches;
+          const imageUrl = new URL(imageUri, 'https://www.solary.fr').href;
 
           this.write(imageUrl);
           resolve(imageUrl);
         })
-        .catch(error => reject(error));
+        .catch(error => {
+          const message = 'Une erreur fatale s\'est produite lors de la récupération de la programmation.';
+          reject(message);
+          console.error(message, error);
+        });
     });
   }
 
@@ -59,3 +68,7 @@ export default class SchedulingManager {
     return localStorage.setItem('solary_scheduling', JSON.stringify(data));
   }
 }
+
+export {
+  SchedulingManager,
+};

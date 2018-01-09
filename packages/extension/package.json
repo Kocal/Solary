@@ -7,34 +7,69 @@
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --hide-modules",
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
-    "watch:dev": "npm run build:dev -- --watch"
+    "watch:dev": "npm run build:dev -- --watch",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-webextension-mock",
+      "jest-localstorage-mock"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "mapCoverage": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!src/popup/**/*.*"
+    ]
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.17.1",
     "qs": "^6.5.1",
-    "vue": "^2.4.1",
+    "vue": "^2.5.13",
     "vue-awesome": "^2.3.4",
-    "vue-router": "^2.7.0"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.54",
-    "@types/node": "^8.0.53",
+    "@types/chrome": "^0.0.57",
+    "@types/jest": "^22.0.1",
+    "@types/node": "^4.0.35",
+    "axios-mock-adapter": "^1.10.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-latest": "^6.24.1",
-    "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^5.0.5",
-    "css-loader": "^0.28.4",
+    "codecov": "^3.0.0",
+    "copy-webpack-plugin": "^4.3.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.8",
     "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.2",
-    "node-sass": "^4.5.3",
+    "file-loader": "^1.1.6",
+    "jest": "^22.0.4",
+    "jest-localstorage-mock": "^2.1.0",
+    "jest-webextension-mock": "^3.1.0",
+    "mock-socket": "^7.1.0",
+    "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
+    "ts-jest": "^22.0.0",
     "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
-    "uglifyjs-webpack-plugin": "^1.1.2",
-    "vue-loader": "^13.0.4",
-    "vue-template-compiler": "^2.4.1",
-    "webpack": "^3.9.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "vue-loader": "^13.6.2",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
     "webpack-shell-plugin": "^0.5.0",
     "zip-folder": "^1.0.0"
   }

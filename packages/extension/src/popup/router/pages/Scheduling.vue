@@ -3,7 +3,7 @@
     <a v-if="imageUrl" :href="pageUrl" target="_blank">
       <s-image :url="imageUrl"></s-image>
     </a>
-    <p v-if="error">Une erreur s'est produite lors de la récupération de la programmation.</p>
+    <p v-if="error" class="alert alert-error">{{ error }}</p>
   </div>
 </template>
 
@@ -28,7 +28,7 @@
 
       schedulingManager.getScheduling()
         .then(imageUrl => this.imageUrl = imageUrl)
-        .catch(error => this.error = true);
+        .catch(error => this.error = error);
     },
   };
 </script>
