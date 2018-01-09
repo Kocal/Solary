@@ -79,6 +79,5 @@
   li.router-link-active,
   li:not(.divider):hover {
     background-color: transparent;
-    color: #1b1c1d;
   }
 </style>
