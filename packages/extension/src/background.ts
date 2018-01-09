@@ -1,5 +1,5 @@
 import ChannelsManager from './services/ChannelsManager';
-import GamesManager from './services/GamesManager';
+import { GamesManager } from './services/GamesManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
 import WebSocketManager from './services/WebSocketManager';

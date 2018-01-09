@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Channel from '../entities/Channel';
 import { ClientIdsManager } from './ClientIdsManager';
-import GamesManager from './GamesManager';
+import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
 import { BrowserActionManager } from './BrowserActionManager';
 import Stream from '../entities/Stream';

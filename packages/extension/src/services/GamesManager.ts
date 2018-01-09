@@ -2,11 +2,11 @@ import axios from 'axios';
 import { ClientIdsManager } from './ClientIdsManager';
 import { TwitchApi } from '../../typings/TwitchApi';
 
-const read = (id: string) => localStorage.getItem(`solary_twitch_game_${id}`);
+const read = (id: string): string | null => localStorage.getItem(`solary_twitch_game_${id}`) || null;
 
 const write = (id: string, name: string) => localStorage.setItem(`solary_twitch_game_${id}`, name);
 
-export default class GamesManager {
+class GamesManager {
   constructor(private clientIdsManager: ClientIdsManager) {
   }
 
@@ -19,11 +19,20 @@ export default class GamesManager {
       }
 
       this.requestTwitchApi(id)
-        .then((game: TwitchApi.Game) => {
+        .then((game: TwitchApi.Game | null) => {
+          if (game === null) {
+            return reject(`Le jeu « ${id} » n'existe pas.`);
+          }
+
           write(id, game.name);
-          resolve(game.name);
+          return resolve(game.name);
         })
-        .catch(reject);
+        .catch(error => {
+          const message = `Erreur lors de la récupération des données du jeu « ${id} ».`;
+
+          console.error(message, error);
+          reject(message);
+        });
     });
   }
 
@@ -39,6 +48,18 @@ export default class GamesManager {
     };
 
     return axios.get(url, config)
-      .then(response => response.data.data[0]);
+      .then(response => {
+        const { data } = response;
+
+        if (!('data' in data) || data.data.length === 0) {
+          return null;
+        }
+
+        return data.data[0];
+      });
   }
 }
+
+export {
+  GamesManager,
+};
