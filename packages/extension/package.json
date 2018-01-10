@@ -9,7 +9,7 @@
     "watch": "npm run build -- --watch",
     "watch:dev": "npm run build:dev -- --watch",
     "test": "jest",
-    "prettier": "prettier --single-quote --print-width 120 --trailing-comma es5 '{src,__tests__}/**/*.ts'",
+    "prettier": "prettier '{src,__tests__}/**/*.ts'",
     "prettier:write": "npm run prettier -- --write"
   },
   "jest": {
