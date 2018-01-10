@@ -8,7 +8,9 @@
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
     "watch:dev": "npm run build:dev -- --watch",
-    "test": "jest"
+    "test": "jest",
+    "prettier": "prettier --single-quote --print-width 120 --trailing-comma es5 '{src,__tests__}/**/*.ts'",
+    "prettier:write": "npm run prettier -- --write"
   },
   "jest": {
     "setupFiles": [
@@ -62,9 +64,11 @@
     "jest-webextension-mock": "^3.1.0",
     "mock-socket": "^7.1.0",
     "node-sass": "^4.7.2",
+    "prettier": "1.9.2",
     "sass-loader": "^6.0.6",
     "ts-jest": "^22.0.0",
     "ts-loader": "^3.2.0",
+    "tslint-config-prettier": "1.6.0",
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "vue-loader": "^13.6.2",
