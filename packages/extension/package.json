@@ -8,35 +8,19 @@
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
     "watch:dev": "npm run build:dev -- --watch",
-    "test": "jest",
-    "prettier": "prettier '{src,__tests__}/**/*.ts'",
-    "prettier:write": "npm run prettier -- --write"
+    "test": "jest"
   },
   "jest": {
-    "setupFiles": [
-      "jest-webextension-mock",
-      "jest-localstorage-mock"
-    ],
+    "setupFiles": ["jest-webextension-mock", "jest-localstorage-mock"],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "mapCoverage": true,
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!src/**/*.d.ts",
-      "!src/popup/**/*.*"
-    ]
+    "collectCoverageFrom": ["src/**/*.ts", "!src/**/*.d.ts", "!src/popup/**/*.*"]
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -64,11 +48,9 @@
     "jest-webextension-mock": "^3.1.0",
     "mock-socket": "^7.1.0",
     "node-sass": "^4.7.2",
-    "prettier": "1.9.2",
     "sass-loader": "^6.0.6",
     "ts-jest": "^22.0.0",
     "ts-loader": "^3.2.0",
-    "tslint-config-prettier": "1.6.0",
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "vue-loader": "^13.6.2",
