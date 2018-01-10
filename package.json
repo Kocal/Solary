@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "prettier": "prettier 'packages/extension/{src,__tests__}/**/*.ts'",
+    "prettier": "prettier 'packages/extension/{src,__tests__}/**/*.ts' 'packages/server/**/*.js'",
     "prettier:write": "npm run prettier -- --write",
     "precommit": "pretty-quick --staged"
   },
