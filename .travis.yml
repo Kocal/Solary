@@ -10,11 +10,9 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_script:
-  - yarn
   - yarn bootstrap
 
 script:
-  - yarn lint
   - bash ci/build-extension.sh
   - bash ci/test-extension.sh
   - bash ci/run-server.sh
@@ -24,7 +22,7 @@ script:
 before_deploy:
   - export RELEASE_EXTENSION_FILE=$(ls packages/extension/dist-zip/*.zip)
   - echo "Deploying ${RELEASE_EXTENSION_FILE} to GitHub releases"
-  
+
 deploy:
   provider: releases
   api_key:

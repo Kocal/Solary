@@ -1,16 +1,10 @@
 import Channel from '../entities/Channel';
 
-const setTitle = (title: string): void => chrome.browserAction.setTitle({
-  title,
-});
+const setTitle = (title: string): void => chrome.browserAction.setTitle({ title });
 
-const setBadgeText = (text: string): void => chrome.browserAction.setBadgeText({
-  text,
-});
+const setBadgeText = (text: string): void => chrome.browserAction.setBadgeText({ text });
 
-const setBadgeColor = (color: string): void => chrome.browserAction.setBadgeBackgroundColor({
-  color,
-});
+const setBadgeColor = (color: string): void => chrome.browserAction.setBadgeBackgroundColor({ color });
 
 const markAsOnline = (): void => {
   setBadgeText('ON');
@@ -22,7 +16,7 @@ const markAsOffline = (): void => {
   setBadgeColor('gray');
 };
 
-export default class BrowserActionManager {
+class BrowserActionManager {
   constructor(private channels: Array<Channel>) {
     setBadgeText('...');
   }
@@ -36,10 +30,16 @@ export default class BrowserActionManager {
 
     if (solaryChannel.stream !== null) {
       markAsOnline();
-      setTitle(`${solaryChannel.stream.title}\n\nJoue à ${solaryChannel.stream.game} devant ${solaryChannel.stream.viewers} viewers`);
+      setTitle(
+        `${solaryChannel.stream.title}\n\nJoue à ${solaryChannel.stream.game} devant ${
+          solaryChannel.stream.viewers
+        } viewers`
+      );
     } else {
       markAsOffline();
       setTitle('Personne ne stream actuellement sur la TV !');
     }
   }
 }
+
+export { BrowserActionManager };

@@ -6,6 +6,8 @@ cd "$DIR"
 
 cd "../packages/extension"
 
+yarn test && npx codecov
+
 test -f dist/manifest.json
 test -f dist/background.js
 test -f dist/popup/popup.js
