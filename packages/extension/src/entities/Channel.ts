@@ -5,10 +5,7 @@ export default class Channel {
   public online: boolean | null;
   public stream: Stream | null;
 
-  constructor(public id: number,
-              public username: string,
-              public nickname: string,
-              public networks: Networks) {
+  constructor(public id: number, public username: string, public nickname: string, public networks: Networks) {
     this.online = null;
     this.stream = null;
   }

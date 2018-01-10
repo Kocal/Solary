@@ -7,8 +7,7 @@ const read = (id: string): string | null => localStorage.getItem(`solary_twitch_
 const write = (id: string, name: string) => localStorage.setItem(`solary_twitch_game_${id}`, name);
 
 class GamesManager {
-  constructor(private clientIdsManager: ClientIdsManager) {
-  }
+  constructor(private clientIdsManager: ClientIdsManager) {}
 
   public getNameById(id: string): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -47,19 +46,16 @@ class GamesManager {
       },
     };
 
-    return axios.get(url, config)
-      .then(response => {
-        const { data } = response;
+    return axios.get(url, config).then(response => {
+      const { data } = response;
 
-        if (!('data' in data) || data.data.length === 0) {
-          return null;
-        }
+      if (!('data' in data) || data.data.length === 0) {
+        return null;
+      }
 
-        return data.data[0];
-      });
+      return data.data[0];
+    });
   }
 }
 
-export {
-  GamesManager,
-};
+export { GamesManager };

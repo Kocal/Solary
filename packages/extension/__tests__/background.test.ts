@@ -4,7 +4,7 @@ global.WebSocket = WebSocket;
 
 require('../src/background');
 
-describe('background', function () {
+describe('background', function() {
   it('should add listener on chrome.runtime.onMessage', () => {
     expect(chrome.runtime.onMessage.addListener).toHaveBeenCalled();
   });

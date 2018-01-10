@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 interface Payload {
-  url: string,
-  timestamp: number,
+  url: string;
+  timestamp: number;
 }
 
-const timestamp = () => Math.floor((+new Date()) / 1000);
+const timestamp = () => Math.floor(+new Date() / 1000);
 
 class SchedulingManager {
   private ttl: number;
@@ -25,14 +25,17 @@ class SchedulingManager {
         return;
       }
 
-      axios.get(this.pageUrl)
+      axios
+        .get(this.pageUrl)
         .then(response => response.data)
-        .then((html) => {
+        .then(html => {
           /* eslint no-unused-vars: "off" */
           const matches = html.match(/<div class="prog-bg" style="background-image: url\('([^']+)'\);">/);
 
           if (matches === null) {
-            return reject('Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu\'il a été modifié ?');
+            return reject(
+              "Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu'il a été modifié ?"
+            );
           }
 
           const [_, imageUri] = matches;
@@ -42,7 +45,7 @@ class SchedulingManager {
           resolve(imageUrl);
         })
         .catch(error => {
-          const message = 'Une erreur fatale s\'est produite lors de la récupération de la programmation.';
+          const message = "Une erreur fatale s'est produite lors de la récupération de la programmation.";
           reject(message);
           console.error(message, error);
         });
@@ -69,6 +72,4 @@ class SchedulingManager {
   }
 }
 
-export {
-  SchedulingManager,
-};
+export { SchedulingManager };

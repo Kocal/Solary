@@ -21,7 +21,7 @@ describe('Service - NotificationsManager', () => {
       notificationsManager.show(channel);
 
       expect(console.error).toHaveBeenCalledWith(
-        'Le channel Solary n\'est pas en ligne, impossible d\'afficher une notification.',
+        "Le channel Solary n'est pas en ligne, impossible d'afficher une notification."
       );
       expect(chrome.notifications.create).not.toHaveBeenCalled();
     });

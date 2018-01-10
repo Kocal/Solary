@@ -16,7 +16,9 @@ class NotificationsManager {
 
   public show(channel: Channel): void {
     if (!channel.stream) {
-      return console.error(`Le channel ${channel.nickname} n'est pas en ligne, impossible d'afficher une notification.`);
+      return console.error(
+        `Le channel ${channel.nickname} n'est pas en ligne, impossible d'afficher une notification.`
+      );
     }
 
     create(`${channel.nickname} est en live sur ${channel.stream.game} !`, channel.stream.title, channel.username);
@@ -27,7 +29,7 @@ class NotificationsManager {
   }
 
   private setupNotificationClickHandler(): void {
-    chrome.notifications.onClicked.addListener((channelUsername) => {
+    chrome.notifications.onClicked.addListener(channelUsername => {
       const channel = this.findByUsernameOrSolary(channelUsername);
 
       if (!channel) {
@@ -46,6 +48,4 @@ class NotificationsManager {
   }
 }
 
-export {
-  NotificationsManager,
-};
+export { NotificationsManager };

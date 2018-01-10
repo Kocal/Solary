@@ -14,7 +14,13 @@ const clientIdsManager = new ClientIdsManager(clientIds);
 const gamesManager = new GamesManager(clientIdsManager);
 const notificationsManager = new NotificationsManager(channels);
 const browserActionManager = new BrowserActionManager(channels);
-const channelsManager = new ChannelsManager(channels, clientIdsManager, gamesManager, notificationsManager, browserActionManager);
+const channelsManager = new ChannelsManager(
+  channels,
+  clientIdsManager,
+  gamesManager,
+  notificationsManager,
+  browserActionManager
+);
 const schedulingManager = new SchedulingManager();
 const webSocketManager = new WebSocketManager(webSocketConfig, notificationsManager);
 
