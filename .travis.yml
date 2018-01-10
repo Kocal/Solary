@@ -13,7 +13,6 @@ before_script:
   - yarn bootstrap
 
 script:
-  - yarn lint
   - bash ci/build-extension.sh
   - bash ci/test-extension.sh
   - bash ci/run-server.sh

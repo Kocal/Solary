@@ -12,9 +12,12 @@ describe('Service - SchedulingManager', () => {
   const schedulingUrl = 'http://example.com/programmation.png';
 
   axiosMock
-    .onGet(url).replyOnce(200, `<div class="prog-bg" style="background-image: url('/uploads/PLANNING/Capture.JPG');">`)
-    .onGet(url).replyOnce(200, `<div style="background-image: url('/uploads/PLANNING/Capture.JPG');">`)
-    .onGet(url).replyOnce(500);
+    .onGet(url)
+    .replyOnce(200, `<div class="prog-bg" style="background-image: url('/uploads/PLANNING/Capture.JPG');">`)
+    .onGet(url)
+    .replyOnce(200, `<div style="background-image: url('/uploads/PLANNING/Capture.JPG');">`)
+    .onGet(url)
+    .replyOnce(500);
 
   describe('getScheduling - success', async () => {
     expect(await schedulingManager.getScheduling()).toBe('https://www.solary.fr/uploads/PLANNING/Capture.JPG');
@@ -38,9 +41,7 @@ describe('Service - SchedulingManager', () => {
     try {
       await schedulingManager.getScheduling();
     } catch (e) {
-      expect(e).toBe(
-        'Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu\'il a été modifié ?',
-      );
+      expect(e).toBe("Erreur lors du parsage du code HTML de la page des programmes. Est-ce qu'il a été modifié ?");
     }
   });
 
@@ -50,9 +51,7 @@ describe('Service - SchedulingManager', () => {
     try {
       await schedulingManager.getScheduling();
     } catch (e) {
-      expect(e).toBe(
-        'Une erreur fatale s\'est produite lors de la récupération de la programmation.',
-      );
+      expect(e).toBe("Une erreur fatale s'est produite lors de la récupération de la programmation.");
       expect(console.error).toHaveBeenCalled();
     }
 
@@ -69,10 +68,13 @@ describe('Service - SchedulingManager', () => {
 
     it('should write in localStorage', () => {
       schedulingManager.write(schedulingUrl);
-      expect(localStorage.setItem).toHaveBeenCalledWith(cacheKey, JSON.stringify({
-        url: schedulingUrl,
-        timestamp: Math.floor(+new Date() / 1000) + 60 * 60,
-      }));
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        cacheKey,
+        JSON.stringify({
+          url: schedulingUrl,
+          timestamp: Math.floor(+new Date() / 1000) + 60 * 60,
+        })
+      );
     });
 
     it('should return url from localStorage', () => {

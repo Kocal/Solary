@@ -12,6 +12,4 @@ class ClientIdsManager {
   }
 }
 
-export {
-  ClientIdsManager,
-};
+export { ClientIdsManager };

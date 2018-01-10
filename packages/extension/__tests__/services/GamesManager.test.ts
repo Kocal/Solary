@@ -13,9 +13,20 @@ describe('Service - GamesManager', () => {
   const lsKey = 'solary_twitch_game_';
 
   axiosMock
-    .onGet(url, { params: { id: "21779" } }).replyOnce(200, { "data": [{ "id": "21779", "name": "League of Legends", "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/League%20of%20Legends-{width}x{height}.jpg" }] })
-    .onGet(url, { params: { id: "1234567890" } }).replyOnce(200, { "data": [] })
-    .onGet(url, { params: { id: "11223344556677889900" } }).replyOnce(500, { "error": "Internal Server Error", "status": 500, "message": "" });
+    .onGet(url, { params: { id: '21779' } })
+    .replyOnce(200, {
+      data: [
+        {
+          id: '21779',
+          name: 'League of Legends',
+          box_art_url: 'https://static-cdn.jtvnw.net/ttv-boxart/League%20of%20Legends-{width}x{height}.jpg',
+        },
+      ],
+    })
+    .onGet(url, { params: { id: '1234567890' } })
+    .replyOnce(200, { data: [] })
+    .onGet(url, { params: { id: '11223344556677889900' } })
+    .replyOnce(500, { error: 'Internal Server Error', status: 500, message: '' });
 
   describe('getNameById()', () => {
     beforeEach(() => {
@@ -24,7 +35,7 @@ describe('Service - GamesManager', () => {
     });
 
     it('should make a request', async () => {
-      const gameId = "21779";
+      const gameId = '21779';
       const game = await gamesManager.getNameById(gameId);
 
       expect(game).toBe('League of Legends');
@@ -33,7 +44,7 @@ describe('Service - GamesManager', () => {
     });
 
     it('should read localStorage', async () => {
-      const gameId = "21779";
+      const gameId = '21779';
       const game = await gamesManager.getNameById(gameId);
 
       expect(game).toBe('League of Legends');
@@ -42,7 +53,7 @@ describe('Service - GamesManager', () => {
     });
 
     it('should fail if we request a non-existing game', async () => {
-      const gameId = "1234567890";
+      const gameId = '1234567890';
 
       try {
         await gamesManager.getNameById(gameId);
@@ -52,7 +63,7 @@ describe('Service - GamesManager', () => {
     });
 
     it('should fail if game id is too high', async () => {
-      const gameId = "11223344556677889900";
+      const gameId = '11223344556677889900';
 
       console.error = jest.fn();
 

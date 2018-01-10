@@ -26,7 +26,9 @@ describe('Service - BrowserActionManager', () => {
 
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'OFF' });
       expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'gray' });
-      expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({ title: 'Personne ne stream actuellement sur la TV !' });
+      expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({
+        title: 'Personne ne stream actuellement sur la TV !',
+      });
     });
 
     it('should set browser action in online state', () => {
@@ -36,7 +38,9 @@ describe('Service - BrowserActionManager', () => {
 
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'ON' });
       expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'green' });
-      expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({ title: `Midi Chapi\n\nJoue à LoL devant 6000 viewers` });
+      expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({
+        title: `Midi Chapi\n\nJoue à LoL devant 6000 viewers`,
+      });
     });
 
     it('should not touch browser action state if no Solary streams found (should not happens)', () => {
@@ -47,6 +51,6 @@ describe('Service - BrowserActionManager', () => {
       expect(chrome.browserAction.setBadgeText).not.toHaveBeenCalled();
       expect(chrome.browserAction.setBadgeBackgroundColor).not.toHaveBeenCalled();
       expect(chrome.browserAction.setTitle).not.toHaveBeenCalled();
-    })
+    });
   });
 });
