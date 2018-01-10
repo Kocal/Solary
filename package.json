@@ -5,8 +5,7 @@
   "author": "Hugo Alliaume <kocal@live.fr>",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "lint": "eslint packages/extension/src"
+    "bootstrap": "lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -17,11 +16,6 @@
   },
   "homepage": "https://github.com/Kocal/Solary#readme",
   "devDependencies": {
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
     "lerna": "^2.5.1",
     "pm2": "^2.7.2",
     "wsc": "^0.3.0"
