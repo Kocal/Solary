@@ -5,16 +5,16 @@
 </template>
 
 <script>
-  import Channel from '../../components/Channel.vue';
+import Channel from '../../components/Channel.vue';
 
-  export default {
-    components: {
-      Channel,
+export default {
+  components: {
+    Channel,
+  },
+  computed: {
+    solaryChannel() {
+      return this.$root.channels.find(channel => channel.nickname === 'Solary');
     },
-    computed: {
-      solaryChannel() {
-        return this.$root.channels.find(channel => channel.nickname === 'Solary');
-      },
-    },
-  };
+  },
+};
 </script>

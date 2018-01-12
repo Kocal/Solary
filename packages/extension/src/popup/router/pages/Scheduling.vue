@@ -8,34 +8,35 @@
 </template>
 
 <script>
-  import axios from 'axios';
-  import { SchedulingManager } from '../../../services/SchedulingManager';
-  import Image from '../../components/Image.vue';
+import axios from 'axios';
+import { SchedulingManager } from '../../../services/SchedulingManager';
+import Image from '../../components/Image.vue';
 
-  export default {
-    components: {
-      's-image': Image,
-    },
-    data() {
-      return {
-        pageUrl: 'https://www.solary.fr/programme/',
-        imageUrl: null,
-        error: null,
-      };
-    },
-    created() {
-      const schedulingManager = new SchedulingManager;
+export default {
+  components: {
+    's-image': Image,
+  },
+  data() {
+    return {
+      pageUrl: 'https://www.solary.fr/programme/',
+      imageUrl: null,
+      error: null,
+    };
+  },
+  created() {
+    const schedulingManager = new SchedulingManager();
 
-      schedulingManager.getScheduling()
-        .then(imageUrl => this.imageUrl = imageUrl)
-        .catch(error => this.error = error);
-    },
-  };
+    schedulingManager
+      .getScheduling()
+      .then(imageUrl => (this.imageUrl = imageUrl))
+      .catch(error => (this.error = error));
+  },
+};
 </script>
 
 <style scoped>
-  img {
-    max-width: 100%;
-    display: block;
-  }
+img {
+  max-width: 100%;
+  display: block;
+}
 </style>

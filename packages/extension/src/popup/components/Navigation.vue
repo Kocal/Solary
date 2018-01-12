@@ -42,54 +42,54 @@
 </template>
 
 <script>
-  export default {};
+export default {};
 </script>
 
 <style scoped lang="scss">
-  ul {
-    display: flex;
-    margin: 0;
+ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  border-style: solid;
+  border-width: 4px 0 0;
+  border-color: #1b1c1d;
+}
+
+li {
+  padding: 8px 16px;
+  font-size: 2rem;
+  background-color: #1b1c1d;
+  list-style: none;
+  text-transform: uppercase;
+
+  transition: all 0.1s linear;
+
+  &.icon {
     padding: 0;
 
-    border-style: solid;
-    border-width: 4px 0 0;
-    border-color: #1b1c1d;
-  }
-
-  li {
-    padding: 8px 16px;
-    font-size: 2rem;
-    background-color: #1b1c1d;
-    list-style: none;
-    text-transform: uppercase;
-
-    transition: all .1s linear;
-
-    &.icon {
-      padding: 0;
-
-      & > a {
-        display: block;
-        padding: 8px 16px;
-      }
-
-      &:hover svg {
-        fill: rgba(0, 0, 0, .9);
-      }
+    & > a {
+      display: block;
+      padding: 8px 16px;
     }
 
-    &:first-child,
-    &:nth-child(5) {
-      flex: 1;
+    &:hover svg {
+      fill: rgba(0, 0, 0, 0.9);
     }
   }
 
-  li:not(.divider) {
-    cursor: pointer;
+  &:first-child,
+  &:nth-child(5) {
+    flex: 1;
   }
+}
 
-  li.router-link-active,
-  li:not(.divider):hover {
-    background-color: transparent;
-  }
+li:not(.divider) {
+  cursor: pointer;
+}
+
+li.router-link-active,
+li:not(.divider):hover {
+  background-color: transparent;
+}
 </style>
