@@ -6,7 +6,6 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "prepublish": "lerna publish --force-publish=extension,server --skip-npm --skip-git",
     "prettier": "prettier 'packages/extension/{src,__tests__}/**/*.{ts,vue}' 'packages/server/**/*.js'",
     "prettier:write": "npm run prettier -- --write",
     "precommit": "pretty-quick --staged"
