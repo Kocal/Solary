@@ -20,7 +20,7 @@ const config = {
     extensions: ['.ts', '.js', '.vue'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
         loaders: 'vue-loader',
