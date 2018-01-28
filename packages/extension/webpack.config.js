@@ -7,6 +7,7 @@ const WebpackUglifyPlugin = require('uglifyjs-webpack-plugin');
 const { version } = require('../../lerna.json');
 
 const config = {
+  mode: 'development',
   context: `${__dirname}/src`,
   entry: {
     background: './background.ts',
@@ -105,6 +106,7 @@ if (process.env.NODE_ENV === 'production') {
     gitBranchOrTag,
   });
 
+  config.mode = 'production';
   config.devtool = '#cheap-module-source-map';
 
   config.plugins = (config.plugins || []).concat([
