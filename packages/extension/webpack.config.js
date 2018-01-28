@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackUglifyPlugin = require('uglifyjs-webpack-plugin');
 const { version } = require('../../lerna.json');
 
 const config = {
@@ -114,10 +113,6 @@ if (process.env.NODE_ENV === 'production') {
       'process.env': {
         NODE_ENV: '"production"',
       },
-    }),
-    new WebpackUglifyPlugin({
-      parallel: true,
-      sourceMap: true,
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
