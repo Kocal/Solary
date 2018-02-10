@@ -10,22 +10,17 @@ const config = {
   context: `${__dirname}/src`,
   entry: {
     background: './background.ts',
-    'popup/popup': './popup/popup.ts',
+    'popup/popup': './popup/popup.tsx',
   },
   output: {
     path: `${__dirname}/dist`,
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     loaders: [
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',

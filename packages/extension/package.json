@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "preact": "^8.2.7",
     "qs": "^6.5.1"
   },
   "devDependencies": {

@@ -3,5 +3,8 @@
     ["latest", {
       "es2015": { "modules": "commonjs"}
     }]
+  ],
+  "plugins": [
+    ["transform-react-jsx", { "pragma": "h" }]
   ]
 }
