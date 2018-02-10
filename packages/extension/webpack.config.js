@@ -10,51 +10,26 @@ const config = {
   context: `${__dirname}/src`,
   entry: {
     background: './background.ts',
-    'popup/popup': './popup/popup.ts',
+    'popup/popup': './popup/popup.tsx',
   },
   output: {
     path: `${__dirname}/dist`,
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     loaders: [
       {
-        test: /\.vue$/,
-        loaders: 'vue-loader',
-        options: {
-          loaders: {
-            scss: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader',
-              fallback: 'vue-style-loader',
-            }),
-            sass: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader?indentedSyntax',
-              fallback: 'vue-style-loader',
-            }),
-          },
-        },
-      },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      // },
-      {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-        },
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           use: 'css-loader',
-          fallback: 'vue-loader',
         }),
       },
       {
