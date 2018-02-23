@@ -37,16 +37,22 @@
         </a>
       </li>
       <li class="divider"></li>
-      <router-link to="/parameters" tag="li" title="Paramètres">
+      <li title="Paramètres" @click="openOptionsPage">
         <icon name="gear"></icon>
-      </router-link>
+      </li>
       <li class="divider"></li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    openOptionsPage() {
+      chrome.runtime.openOptionsPage();
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
