@@ -72,16 +72,16 @@ li {
 
   transition: all 0.1s linear;
 
+  &:hover svg {
+    fill: rgba(0, 0, 0, 0.9);
+  }
+
   &.icon {
     padding: 0;
 
     & > a {
       display: block;
       padding: $padding-y $padding-x;
-    }
-
-    &:hover svg {
-      fill: rgba(0, 0, 0, 0.9);
     }
   }
 
