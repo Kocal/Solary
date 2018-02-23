@@ -72,7 +72,8 @@ li {
 
   transition: all 0.1s linear;
 
-  &:hover svg {
+  &:hover svg,
+  &.router-link-active svg {
     fill: rgba(0, 0, 0, 0.9);
   }
 
