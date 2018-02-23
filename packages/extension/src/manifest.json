@@ -3,11 +3,7 @@
   "version": null,
   "description": "Extension navigateur pour la WebTV Solary",
   "manifest_version": 2,
-  "permissions": [
-    "notifications",
-    "tabs",
-    "https://www.solary.fr/"
-  ],
+  "permissions": ["notifications", "tabs", "https://www.solary.fr/"],
   "icons": {
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
@@ -18,8 +14,10 @@
     "default_icon": "icons/icon_48.png"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "chrome_style": true
   }
 }
