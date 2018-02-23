@@ -68,6 +68,20 @@ a {
   padding: 8px;
 }
 
+.title {
+  margin: 0.5em 0;
+
+  &.is-thin {
+    font-weight: lighter;
+  }
+  &.is-1 {
+    font-size: 3rem;
+  }
+  &.is-2 {
+    font-size: 2.4rem;
+  }
+}
+
 .alert {
   padding: 10px;
   margin: 0;
