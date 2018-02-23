@@ -11,6 +11,7 @@ import 'vue-awesome/icons/snapchat';
 import 'vue-awesome/icons/twitch';
 import 'vue-awesome/icons/twitter';
 import 'vue-awesome/icons/youtube';
+import 'vue-awesome/icons/gear';
 
 Vue.component('icon', Icon);
 
