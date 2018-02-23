@@ -37,6 +37,10 @@
         </a>
       </li>
       <li class="divider"></li>
+      <router-link to="/parameters" tag="li" title="Paramètres">
+        <icon name="gear"></icon>
+      </router-link>
+      <li class="divider"></li>
     </ul>
   </nav>
 </template>
