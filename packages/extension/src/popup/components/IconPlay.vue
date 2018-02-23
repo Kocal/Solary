@@ -3,12 +3,9 @@
 </template>
 
 <style scoped lang="scss">
-$width: 90px;
-$height: 90px;
-
 .icon-play {
-  width: $width;
-  height: $height;
+  width: 92px;
+  height: 92px;
 
   clip-path: polygon(0 0, 0% 100%, 100% 50%);
   background-size: 200%;
@@ -17,8 +14,7 @@ $height: 90px;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    width: $width + 20px;
-    height: $height + 20px;
+    transform: scale(1.2);
   }
 }
 
