@@ -1,24 +1,23 @@
 <template>
-  <div class="icon-play solary-gradient"></div>
+  <div>
+    <div class="icon-play solary-gradient"></div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-$width: 90px;
-$height: 90px;
-
 .icon-play {
-  width: $width;
-  height: $height;
+  width: 92px;
+  height: 92px;
 
   clip-path: polygon(0 0, 0% 100%, 100% 50%);
   background-size: 200%;
 
   animation: move-background 5s ease-in-out infinite;
   transition: all 0.2s ease-in-out;
+  transform-origin: center;
 
   &:hover {
-    width: $width + 20px;
-    height: $height + 20px;
+    transform: scale(1.2);
   }
 }
 
