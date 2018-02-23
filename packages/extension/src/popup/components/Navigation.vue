@@ -46,6 +46,9 @@ export default {};
 </script>
 
 <style scoped lang="scss">
+$padding-y: 6px;
+$padding-x: 12px;
+
 ul {
   display: flex;
   margin: 0;
@@ -57,7 +60,7 @@ ul {
 }
 
 li {
-  padding: 8px 16px;
+  padding: $padding-y $padding-x;
   font-size: 2rem;
   background-color: #1b1c1d;
   list-style: none;
@@ -70,7 +73,7 @@ li {
 
     & > a {
       display: block;
-      padding: 8px 16px;
+      padding: $padding-y $padding-x;
     }
 
     &:hover svg {
