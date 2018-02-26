@@ -63,25 +63,6 @@ a {
   background-image: linear-gradient(45deg, #1196ff 0, #4940ff 25%, #d4886b 75%, #ffc919 100%);
 }
 
-.page {
-  background-color: #1b1c1d;
-  padding: 8px;
-}
-
-.title {
-  margin: 0.5em 0;
-
-  &.is-thin {
-    font-weight: lighter;
-  }
-  &.is-1 {
-    font-size: 3rem;
-  }
-  &.is-2 {
-    font-size: 2.4rem;
-  }
-}
-
 .alert {
   padding: 10px;
   margin: 0;
