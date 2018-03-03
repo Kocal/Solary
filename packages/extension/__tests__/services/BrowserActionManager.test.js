@@ -1,6 +1,6 @@
 import channels from '../../src/store/channels';
-import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 import Stream from '../../src/entities/Stream';
+import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 
 describe('Service - BrowserActionManager', () => {
   describe('constructor()', () => {
