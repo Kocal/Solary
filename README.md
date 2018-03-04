@@ -1,6 +1,8 @@
 Solary
 ======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kocal/Solary.svg)](https://greenkeeper.io/)
+
 > Projects related to the french WebTV [Solary](https://www.solary.fr).
 
 [![Travis](https://img.shields.io/travis/Kocal/Solary.svg?style=flat-square)](https://travis-ci.org/Kocal/Solary)

@@ -1,4 +1,5 @@
 import Channel from '../entities/Channel';
+import Stream from '../entities/Stream';
 
 const setTitle = (title: string): void => chrome.browserAction.setTitle({ title });
 
@@ -22,23 +23,26 @@ class BrowserActionManager {
   }
 
   public update(): void {
-    const solaryChannel: Channel | undefined = this.channels.find(channel => channel.username === 'solary');
-
-    if (solaryChannel === undefined) {
-      return;
-    }
-
-    if (solaryChannel.stream !== null) {
+    if (this.channels.some(channel => channel.online as boolean)) {
       markAsOnline();
-      setTitle(
-        `${solaryChannel.stream.title}\n\nJoue à ${solaryChannel.stream.game} devant ${
-          solaryChannel.stream.viewers
-        } viewers`
-      );
+      this.buildTitle();
     } else {
       markAsOffline();
       setTitle('Personne ne stream actuellement sur la TV !');
     }
+  }
+
+  private buildTitle(): void {
+    const title = this.channels
+      .filter(channel => channel.online)
+      .filter(channel => channel.stream !== null)
+      .map(channel => {
+        const stream = channel.stream as Stream;
+        return `${channel.nickname} joue à ${stream.game} devant ${stream.viewers} viewers\n${stream.title}`;
+      })
+      .join('\n\n');
+
+    setTitle(title);
   }
 }
 

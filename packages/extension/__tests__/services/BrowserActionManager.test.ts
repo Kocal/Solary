@@ -33,24 +33,15 @@ describe('Service - BrowserActionManager', () => {
 
     it('should set browser action in online state', () => {
       channels[0].markAsOnline(new Stream('LoL', 'Midi Chapi', 6000, '<thumbnail_url>'));
+      channels[1].markAsOnline(new Stream('Fortnite', 'Yoshi et Hunter', 5000, '<thumbnail_url>'));
 
       browserActionManager.update();
 
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'ON' });
       expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'green' });
       expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({
-        title: `Midi Chapi\n\nJoue à LoL devant 6000 viewers`,
+        title: `Solary joue à LoL devant 6000 viewers\nMidi Chapi\n\nSolary Fortnine joue à Fortnite devant 5000 viewers\nYoshi et Hunter`,
       });
-    });
-
-    it('should not touch browser action state if no Solary streams found (should not happens)', () => {
-      channels[0].username = 'melon';
-
-      browserActionManager.update();
-
-      expect(chrome.browserAction.setBadgeText).not.toHaveBeenCalled();
-      expect(chrome.browserAction.setBadgeBackgroundColor).not.toHaveBeenCalled();
-      expect(chrome.browserAction.setTitle).not.toHaveBeenCalled();
     });
   });
 });

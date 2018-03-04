@@ -1,8 +1,10 @@
 <template>
-  <a :href="channel.url()" class="channel" :class="[size, {offline: !channel.online}]" target="_blank">
+  <a :href="channel.url()" class="channel" :class="[{offline: !channel.online}]" target="_blank">
     <div v-if="channel.online" class="grid">
-      <div v-if="size === 'big'" class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"></thumbnail>
+      <div class="grid__aside">
+        <thumbnail :url="channel.stream.thumbnail_url" :width="300" :height="166" style="display: block">
+          <icon-play class="thumbnail__play-button"/>
+        </thumbnail>
       </div>
       <div class="grid__main">
         <h2 class="channel__nickname">
@@ -24,83 +26,79 @@
 </template>
 
 <script>
-  import Thumbnail from './Thumbnail.vue';
+import IconPlay from './IconPlay.vue';
+import Thumbnail from './Thumbnail.vue';
 
-  export default {
-    components: {
-      Thumbnail,
+export default {
+  components: {
+    IconPlay,
+    Thumbnail,
+  },
+  props: {
+    channel: {
+      type: Object,
+      required: true,
     },
-    props: {
-      channel: {
-        type: Object,
-        required: true,
-      },
-      size: {
-        type: String,
-        'default': 'normal',
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .channel {
-    display: block;
-    padding: 8px;
+.channel {
+  display: block;
+  padding: 8px;
 
-    background-color: #1b1c1d;
-    box-shadow: 0 0 1px #000;
+  background-color: #1b1c1d;
+  box-shadow: 0 0 1px #000;
 
-    transition: background-color .1s linear;
+  transition: background-color 0.1s linear;
 
-    &.offline {
-      filter: grayscale(1);
-    }
-
-    &.big {
-      .channel__nickname {
-        font-size: 3.2rem;
-      }
-    }
+  &.offline {
+    filter: grayscale(1);
   }
 
-  .channel__nickname {
-    margin: .25em 0;
-    font-size: 2rem;
-    font-weight: 400;
+  & + & {
+    margin-top: 4px;
+  }
+}
+
+.channel__nickname {
+  margin: 0.25em 0;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: #ffcc00;
+}
+
+.channel__stream-title {
+  margin: 0.5em 0;
+}
+
+.channel__stream-status {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.4rem;
+
+  > a {
     color: #ffcc00;
-  }
+    transition: color 0.1s linear;
 
-  .channel__stream-title {
-    margin: .5em 0;
-  }
-
-  .channel__stream-status {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1.4rem;
-
-    > a {
-      color: #ffcc00;
-      transition: color .1s linear;
-
-      &:hover {
-        color: #7d5bbe;
-      }
+    &:hover {
+      color: #7d5bbe;
     }
   }
+}
 
-  .channel__state--offline {
-    color: rgba(255, 255, 255, .5);
-    font-style: italic;
-  }
+.channel__state--offline {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
 
-  .grid {
-    display: flex;
-  }
+.grid {
+  display: flex;
+}
 
-  .grid__main {
-    flex: 1;
-    padding: 0 8px 8px;
-  }
+.grid__main {
+  flex: 1;
+  padding: 0 8px 8px;
+}
 </style>

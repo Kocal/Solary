@@ -91,6 +91,11 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
+  const gitRevision = require('child_process')
+    .execSync('git name-rev --name-only HEAD')
+    .toString()
+    .trim();
+
   config.devtool = '#cheap-module-source-map';
 
   config.plugins = (config.plugins || []).concat([
@@ -105,6 +110,14 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
+    }),
+    new webpack.BannerPlugin({
+      entryOnly: true,
+      test: /\.js/,
+      banner: `Oh, attention, vous êtes devant du code minimifié !
+Ce n'est pas pour cacher du code malveillant, c'est uniquement pour réduire le poids de l'extension.
+
+Fichier original : https://github.com/Kocal/Solary/blob/${gitRevision}/packages/extension/src/[name].ts`,
     }),
   ]);
 }
