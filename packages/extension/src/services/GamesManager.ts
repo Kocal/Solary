@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ClientIdsManager } from './ClientIdsManager';
 import { TwitchApi } from '../../typings/TwitchApi';
+import { ClientIdsManager } from './ClientIdsManager';
 
 const read = (id: string): string | null => localStorage.getItem(`solary_twitch_game_${id}`) || null;
 

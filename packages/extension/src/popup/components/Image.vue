@@ -1,8 +1,8 @@
 <template>
   <img
-      :src="url"
-      :class="{loading}"
-      @load="loading = false"
+    :src="url"
+    :class="{loading}"
+    @load="loading = false"
   >
 </template>
 

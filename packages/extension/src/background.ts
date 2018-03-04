@@ -1,14 +1,13 @@
+import webSocketConfig from './config/webSocket';
+import { BrowserActionManager } from './services/BrowserActionManager';
 import { ChannelsManager } from './services/ChannelsManager';
+import { ClientIdsManager } from './services/ClientIdsManager';
 import { GamesManager } from './services/GamesManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
 import WebSocketManager from './services/WebSocketManager';
-import { ClientIdsManager } from './services/ClientIdsManager';
-import { BrowserActionManager } from './services/BrowserActionManager';
-
-import webSocketConfig from './config/webSocket';
-import clientIds from './store/clientIds';
 import channels from './store/channels';
+import clientIds from './store/clientIds';
 
 const clientIdsManager = new ClientIdsManager(clientIds);
 const gamesManager = new GamesManager(clientIdsManager);
