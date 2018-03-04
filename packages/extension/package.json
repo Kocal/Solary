@@ -11,7 +11,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.0.0-beta.39",
     "axios": "^0.17.1",
     "qs": "^6.5.1",
     "vue": "^2.5.13",
@@ -19,6 +18,8 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
     "@types/chrome": "^0.0.57",
     "@types/jest": "^22.0.1",
     "@types/node": "^4.0.35",
