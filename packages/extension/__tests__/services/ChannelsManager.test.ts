@@ -79,7 +79,7 @@ describe('Service - ChannelsManager', () => {
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'ON' });
       expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'green' });
       expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({
-        title: `SOLARY TEAM D'AMIS AVANT CE JEU\n\nJoue à Deceit devant 4263 viewers`,
+        title: `Solary joue à Deceit devant 4263 viewers\nSOLARY TEAM D'AMIS AVANT CE JEU`,
       });
     });
 
