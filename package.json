@@ -20,10 +20,10 @@
   "homepage": "https://github.com/Kocal/Solary#readme",
   "devDependencies": {
     "husky": "^0.14.3",
-    "lerna": "^2.5.1",
-    "pm2": "^2.7.2",
-    "prettier": "1.11.0",
-    "pretty-quick": "^1.2.0",
+    "lerna": "^2.9.0",
+    "pm2": "^2.10.1",
+    "prettier": "1.11.1",
+    "pretty-quick": "^1.4.1",
     "wsc": "^0.3.0"
   }
 }
