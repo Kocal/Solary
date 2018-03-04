@@ -3,7 +3,7 @@ import { WebSocketConfig } from '../../typings/configs';
 
 export default class WebSocketManager {
   private reconnecting: boolean;
-  private websocket: WebSocket;
+  private websocket: WebSocket | null = null;
 
   constructor(public config: WebSocketConfig, public notificationsManager: NotificationsManager) {
     this.reconnecting = false;
