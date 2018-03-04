@@ -1,6 +1,6 @@
 <template>
   <div>
-    <channel :channel="solaryChannel" size="big"></channel>
+    <channel v-for="channel in $root.channels" :key="channel.id" :channel="channel"/>
   </div>
 </template>
 
@@ -10,11 +10,6 @@ import Channel from '../../components/Channel.vue';
 export default {
   components: {
     Channel,
-  },
-  computed: {
-    solaryChannel() {
-      return this.$root.channels.find(channel => channel.nickname === 'Solary');
-    },
   },
 };
 </script>

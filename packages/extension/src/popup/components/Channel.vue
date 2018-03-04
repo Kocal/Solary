@@ -1,8 +1,10 @@
 <template>
-  <a :href="channel.url()" class="channel" :class="[size, {offline: !channel.online}]" target="_blank">
+  <a :href="channel.url()" class="channel" :class="[{offline: !channel.online}]" target="_blank">
     <div v-if="channel.online" class="grid">
-      <div v-if="size === 'big'" class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"></thumbnail>
+      <div class="grid__aside">
+        <thumbnail :url="channel.stream.thumbnail_url" :width="300" :height="166" style="display: block">
+          <icon-play class="thumbnail__play-button"/>
+        </thumbnail>
       </div>
       <div class="grid__main">
         <h2 class="channel__nickname">
@@ -24,20 +26,18 @@
 </template>
 
 <script>
+import IconPlay from './IconPlay.vue';
 import Thumbnail from './Thumbnail.vue';
 
 export default {
   components: {
+    IconPlay,
     Thumbnail,
   },
   props: {
     channel: {
       type: Object,
       required: true,
-    },
-    size: {
-      type: String,
-      default: 'normal',
     },
   },
 };
@@ -57,16 +57,14 @@ export default {
     filter: grayscale(1);
   }
 
-  &.big {
-    .channel__nickname {
-      font-size: 3.2rem;
-    }
+  & + & {
+    margin-top: 4px;
   }
 }
 
 .channel__nickname {
   margin: 0.25em 0;
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: 400;
   color: #ffcc00;
 }

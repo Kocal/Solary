@@ -11,11 +11,6 @@ export default class Channel {
   }
 
   url(): string {
-    // TODO: don't hardcode this, use buildUrl() method
-    if (this.username === 'solary') {
-      return 'https://www.solary.fr';
-    }
-
     return `https://twitch.tv/${this.username}`;
   }
 

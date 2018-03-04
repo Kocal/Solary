@@ -23,14 +23,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-img {
-}
-
 img.loading {
   animation-iteration-count: infinite;
   animation-name: fade;
-  animation-duration: 1.5s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes fade {
@@ -40,7 +37,7 @@ img.loading {
   }
 
   50% {
-    background-color: rgba(#fff, 0.3);
+    background-color: rgba(#fff, 0.2);
   }
 }
 </style>
