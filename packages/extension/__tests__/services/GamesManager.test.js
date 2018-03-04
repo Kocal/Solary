@@ -1,9 +1,9 @@
+import axios from 'axios';
+import AxiosMockAdapter from 'axios-mock-adapter';
+
 import { GamesManager } from '../../src/services/GamesManager';
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import clientIds from '../../src/store/clientIds';
-import axios from 'axios';
-
-const AxiosMockAdapter = require('axios-mock-adapter');
 
 describe('Service - GamesManager', () => {
   const axiosMock = new AxiosMockAdapter(axios);

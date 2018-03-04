@@ -1,7 +1,7 @@
-import { SchedulingManager } from '../../src/services/SchedulingManager';
 import axios from 'axios';
+import AxiosMockAdapter from 'axios-mock-adapter';
 
-const AxiosMockAdapter = require('axios-mock-adapter');
+import { SchedulingManager } from '../../src/services/SchedulingManager';
 
 describe('Service - SchedulingManager', () => {
   const url = 'https://www.solary.fr/programme/';

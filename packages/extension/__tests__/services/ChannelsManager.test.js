@@ -1,3 +1,7 @@
+import axios from 'axios';
+import AxiosMockAdapter from 'axios-mock-adapter';
+const axiosMock = new AxiosMockAdapter(axios);
+
 import channels from '../../src/store/channels';
 import clientIds from '../../src/store/clientIds';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
@@ -5,10 +9,6 @@ import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { BrowserActionManager } from '../../src/services/BrowserActionManager';
-import axios from 'axios';
-
-const AxiosMockAdapter = require('axios-mock-adapter');
-const axiosMock = new AxiosMockAdapter(axios);
 
 axiosMock
   .onGet('https://api.twitch.tv/helix/streams', { params: { user_id: [174955366] } })

@@ -43,6 +43,7 @@ body {
   font-family: 'Gotham Book', sans-serif;
   font-size: 1.5rem;
 
+  background-repeat: no-repeat;
   color: lighten(#222, 70%);
 }
 
@@ -67,7 +68,7 @@ a {
   margin: 0;
   border-radius: 5px;
 
-  & .alert {
+  & + .alert {
     margin-top: 5px;
   }
 

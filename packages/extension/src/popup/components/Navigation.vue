@@ -37,15 +37,28 @@
         </a>
       </li>
       <li class="divider"></li>
+      <li title="Paramètres" @click="openOptionsPage">
+        <icon name="gear"></icon>
+      </li>
+      <li class="divider"></li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    openOptionsPage() {
+      chrome.runtime.openOptionsPage();
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
+$padding-y: 6px;
+$padding-x: 12px;
+
 ul {
   display: flex;
   margin: 0;
@@ -57,7 +70,7 @@ ul {
 }
 
 li {
-  padding: 8px 16px;
+  padding: $padding-y $padding-x;
   font-size: 2rem;
   background-color: #1b1c1d;
   list-style: none;
@@ -65,16 +78,17 @@ li {
 
   transition: all 0.1s linear;
 
+  &:hover svg,
+  &.router-link-active svg {
+    fill: rgba(0, 0, 0, 0.9);
+  }
+
   &.icon {
     padding: 0;
 
     & > a {
       display: block;
-      padding: 8px 16px;
-    }
-
-    &:hover svg {
-      fill: rgba(0, 0, 0, 0.9);
+      padding: $padding-y $padding-x;
     }
   }
 
