@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TwitchApi } from '../../typings/TwitchApi';
+import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
 import Stream from '../entities/Stream';
 import { BrowserActionManager } from './BrowserActionManager';

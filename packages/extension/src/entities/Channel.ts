@@ -1,4 +1,4 @@
-import { Networks } from '../../typings/Networks';
+import { Networks } from '../../types';
 import Stream from './Stream';
 
 export default class Channel {
