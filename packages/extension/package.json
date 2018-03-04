@@ -33,7 +33,7 @@
     "file-loader": "^1.1.6",
     "jest": "^22.0.4",
     "jest-localstorage-mock": "^2.1.0",
-    "jest-webextension-mock": "clarkbw/jest-webextension-mock#64/head",
+    "jest-webextension-mock": "^3.3.0",
     "mock-socket": "^7.1.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
