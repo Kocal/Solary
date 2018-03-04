@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="icon-play solary-gradient"></div>
+    <div class="icon-play"></div>
   </div>
 </template>
 
@@ -10,24 +10,14 @@
   height: 64px;
 
   clip-path: polygon(0 0, 0% 100%, 100% 50%);
-  background-size: 200%;
+  background-color: #fff;
+  opacity: 0.6;
 
-  animation: move-background 5s ease-in-out infinite;
-  transition: all 0.2s ease-in-out;
-  transform-origin: center;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    transform: scale(1.2);
-  }
-}
-
-@keyframes move-background {
-  0%,
-  100% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 }
 </style>
