@@ -8,8 +8,8 @@
 </template>
 
 <script type="ts">
-import Navigation from './components/Navigation.vue';
 import Channel from '../entities/Channel';
+import Navigation from './components/Navigation.vue';
 
 export default {
   components: {

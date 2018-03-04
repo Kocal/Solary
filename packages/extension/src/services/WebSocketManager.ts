@@ -1,5 +1,5 @@
-import { NotificationsManager } from './NotificationsManager';
 import { WebSocketConfig } from '../../typings/configs';
+import { NotificationsManager } from './NotificationsManager';
 
 export default class WebSocketManager {
   private reconnecting: boolean;
