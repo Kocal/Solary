@@ -1,8 +1,8 @@
 <template>
-  <a :href="channel.url()" class="channel" :class="[size, {offline: !channel.online}]" target="_blank">
+  <a :href="channel.url()" class="channel" :class="[{offline: !channel.online}]" target="_blank">
     <div v-if="channel.online" class="grid">
-      <div v-if="size === 'big'" class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"></thumbnail>
+      <div class="grid__aside">
+        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"/>
       </div>
       <div class="grid__main">
         <h2 class="channel__nickname">
@@ -35,10 +35,6 @@ export default {
       type: Object,
       required: true,
     },
-    size: {
-      type: String,
-      default: 'normal',
-    },
   },
 };
 </script>
@@ -56,17 +52,11 @@ export default {
   &.offline {
     filter: grayscale(1);
   }
-
-  &.big {
-    .channel__nickname {
-      font-size: 3.2rem;
-    }
-  }
 }
 
 .channel__nickname {
   margin: 0.25em 0;
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: 400;
   color: #ffcc00;
 }
