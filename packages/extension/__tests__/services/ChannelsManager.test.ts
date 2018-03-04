@@ -1,3 +1,7 @@
+import axios from 'axios';
+const AxiosMockAdapter = require('axios-mock-adapter');
+const qs = require('qs');
+
 import channels from '../../src/store/channels';
 import clientIds from '../../src/store/clientIds';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
@@ -5,13 +9,12 @@ import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { BrowserActionManager } from '../../src/services/BrowserActionManager';
-import axios from 'axios';
 
-const AxiosMockAdapter = require('axios-mock-adapter');
 const axiosMock = new AxiosMockAdapter(axios);
+const paramsSerializer = params => qs.stringify(params, { arrayFormat: 'repeat' });
 
 axiosMock
-  .onGet('https://api.twitch.tv/helix/streams', { params: { user_id: [174955366] } })
+  .onGet('https://api.twitch.tv/helix/streams', { paramsSerializer, params: { user_id: [174955366, 198506129] } })
   .replyOnce(200, {
     data: [
       {
@@ -29,7 +32,7 @@ axiosMock
     ],
     pagination: { cursor: 'eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MX19' },
   })
-  .onGet('https://api.twitch.tv/helix/streams', { params: { user_id: [174955366] } })
+  .onGet('https://api.twitch.tv/helix/streams', { paramsSerializer, params: { user_id: [174955366, 198506129] } })
   .replyOnce(200, { data: [], pagination: {} })
   .onGet('https://api.twitch.tv/helix/games', { params: { id: '493244' } })
   .reply(200, {
@@ -64,7 +67,7 @@ describe('Service - ChannelsManager', () => {
 
   describe('requestTwitchApi()', () => {
     it('should go online', async () => {
-      channels[0].markAsOffline();
+      channels.forEach(channel => channel.markAsOffline());
       await channelsManager.requestTwitchApi();
 
       expect(chrome.notifications.create).toHaveBeenCalledWith('solary', {
