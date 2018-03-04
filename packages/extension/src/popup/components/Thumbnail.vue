@@ -1,23 +1,21 @@
 <template>
   <div class="thumbnail">
     <s-image
-        :url="url.replace('{width}', width).replace('{height}', height)"
-        :width="width"
-        :height="height"
-        class="thumbnail__image"
-    ></s-image>
-    <s-icon-play class="thumbnail__play-button"></s-icon-play>
+      :url="url.replace('{width}', width).replace('{height}', height)"
+      :width="width"
+      height="auto"
+      class="thumbnail__image"
+    />
+    <slot/>
   </div>
 </template>
 
 <script>
 import Image from './Image.vue';
-import IconPlay from './IconPlay.vue';
 
 export default {
   components: {
     's-image': Image,
-    's-icon-play': IconPlay,
   },
   props: {
     url: {

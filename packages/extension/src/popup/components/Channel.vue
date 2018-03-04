@@ -2,7 +2,9 @@
   <a :href="channel.url()" class="channel" :class="[{offline: !channel.online}]" target="_blank">
     <div v-if="channel.online" class="grid">
       <div class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" style="display: block"/>
+        <thumbnail :url="channel.stream.thumbnail_url" :width="300" :height="166" style="display: block">
+          <icon-play class="thumbnail__play-button"/>
+        </thumbnail>
       </div>
       <div class="grid__main">
         <h2 class="channel__nickname">
@@ -24,10 +26,12 @@
 </template>
 
 <script>
+import IconPlay from './IconPlay.vue';
 import Thumbnail from './Thumbnail.vue';
 
 export default {
   components: {
+    IconPlay,
     Thumbnail,
   },
   props: {
@@ -51,6 +55,10 @@ export default {
 
   &.offline {
     filter: grayscale(1);
+  }
+
+  & + & {
+    margin-top: 4px;
   }
 }
 

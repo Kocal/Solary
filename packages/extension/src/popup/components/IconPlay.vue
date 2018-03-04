@@ -6,8 +6,8 @@
 
 <style scoped lang="scss">
 .icon-play {
-  width: 92px;
-  height: 92px;
+  width: 64px;
+  height: 64px;
 
   clip-path: polygon(0 0, 0% 100%, 100% 50%);
   background-size: 200%;
