@@ -3,7 +3,7 @@
     <s-image
       :url="url.replace('{width}', width).replace('{height}', height)"
       :width="width"
-      height="auto"
+      :height="height"
       class="thumbnail__image"
     />
     <slot/>
