@@ -1,4 +1,4 @@
-import { WebSocketConfig } from '../../typings/configs';
+import { WebSocketConfig } from '../../types';
 import { NotificationsManager } from './NotificationsManager';
 
 export default class WebSocketManager {
