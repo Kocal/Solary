@@ -1,5 +1,5 @@
+import { Networks } from '../../types';
 import Stream from './Stream';
-import { Networks } from '../../typings/Networks';
 
 export default class Channel {
   public online: boolean | null;

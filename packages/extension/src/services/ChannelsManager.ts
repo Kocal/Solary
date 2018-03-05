@@ -1,11 +1,11 @@
 import axios from 'axios';
+import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
+import Stream from '../entities/Stream';
+import { BrowserActionManager } from './BrowserActionManager';
 import { ClientIdsManager } from './ClientIdsManager';
 import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
-import { BrowserActionManager } from './BrowserActionManager';
-import Stream from '../entities/Stream';
-import { TwitchApi } from '../../typings/TwitchApi';
 
 const qs: any = require('qs');
 

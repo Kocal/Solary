@@ -8,18 +8,9 @@
     "strict": true,
     "noImplicitReturns": true,
     "allowJs": true,
-    "types": [
-      "chrome",
-      "node"
-    ],
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "types": ["chrome", "node"],
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*", "types/index.d.ts"],
+  "exclude": ["node_modules"]
 }
