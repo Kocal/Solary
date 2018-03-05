@@ -1,7 +1,4 @@
-Solary
-======
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/Kocal/Solary.svg)](https://greenkeeper.io/)
+# Solary
 
 > Projects related to the french WebTV [Solary](https://www.solary.fr).
 
@@ -12,7 +9,7 @@ Solary
 [![dependencies Status](https://david-dm.org/kocal/solary/status.svg?style=flat-square)](https://david-dm.org/kocal/solary)
 [![devDependencies Status](https://david-dm.org/kocal/solary/dev-status.svg?style=flat-square)](https://david-dm.org/kocal/solary?type=dev)
 
-**Extension:** 
+**Extension:**
 [![dependencies Status](https://david-dm.org/kocal/solary/status.svg?style=flat-square&path=packages/extension)](https://david-dm.org/kocal/solary?path=packages/extension)
 [![devDependencies Status](https://david-dm.org/kocal/solary/dev-status.svg?style=flat-square&path=packages/extension)](https://david-dm.org/kocal/solary?path=packages/extension&type=dev)
 
@@ -30,13 +27,12 @@ Solary
   * [Extension](#extension)
   * [Server &amp; Web UI](#server--web-ui)
 
-Getting started
----------------
+## Getting started
 
 ### Requirements
 
-- Node.js 9+
-- [yarn](https://yarnpkg.com/lang/en/docs/install/)
+* Node.js 9+
+* [yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Bootstraping
 
@@ -56,7 +52,7 @@ Add `localhost.ssl` host in your `/etc/hosts`:
 
 #### SSL certificate
 
-- Generate a fake SSL certificate for the previously created host:
+* Generate a fake SSL certificate for the previously created host:
 
 ```bash
 $ openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout localhost.ssl.key -out localhost.ssl.crt
@@ -66,9 +62,9 @@ $ openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout localhost.
 
 ![](screenshots/generate-ssl-certificate.png)
 
-- Then copy the file `packages/server/config.js.default` to `packages/server/config.js`.
+* Then copy the file `packages/server/config.js.default` to `packages/server/config.js`.
 
-- Then edit the file `packages/server/config.js` and change `cert`/`key` values:
+* Then edit the file `packages/server/config.js` and change `cert`/`key` values:
 
 ```js
 module.exports = {
@@ -77,15 +73,14 @@ module.exports = {
 };
 ```
 
-Projects
---------
+## Projects
 
 ### Extension
 
 All builds are located [here](https://solary.kocal.fr/builds) (if I think to put them here...).
 
-- [Extension for Chrome](https://chrome.google.com/webstore/detail/solary/hcbdbiggklmbnbhhmepnebffpmajnkai)
-- [Extension for Firefox](https://solary.kocal.fr/builds/firefox/)
+* [Extension for Chrome](https://chrome.google.com/webstore/detail/solary/hcbdbiggklmbnbhhmepnebffpmajnkai)
+* [Extension for Firefox](https://solary.kocal.fr/builds/firefox/)
 
 #### Commands
 
@@ -130,9 +125,8 @@ Run the server in **production** environment by using pm2.
 ##### `yarn start:dev`
 
 Run the server in **development** environment by using pm2.
-Useful for debugging. 
+Useful for debugging.
 
 ##### `yarn stop`
 
 Stop the server.
-
