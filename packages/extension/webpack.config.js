@@ -37,11 +37,6 @@ const config = {
           },
         },
       },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
@@ -99,11 +94,6 @@ if (process.env.NODE_ENV === 'production') {
 
   const gitRevision = exec('git rev-parse --abbrev-ref HEAD');
   const gitBranchOrTag = gitRevision === 'HEAD' ? exec('git describe --tags --abbrev=0') : gitRevision;
-
-  console.log({
-    gitRevision,
-    gitBranchOrTag,
-  });
 
   config.mode = 'production';
   config.devtool = '#cheap-module-source-map';
