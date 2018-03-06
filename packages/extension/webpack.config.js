@@ -1,4 +1,4 @@
-const path = require('path');
+const childProcess = require('child_process');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
@@ -91,10 +91,19 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  const gitRevision = require('child_process')
-    .execSync('git name-rev --name-only HEAD')
-    .toString()
-    .trim();
+  const exec = command =>
+    childProcess
+      .execSync(command)
+      .toString()
+      .trim();
+
+  const gitRevision = exec('git rev-parse --abbrev-ref HEAD');
+  const gitBranchOrTag = gitRevision === 'HEAD' ? exec('git describe --tags --abbrev=0') : gitRevision;
+
+  console.log({
+    gitRevision,
+    gitBranchOrTag,
+  });
 
   config.devtool = '#cheap-module-source-map';
 
@@ -117,7 +126,7 @@ if (process.env.NODE_ENV === 'production') {
       banner: `Oh, attention, vous êtes devant du code minimifié !
 Ce n'est pas pour cacher du code malveillant, c'est uniquement pour réduire le poids de l'extension.
 
-Fichier original : https://github.com/Kocal/Solary/blob/${gitRevision}/packages/extension/src/[name].ts`,
+Fichier original : https://github.com/Kocal/Solary/blob/${gitBranchOrTag}/packages/extension/src/[name].ts`,
     }),
   ]);
 }
