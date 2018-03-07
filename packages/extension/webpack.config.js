@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackUglifyPlugin = require('uglifyjs-webpack-plugin');
 const { version } = require('../../lerna.json');
 
 const config = {
+  mode: 'development',
   context: `${__dirname}/src`,
   entry: {
     background: './background.ts',
@@ -19,8 +19,15 @@ const config = {
   resolve: {
     extensions: ['.ts', '.js', '.vue'],
   },
+  optimization: {
+    runtimeChunk: false,
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendor',
+    },
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
         loaders: 'vue-loader',
@@ -37,11 +44,6 @@ const config = {
           },
         },
       },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
@@ -100,23 +102,10 @@ if (process.env.NODE_ENV === 'production') {
   const gitRevision = exec('git rev-parse --abbrev-ref HEAD');
   const gitBranchOrTag = gitRevision === 'HEAD' ? exec('git describe --tags --abbrev=0') : gitRevision;
 
-  console.log({
-    gitRevision,
-    gitBranchOrTag,
-  });
-
+  config.mode = 'production';
   config.devtool = '#cheap-module-source-map';
 
   config.plugins = (config.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-    new WebpackUglifyPlugin({
-      parallel: true,
-      sourceMap: true,
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
