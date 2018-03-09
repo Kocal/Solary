@@ -84,6 +84,10 @@ const config = {
           const contentJson = JSON.parse(content);
           contentJson.version = version;
 
+          if (config.mode === 'development') {
+            contentJson['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+          }
+
           return JSON.stringify(contentJson, null, 2);
         },
       },
