@@ -9,5 +9,11 @@ module.exports = {
   mapCoverage: true,
   coverageDirectory: './coverage/',
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/popup/**/*.*'],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.d.ts',
+    '!src/popup/**/*.*',
+    '!src/background.ts',
+    '!src/options/options.ts',
+  ],
 };
