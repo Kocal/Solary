@@ -33,3 +33,4 @@ const settings: Settings = {
 };
 
 export default settings;
+export { Settings, SettingsItem };
