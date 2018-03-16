@@ -439,9 +439,9 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/chrome@^0.0.60":
-  version "0.0.60"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.60.tgz#058eed1587b7aec3b83d4be905c8758ea145ba84"
+"@types/chrome@^0.0.61":
+  version "0.0.61"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.61.tgz#bfcfd15d0d81806b701ebd9c3933f2467d7aab1c"
   dependencies:
     "@types/filesystem" "*"
 
