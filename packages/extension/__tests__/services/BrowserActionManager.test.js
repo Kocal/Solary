@@ -40,7 +40,7 @@ describe('Service - BrowserActionManager', () => {
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'ON' });
       expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'green' });
       expect(chrome.browserAction.setTitle).toHaveBeenCalledWith({
-        title: `Solary joue à LoL devant 6000 viewers\nMidi Chapi\n\nSolary Fortnine joue à Fortnite devant 5000 viewers\nYoshi et Hunter`,
+        title: `Solary joue à LoL devant 6000 viewers\nMidi Chapi\n\nSolary Fortnite joue à Fortnite devant 5000 viewers\nYoshi et Hunter`,
       });
     });
   });
