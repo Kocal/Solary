@@ -1,19 +1,43 @@
 <template>
   <div>
-    <h1>Notifications</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque dolorem doloremque, ea fugit iure labore magni quas soluta!</p>
-    <p class="red">Red text</p>
+    <template v-if="loading">
+      Chargement des paramètres...
+    </template>
+    <template v-else-if="success">
+      <settings/>
+    </template>
+    <template v-else>
+      {{ error.message }}
+    </template>
   </div>
 </template>
 
 <script>
+import Settings from './components/Settings';
+import { settingsManager } from './services';
+
 export default {
+  components: { Settings },
   name: 'app',
+  data() {
+    return {
+      loading: true,
+      success: false,
+      error: null,
+    };
+  },
+  created() {
+    settingsManager
+      .hydrate()
+      .then(() => (this.success = true))
+      .catch(error => (this.error = error))
+      .finally(() => (this.loading = false));
+  },
 };
 </script>
 
 <style>
-.red {
-  color: red;
+body {
+  width: 512px;
 }
 </style>
