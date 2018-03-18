@@ -10,7 +10,9 @@ class SettingsManager {
         const { settings } = items;
 
         if (settings !== undefined) {
-          this.settings = settings;
+          Object.entries(settings).forEach(([dottedName, value]: [string, any]) => {
+            this.set(dottedName, value, false);
+          });
         }
 
         resolve();
@@ -27,7 +29,7 @@ class SettingsManager {
     return setting.value;
   }
 
-  set(key: string, value: any): Promise<void> | void {
+  set(key: string, value: any, sync: boolean = true): Promise<void> | void {
     const setting = this.resolve(key);
     const previousValue = this.get(key);
 
@@ -35,15 +37,33 @@ class SettingsManager {
 
     setting.value = value;
 
+    if (!sync) {
+      return;
+    }
+
     return new Promise((resolve, reject) => {
       this.storageManager
-        .set({ settings: this.settings })
+        .set({ settings: this.getFlattenSettings() })
         .then(() => resolve())
         .catch(() => {
           setting.value = previousValue;
           reject();
         });
     });
+  }
+
+  getSettings(): Settings {
+    return this.settings;
+  }
+
+  getFlattenSettings(): { [k: string]: any } {
+    const settings: { [k: string]: any } = {};
+
+    this.recursivelyIterate(this.settings, (dottedName: string, setting: SettingsItem) => {
+      settings[dottedName] = this.get(dottedName);
+    });
+
+    return settings;
   }
 
   private resolve(key: string): SettingsItem | undefined {
@@ -60,6 +80,16 @@ class SettingsManager {
 
       setting = setting.children[keyParts[0]];
     }
+  }
+
+  private recursivelyIterate(settings: Settings, cb: Function, prefix: string = ''): void {
+    Object.entries(settings).map(([name, setting]: [string, SettingsItem]) => {
+      if (setting.children) {
+        this.recursivelyIterate(setting.children, cb, `${name}.`);
+      }
+
+      cb(`${prefix}${name}`, setting);
+    });
   }
 }
 

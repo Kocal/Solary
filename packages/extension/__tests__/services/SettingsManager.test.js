@@ -2,11 +2,13 @@ import { StorageManager } from '../../src/services/StorageManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
 
 let settings;
+let syncSettings;
 let storageManager;
 let settingsManager;
 
 describe('SettingsManager', () => {
   beforeEach(() => {
+    jest.resetModules();
     settings = require('../../src/store/settings').default;
     storageManager = new StorageManager();
     settingsManager = new SettingsManager(settings, storageManager);
@@ -17,10 +19,11 @@ describe('SettingsManager', () => {
 
   describe('fetch settings', () => {
     it('should hydrate settings values', () => {
-      const syncSettings = JSON.parse(JSON.stringify(settings));
-      syncSettings.showNotifications.value = false;
-      syncSettings.showNotifications.children.atBoot.value = false;
-      syncSettings.showNotifications.children.onTitleUpdate.value = true;
+      const syncSettings = {
+        showNotifications: false,
+        'showNotifications.atBoot': false,
+        'showNotifications.onTitleUpdate': true,
+      };
 
       storageManager.get.mockReturnValue(new Promise(resolve => resolve({ settings: syncSettings })));
 
@@ -75,26 +78,42 @@ describe('SettingsManager', () => {
   });
 
   describe('mutators', () => {
+    beforeEach(() => {
+      settings.showNotifications.value = true;
+      settings.showNotifications.children.atBoot.value = true;
+      settings.showNotifications.children.onTitleUpdate.value = false;
+
+      syncSettings = {
+        showNotifications: true,
+        'showNotifications.atBoot': true,
+        'showNotifications.onTitleUpdate': false,
+      };
+    });
+
     test('mutate setting value', () => {
       settingsManager.set('showNotifications', false);
-      expect(storageManager.set).toHaveBeenCalledWith({ settings });
+      syncSettings.showNotifications = false;
+      expect(storageManager.set).toHaveBeenCalledWith({ settings: syncSettings });
       expect(settings.showNotifications.defaultValue).toBeTruthy();
       expect(settings.showNotifications.value).toBeFalsy();
 
       settingsManager.set('showNotifications', true);
-      expect(storageManager.set).toHaveBeenCalledWith({ settings });
+      syncSettings.showNotifications = true;
+      expect(storageManager.set).toHaveBeenCalledWith({ settings: syncSettings });
       expect(settings.showNotifications.defaultValue).toBeTruthy();
       expect(settings.showNotifications.value).toBeTruthy();
     });
 
     test('mutate children setting value', done => {
       settingsManager.set('showNotifications.atBoot', false).then(() => {
-        expect(storageManager.set).toHaveBeenCalledWith({ settings });
+        syncSettings['showNotifications.atBoot'] = false;
+        expect(storageManager.set).toHaveBeenCalledWith({ settings: syncSettings });
         expect(settings.showNotifications.children.atBoot.defaultValue).toBeTruthy();
         expect(settings.showNotifications.children.atBoot.value).toBeFalsy();
 
         settingsManager.set('showNotifications.atBoot', true).then(() => {
-          expect(storageManager.set).toHaveBeenCalledWith({ settings });
+          syncSettings['showNotifications.atBoot'] = true;
+          expect(storageManager.set).toHaveBeenCalledWith({ settings: syncSettings });
           expect(settings.showNotifications.children.atBoot.defaultValue).toBeTruthy();
           expect(settings.showNotifications.children.atBoot.value).toBeTruthy();
           done();
