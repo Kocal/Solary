@@ -4,6 +4,9 @@ const qs = require('qs');
 
 import channels from '../../src/store/channels';
 import clientIds from '../../src/store/clientIds';
+import settings from '../../src/store/settings';
+import { SettingsManager } from '../../src/services/SettingsManager';
+import { StorageManager } from '../../src/services/StorageManager';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import { GamesManager } from '../../src/services/GamesManager';
@@ -46,16 +49,19 @@ axiosMock
   });
 
 describe('Service - ChannelsManager', () => {
+  const storageManager = new StorageManager();
+  const settingsManager = new SettingsManager(settings, storageManager);
   const clientIdsManager = new ClientIdsManager(clientIds);
   const gamesManager = new GamesManager(clientIdsManager);
-  const notificationsManager = new NotificationsManager(channels);
+  const notificationsManager = new NotificationsManager(channels, settingsManager);
   const browserActionManager = new BrowserActionManager(channels);
   const channelsManager = new ChannelsManager(
     channels,
     clientIdsManager,
     gamesManager,
     notificationsManager,
-    browserActionManager
+    browserActionManager,
+    settingsManager
   );
 
   beforeEach(() => {
