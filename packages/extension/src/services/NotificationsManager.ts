@@ -1,4 +1,5 @@
 import Channel from '../entities/Channel';
+import { SettingsManager } from './SettingsManager';
 
 const create = (title: string, message: string, id: string = '') => {
   chrome.notifications.create(id, {
@@ -10,11 +11,15 @@ const create = (title: string, message: string, id: string = '') => {
 };
 
 class NotificationsManager {
-  constructor(private channels: Array<Channel>) {
+  constructor(private channels: Array<Channel>, private settingsManager: SettingsManager) {
     this.setupNotificationClickHandler();
   }
 
   public show(channel: Channel): void {
+    if (this.settingsManager.get('showNotifications') === false) {
+      return;
+    }
+
     if (!channel.stream) {
       return console.error(
         `Le channel ${channel.nickname} n'est pas en ligne, impossible d'afficher une notification.`

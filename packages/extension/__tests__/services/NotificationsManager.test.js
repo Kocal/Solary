@@ -1,9 +1,14 @@
 import { NotificationsManager } from '../../src/services/NotificationsManager';
-import channels from '../../src/store/channels';
+import { SettingsManager } from '../../src/services/SettingsManager';
 import Stream from '../../src/entities/Stream';
+import channels from '../../src/store/channels';
+import settings from '../../src/store/settings';
+import { StorageManager } from '../../src/services/StorageManager';
 
 describe('Service - NotificationsManager', () => {
-  const notificationsManager = new NotificationsManager();
+  const storageManager = new StorageManager();
+  const settingsManager = new SettingsManager(settings, storageManager);
+  const notificationsManager = new NotificationsManager(channels, settingsManager);
 
   expect(chrome.notifications.onClicked.addListener).toHaveBeenCalled();
 

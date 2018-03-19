@@ -3,7 +3,7 @@
     "outDir": "./built",
     "module": "es2015",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
