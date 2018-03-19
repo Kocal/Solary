@@ -29,9 +29,14 @@ export default {
   created() {
     settingsManager
       .hydrate()
-      .then(() => (this.success = true))
-      .catch(error => (this.error = error))
-      .finally(() => (this.loading = false));
+      .then(() => {
+        this.success = true;
+        this.loading = false;
+      })
+      .catch(error => {
+        this.error = error;
+        this.loading = false;
+      });
   },
 };
 </script>

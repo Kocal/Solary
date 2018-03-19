@@ -83,7 +83,7 @@ class SettingsManager {
   }
 
   private recursivelyIterate(settings: Settings, cb: Function, prefix: string = ''): void {
-    Object.entries(settings).map(([name, setting]: [string, SettingsItem]) => {
+    Object.entries(settings).forEach(([name, setting]: [string, SettingsItem]) => {
       if (setting.children) {
         this.recursivelyIterate(setting.children, cb, `${name}.`);
       }
