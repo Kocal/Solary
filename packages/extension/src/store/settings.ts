@@ -19,7 +19,7 @@ const settings: Settings = {
     children: {
       atBoot: {
         type: 'boolean',
-        label: 'Au démarrage',
+        label: 'Au démarrage du navigateur',
         defaultValue: true,
       },
       onTitleUpdate: {

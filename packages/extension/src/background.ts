@@ -5,28 +5,36 @@ import { ClientIdsManager } from './services/ClientIdsManager';
 import { GamesManager } from './services/GamesManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
+import { SettingsManager } from './services/SettingsManager';
+import { StorageManager } from './services/StorageManager';
 import WebSocketManager from './services/WebSocketManager';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
+import settings from './store/settings';
 
+const storageManager = new StorageManager();
 const clientIdsManager = new ClientIdsManager(clientIds);
+const settingsManager = new SettingsManager(settings, storageManager);
 const gamesManager = new GamesManager(clientIdsManager);
-const notificationsManager = new NotificationsManager(channels);
+const notificationsManager = new NotificationsManager(channels, settingsManager);
 const browserActionManager = new BrowserActionManager(channels);
 const channelsManager = new ChannelsManager(
   channels,
   clientIdsManager,
   gamesManager,
   notificationsManager,
-  browserActionManager
+  browserActionManager,
+  settingsManager
 );
 const schedulingManager = new SchedulingManager();
 const webSocketManager = new WebSocketManager(webSocketConfig, notificationsManager);
 
-channelsManager.requestTwitchApi();
-channelsManager.enableAutoRequestTwitchApi();
-schedulingManager.getScheduling();
-webSocketManager.connect();
+settingsManager.hydrate().then(() => {
+  channelsManager.requestTwitchApi();
+  channelsManager.enableAutoRequestTwitchApi();
+  schedulingManager.getScheduling();
+  webSocketManager.connect();
+});
 
 chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
   switch (request.type) {

@@ -6,8 +6,11 @@ import { BrowserActionManager } from './BrowserActionManager';
 import { ClientIdsManager } from './ClientIdsManager';
 import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
+import { SettingsManager } from './SettingsManager';
 
 const qs: any = require('qs');
+
+let firstBoot = true;
 
 class ChannelsManager {
   private autoRequestTwitchApiInterval: number | null;
@@ -17,7 +20,8 @@ class ChannelsManager {
     private clientIdsManager: ClientIdsManager,
     private gamesManager: GamesManager,
     private notificationsManager: NotificationsManager,
-    private browserActionManager: BrowserActionManager
+    private browserActionManager: BrowserActionManager,
+    private settingsManager: SettingsManager
   ) {
     this.autoRequestTwitchApiInterval = null;
   }
@@ -64,10 +68,19 @@ class ChannelsManager {
           .getNameById(onlineChannel.game_id)
           .then(game => {
             const wasOffline = !channel.online;
+            const titleHasChanged = onlineChannel.title !== (channel.stream && channel.stream.title);
 
             channel.markAsOnline(
               new Stream(game, onlineChannel.title, onlineChannel.viewer_count, onlineChannel.thumbnail_url)
             );
+
+            if (this.settingsManager.get('showNotifications.atBoot') === false && firstBoot) {
+              return;
+            }
+
+            if (this.settingsManager.get('showNotifications.onTitleUpdate') === true && titleHasChanged) {
+              return this.notificationsManager.show(channel);
+            }
 
             if (wasOffline) {
               this.notificationsManager.show(channel);
@@ -82,6 +95,7 @@ class ChannelsManager {
     });
 
     return Promise.all(promises).then(() => {
+      firstBoot = false;
       this.browserActionManager.update();
     });
   }
