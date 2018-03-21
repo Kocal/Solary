@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": "27218318352",
+      "user_id": "174955366",
+      "game_id": "493244",
+      "community_ids": [],
+      "type": "live",
+      "title": "SOLARY TEAM D'AMIS AVANT CE JEU",
+      "viewer_count": 4263,
+      "started_at": "2018-01-09T07:27:59Z",
+      "language": "en-gb",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_solary-{width}x{height}.jpg"
+    }
+  ],
+  "pagination": {
+    "cursor": "eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MX19"
+  }
+}
