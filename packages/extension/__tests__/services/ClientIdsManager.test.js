@@ -1,23 +1,22 @@
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 
-describe('Service - BrowserActionManager', () => {
+describe('BrowserActionManager', () => {
   describe('constructor()', () => {
-    it('should throw an error if there is no clients ids', () => {
+    test('throw an error if there is no clients ids', () => {
       expect(() => new ClientIdsManager()).toThrowError('« clientIds » should be a non-empty array.');
     });
   });
 
   describe('pickOne()', () => {
-    it('should pick a random client id', () => {
-      const clientIdsManager = new ClientIdsManager(['a', 'b', 'c']);
+    test('pick a random client id', () => {
+      const clientIds = ['a', 'b', 'c'];
+      const clientIdsManager = new ClientIdsManager(clientIds);
 
-      const firstIterations = Array.from(new Array(20), () => clientIdsManager.pickOne());
-      const secondIterations = Array.from(new Array(20), () => clientIdsManager.pickOne());
-      const thirdIterations = Array.from(new Array(20), () => clientIdsManager.pickOne());
+      const randomlyPickedClientIds = Array.from(new Array(20), () => clientIdsManager.pickOne());
 
-      expect(firstIterations).toContain('a');
-      expect(secondIterations).toContain('b');
-      expect(thirdIterations).toContain('c');
+      expect(randomlyPickedClientIds).toContain('a');
+      expect(randomlyPickedClientIds).toContain('b');
+      expect(randomlyPickedClientIds).toContain('c');
     });
   });
 });

@@ -1,58 +1,57 @@
+import axios from 'axios';
+import AxiosMockAdapter from 'axios-mock-adapter';
+
 import { GamesManager } from '../../src/services/GamesManager';
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import clientIds from '../../src/store/clientIds';
-import axios from 'axios';
 
-const AxiosMockAdapter = require('axios-mock-adapter');
+const axiosMock = new AxiosMockAdapter(axios);
+const twitchApiUrl = 'https://api.twitch.tv/helix/games';
+const localStoragePrefix = 'solary_twitch_game_';
+let clientIdsManager = null;
+let gamesManager;
 
-describe('Service - GamesManager', () => {
-  const axiosMock = new AxiosMockAdapter(axios);
-  const gamesManager = new GamesManager(new ClientIdsManager(clientIds));
+axiosMock
+  .onGet(twitchApiUrl, { params: { id: '493244' } })
+  .replyOnce(200, require('./__fixtures__/api/games'))
+  .onGet(twitchApiUrl, { params: { id: '1234567890' } })
+  .replyOnce(200, require('./__fixtures__/api/no-games'))
+  .onGet(twitchApiUrl, { params: { id: '11223344556677889900' } })
+  .replyOnce(500, require('./__fixtures__/api/error-500'));
 
-  const url = 'https://api.twitch.tv/helix/games';
-  const lsKey = 'solary_twitch_game_';
+describe('GamesManager', () => {
+  beforeEach(() => {
+    clientIdsManager = new ClientIdsManager(clientIds);
+    gamesManager = new GamesManager(clientIdsManager);
+    console.error = jest.fn();
+  });
 
-  axiosMock
-    .onGet(url, { params: { id: '21779' } })
-    .replyOnce(200, {
-      data: [
-        {
-          id: '21779',
-          name: 'League of Legends',
-          box_art_url: 'https://static-cdn.jtvnw.net/ttv-boxart/League%20of%20Legends-{width}x{height}.jpg',
-        },
-      ],
-    })
-    .onGet(url, { params: { id: '1234567890' } })
-    .replyOnce(200, { data: [] })
-    .onGet(url, { params: { id: '11223344556677889900' } })
-    .replyOnce(500, { error: 'Internal Server Error', status: 500, message: '' });
+  afterEach(() => {
+    localStorage.getItem.mockClear();
+    localStorage.setItem.mockClear();
+    console.error.mockRestore();
+  });
 
   describe('getNameById()', () => {
-    beforeEach(() => {
-      localStorage.getItem.mockClear();
-      localStorage.setItem.mockClear();
-    });
-
-    it('should make a request', async () => {
-      const gameId = '21779';
+    test('make a request', async () => {
+      const gameId = '493244';
       const game = await gamesManager.getNameById(gameId);
 
-      expect(game).toBe('League of Legends');
-      expect(localStorage.getItem).toHaveBeenCalledWith(`${lsKey}${gameId}`);
-      expect(localStorage.setItem).toHaveBeenCalledWith(`${lsKey}${gameId}`, 'League of Legends');
+      expect(game).toBe('Deceit');
+      expect(localStorage.getItem).toHaveBeenCalledWith(`${localStoragePrefix}${gameId}`);
+      expect(localStorage.setItem).toHaveBeenCalledWith(`${localStoragePrefix}${gameId}`, 'Deceit');
     });
 
-    it('should read localStorage', async () => {
-      const gameId = '21779';
+    test('read local storage', async () => {
+      const gameId = '493244';
       const game = await gamesManager.getNameById(gameId);
 
-      expect(game).toBe('League of Legends');
-      expect(localStorage.getItem).toHaveBeenCalledWith(`${lsKey}${gameId}`);
+      expect(game).toBe('Deceit');
+      expect(localStorage.getItem).toHaveBeenCalledWith(`${localStoragePrefix}${gameId}`);
       expect(localStorage.setItem).not.toHaveBeenCalled();
     });
 
-    it('should fail if we request a non-existing game', async () => {
+    test('fail if we request a non-existing game', async () => {
       const gameId = '1234567890';
 
       try {
@@ -62,10 +61,8 @@ describe('Service - GamesManager', () => {
       }
     });
 
-    it('should fail if game id is too high', async () => {
+    test('fail if game id is too high', async () => {
       const gameId = '11223344556677889900';
-
-      console.error = jest.fn();
 
       try {
         await gamesManager.getNameById(gameId);
@@ -73,8 +70,6 @@ describe('Service - GamesManager', () => {
         expect(e).toBe(`Erreur lors de la récupération des données du jeu « ${gameId} ».`);
         expect(console.error).toHaveBeenCalled();
       }
-
-      console.error.mockRestore();
     });
   });
 });

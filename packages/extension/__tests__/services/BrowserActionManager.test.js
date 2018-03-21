@@ -1,26 +1,31 @@
-import channels from '../../src/store/channels';
 import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 import Stream from '../../src/entities/Stream';
 
-describe('Service - BrowserActionManager', () => {
-  describe('constructor()', () => {
-    new BrowserActionManager(channels);
+let channels;
+let browserActionManager;
 
-    it('should set browser action in loading state', () => {
+describe('BrowserActionManager', () => {
+  beforeEach(() => {
+    jest.resetModules();
+
+    channels = require('../../src/store/channels').default;
+    browserActionManager = new BrowserActionManager(channels);
+  });
+
+  describe('constructor()', () => {
+    test('set browser action in loading state', () => {
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: '...' });
     });
   });
 
   describe('update()', () => {
-    const browserActionManager = new BrowserActionManager(channels);
-
     beforeEach(() => {
       chrome.browserAction.setBadgeText.mockReset();
       chrome.browserAction.setBadgeBackgroundColor.mockReset();
       chrome.browserAction.setTitle.mockReset();
     });
 
-    it('should set browser action in offline state', () => {
+    test('set browser action in offline state', () => {
       channels[0].markAsOffline();
       browserActionManager.update();
 
@@ -31,7 +36,7 @@ describe('Service - BrowserActionManager', () => {
       });
     });
 
-    it('should set browser action in online state', () => {
+    test('set browser action in online state', () => {
       channels[0].markAsOnline(new Stream('LoL', 'Midi Chapi', 6000, '<thumbnail_url>'));
       channels[1].markAsOnline(new Stream('Fortnite', 'Yoshi et Hunter', 5000, '<thumbnail_url>'));
 

@@ -1,10 +1,7 @@
 import axios from 'axios';
-const AxiosMockAdapter = require('axios-mock-adapter');
-const qs = require('qs');
+import AxiosMockAdapter from 'axios-mock-adapter';
+import * as qs from 'qs';
 
-import channels from '../../src/store/channels';
-import clientIds from '../../src/store/clientIds';
-import settings from '../../src/store/settings';
 import { SettingsManager } from '../../src/services/SettingsManager';
 import { StorageManager } from '../../src/services/StorageManager';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
@@ -13,58 +10,49 @@ import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 
+let channels;
+let clientIds;
+let settings;
+let storageManager;
+let settingsManager;
+let clientIdsManager;
+let gamesManager;
+let notificationsManager;
+let browserActionManager;
+let channelsManager;
+
 const axiosMock = new AxiosMockAdapter(axios);
 const paramsSerializer = params => qs.stringify(params, { arrayFormat: 'repeat' });
 
 axiosMock
   .onGet('https://api.twitch.tv/helix/streams', { paramsSerializer, params: { user_id: [174955366, 198506129] } })
-  .replyOnce(200, {
-    data: [
-      {
-        id: '27218318352',
-        user_id: '174955366',
-        game_id: '493244',
-        community_ids: [],
-        type: 'live',
-        title: "SOLARY TEAM D'AMIS AVANT CE JEU",
-        viewer_count: 4263,
-        started_at: '2018-01-09T07:27:59Z',
-        language: 'en-gb',
-        thumbnail_url: 'https://static-cdn.jtvnw.net/previews-ttv/live_user_solary-{width}x{height}.jpg',
-      },
-    ],
-    pagination: { cursor: 'eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MX19' },
-  })
+  .replyOnce(200, require('./__fixtures__/api/streams'))
   .onGet('https://api.twitch.tv/helix/streams', { paramsSerializer, params: { user_id: [174955366, 198506129] } })
-  .replyOnce(200, { data: [], pagination: {} })
+  .replyOnce(200, require('./__fixtures__/api/no-streams'))
   .onGet('https://api.twitch.tv/helix/games', { params: { id: '493244' } })
-  .reply(200, {
-    data: [
-      {
-        id: '493244',
-        name: 'Deceit',
-        box_art_url: 'https://static-cdn.jtvnw.net/ttv-boxart/Deceit-{width}x{height}.jpg',
-      },
-    ],
-  });
+  .reply(200, require('./__fixtures__/api/games'));
 
-describe('Service - ChannelsManager', () => {
-  const storageManager = new StorageManager();
-  const settingsManager = new SettingsManager(settings, storageManager);
-  const clientIdsManager = new ClientIdsManager(clientIds);
-  const gamesManager = new GamesManager(clientIdsManager);
-  const notificationsManager = new NotificationsManager(channels, settingsManager);
-  const browserActionManager = new BrowserActionManager(channels);
-  const channelsManager = new ChannelsManager(
-    channels,
-    clientIdsManager,
-    gamesManager,
-    notificationsManager,
-    browserActionManager,
-    settingsManager
-  );
-
+describe('ChannelsManager', () => {
   beforeEach(() => {
+    channels = require('../../src/store/channels').default;
+    clientIds = require('../../src/store/clientIds').default;
+    settings = require('../../src/store/settings').default;
+
+    storageManager = new StorageManager();
+    settingsManager = new SettingsManager(settings, storageManager);
+    clientIdsManager = new ClientIdsManager(clientIds);
+    gamesManager = new GamesManager(clientIdsManager);
+    notificationsManager = new NotificationsManager(channels, settingsManager);
+    browserActionManager = new BrowserActionManager(channels);
+    channelsManager = new ChannelsManager(
+      channels,
+      clientIdsManager,
+      gamesManager,
+      notificationsManager,
+      browserActionManager,
+      settingsManager
+    );
+
     chrome.notifications.create.mockReset();
     chrome.browserAction.setBadgeText.mockReset();
     chrome.browserAction.setBadgeBackgroundColor.mockReset();
@@ -72,7 +60,7 @@ describe('Service - ChannelsManager', () => {
   });
 
   describe('requestTwitchApi()', () => {
-    it('should go online', async () => {
+    test('go online', async () => {
       channels.forEach(channel => channel.markAsOffline());
       await channelsManager.requestTwitchApi();
 
@@ -89,7 +77,7 @@ describe('Service - ChannelsManager', () => {
       });
     });
 
-    it('should go offline', async () => {
+    test('go offline', async () => {
       await channelsManager.requestTwitchApi();
 
       expect(chrome.browserAction.setBadgeText).toHaveBeenCalledWith({ text: 'OFF' });
