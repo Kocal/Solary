@@ -1,27 +1,33 @@
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
+import { StorageManager } from '../../src/services/StorageManager';
 import Stream from '../../src/entities/Stream';
 import channels from '../../src/store/channels';
 import settings from '../../src/store/settings';
-import { StorageManager } from '../../src/services/StorageManager';
 
-describe('Service - NotificationsManager', () => {
-  const storageManager = new StorageManager();
-  const settingsManager = new SettingsManager(settings, storageManager);
-  const notificationsManager = new NotificationsManager(channels, settingsManager);
+let storageManager;
+let settingsManager;
+let notificationsManager;
 
-  expect(chrome.notifications.onClicked.addListener).toHaveBeenCalled();
-
+describe('NotificationsManager', () => {
   beforeEach(() => {
+    storageManager = new StorageManager();
+    settingsManager = new SettingsManager(settings, storageManager);
+    notificationsManager = new NotificationsManager(channels, settingsManager);
+
+    console.error = jest.fn();
+    expect(chrome.notifications.onClicked.addListener).toHaveBeenCalled();
+  });
+
+  afterEach(() => {
+    console.error.mockReset();
     chrome.notifications.create.mockReset();
   });
 
   describe('show()', () => {
     const channel = channels[0];
 
-    it('should log an error if channel is offline', () => {
-      console.error = jest.fn();
-
+    test('log an error if channel is offline', () => {
       channel.markAsOffline();
       notificationsManager.show(channel);
 
@@ -31,7 +37,7 @@ describe('Service - NotificationsManager', () => {
       expect(chrome.notifications.create).not.toHaveBeenCalled();
     });
 
-    it('should create notification', () => {
+    test('create notification', () => {
       const stream = new Stream('League of Legends', 'On détruit les bronzes', 4000);
 
       channel.markAsOnline(stream);
@@ -50,12 +56,14 @@ describe('Service - NotificationsManager', () => {
     const title = 'title';
     const message = 'message';
 
-    notificationsManager.showByTitleAndMessage(title, message);
-    expect(chrome.notifications.create).toHaveBeenCalledWith('', {
-      title,
-      message,
-      type: 'basic',
-      iconUrl: '../icons/icon_128.png',
+    test('create notification', () => {
+      notificationsManager.showByTitleAndMessage(title, message);
+      expect(chrome.notifications.create).toHaveBeenCalledWith('', {
+        title,
+        message,
+        type: 'basic',
+        iconUrl: '../icons/icon_128.png',
+      });
     });
   });
 });
