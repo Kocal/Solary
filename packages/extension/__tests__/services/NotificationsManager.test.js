@@ -66,4 +66,32 @@ describe('NotificationsManager', () => {
       });
     });
   });
+
+  describe('onclick behavior', () => {
+    afterEach(() => {
+      chrome.tabs.create.mockReset();
+    });
+
+    test('open solary twitch', () => {
+      notificationsManager.onNotificationClick('solary');
+      expect(chrome.tabs.create).toHaveBeenCalledWith({ url: 'https://twitch.tv/solary', active: true });
+    });
+
+    test('open solary fortnite twitch', () => {
+      notificationsManager.onNotificationClick('solaryfortnite');
+      expect(chrome.tabs.create).toHaveBeenCalledWith({ url: 'https://twitch.tv/solaryfortnite', active: true });
+    });
+
+    test('open solary twitch if username is not found', () => {
+      notificationsManager.onNotificationClick('sdmdkqmdlkazpoejmqlsjd');
+      expect(chrome.tabs.create).toHaveBeenCalledWith({ url: 'https://twitch.tv/solary', active: true });
+    });
+
+    test('fails if solary channel not found', () => {
+      channels[0].username = 'foobar';
+      notificationsManager.onNotificationClick('solary');
+      expect(chrome.tabs.create).not.toHaveBeenCalled();
+      expect(console.error).toHaveBeenCalledWith('Impossible de trouver le channel solary.');
+    });
+  });
 });

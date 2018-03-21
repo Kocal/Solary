@@ -12,7 +12,7 @@ const create = (title: string, message: string, id: string = '') => {
 
 class NotificationsManager {
   constructor(private channels: Array<Channel>, private settingsManager: SettingsManager) {
-    this.setupNotificationClickHandler();
+    chrome.notifications.onClicked.addListener(this.onNotificationClick);
   }
 
   public show(channel: Channel): void {
@@ -33,18 +33,16 @@ class NotificationsManager {
     create(title, message);
   }
 
-  private setupNotificationClickHandler(): void {
-    chrome.notifications.onClicked.addListener(channelUsername => {
-      const channel = this.findByUsernameOrSolary(channelUsername);
+  private onNotificationClick(channelUsername: string): void {
+    const channel = this.findByUsernameOrSolary(channelUsername);
 
-      if (!channel) {
-        return console.error(`Impossible de trouver le channel ${channelUsername}.`);
-      }
+    if (!channel) {
+      return console.error(`Impossible de trouver le channel ${channelUsername}.`);
+    }
 
-      chrome.tabs.create({
-        url: channel.url(),
-        active: true,
-      });
+    chrome.tabs.create({
+      url: channel.url(),
+      active: true,
     });
   }
 
