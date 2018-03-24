@@ -1,24 +1,17 @@
 import axios from 'axios';
-
-interface Payload {
-  url: string;
-  timestamp: number;
-}
-
-const timestamp = () => Math.floor(+new Date() / 1000);
+import { LocalStorageManager } from './LocalStorageManager';
 
 class SchedulingManager {
-  private ttl: number;
   private pageUrl: string;
+  private storageKey = 'solary_scheduling';
 
-  constructor() {
-    this.ttl = 60 * 60;
+  constructor(private localStorageManager: LocalStorageManager) {
     this.pageUrl = 'https://www.solary.fr/programme/';
   }
 
   public getScheduling(): Promise<string> {
     return new Promise((resolve, reject) => {
-      const schedulingUrl: string | null = this.read();
+      const schedulingUrl: string | null = this.localStorageManager.read(this.storageKey);
 
       if (schedulingUrl !== null) {
         resolve(schedulingUrl);
@@ -41,7 +34,7 @@ class SchedulingManager {
           const [_, imageUri] = matches;
           const imageUrl = new URL(imageUri, 'https://www.solary.fr').href;
 
-          this.write(imageUrl);
+          this.localStorageManager.write(this.storageKey, imageUrl, 60 * 60);
           resolve(imageUrl);
         })
         .catch(error => {
@@ -50,25 +43,6 @@ class SchedulingManager {
           console.error(message, error);
         });
     });
-  }
-
-  private read(): string | null {
-    const data = <Payload>JSON.parse(localStorage.getItem('solary_scheduling') || 'false') || null;
-
-    if (data === null || data.timestamp < timestamp()) {
-      return null;
-    }
-
-    return data.url;
-  }
-
-  private write(url: string): void {
-    const data: Payload = {
-      url,
-      timestamp: timestamp() + this.ttl,
-    };
-
-    return localStorage.setItem('solary_scheduling', JSON.stringify(data));
   }
 }
 

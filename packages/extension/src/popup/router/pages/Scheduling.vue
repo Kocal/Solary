@@ -9,6 +9,7 @@
 
 <script>
 import { SchedulingManager } from '../../../services/SchedulingManager';
+import { LocalStorageManager } from '../../../services/LocalStorageManager';
 import Image from '../../components/Image.vue';
 
 export default {
@@ -23,7 +24,8 @@ export default {
     };
   },
   created() {
-    const schedulingManager = new SchedulingManager();
+    const localStorageManager = new LocalStorageManager();
+    const schedulingManager = new SchedulingManager(localStorageManager);
 
     schedulingManager
       .getScheduling()
