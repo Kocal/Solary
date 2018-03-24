@@ -3,13 +3,14 @@ import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 
 import { SchedulingManager } from '../../src/services/SchedulingManager';
+import { LocalStorageManager } from '../../src/services/LocalStorageManager';
 
 const axiosMock = new AxiosMockAdapter(axios);
 const localStorageKey = 'solary_scheduling';
 const schedulingPageUrl = 'https://www.solary.fr/programme/';
-const schedulingUrl = 'http://example.com/programmation.png';
 
 let schedulingManager;
+let localStorageManager;
 
 axiosMock
   .onGet(schedulingPageUrl)
@@ -21,7 +22,8 @@ axiosMock
 
 describe('SchedulingManager', () => {
   beforeEach(() => {
-    schedulingManager = new SchedulingManager();
+    localStorageManager = new LocalStorageManager();
+    schedulingManager = new SchedulingManager(localStorageManager);
     console.error = jest.fn();
   });
 
@@ -64,26 +66,6 @@ describe('SchedulingManager', () => {
         expect(e).toBe("Une erreur fatale s'est produite lors de la récupération de la programmation.");
         expect(console.error).toHaveBeenCalled();
       }
-    });
-
-    test('write in local storage', () => {
-      schedulingManager.write(schedulingUrl);
-      expect(localStorage.setItem).toHaveBeenCalledWith(
-        localStorageKey,
-        JSON.stringify({
-          url: schedulingUrl,
-          timestamp: Math.floor(+new Date() / 1000) + 60 * 60,
-        })
-      );
-    });
-
-    test('return null if data is expired', () => {
-      // manually expire data
-      const data = JSON.parse(localStorage.getItem(localStorageKey));
-      data.timestamp = Math.floor(+new Date() / 1000) - 60;
-      localStorage.setItem(localStorageKey, JSON.stringify(data));
-
-      expect(schedulingManager.read()).toBeNull();
     });
   });
 });

@@ -3,6 +3,7 @@ import { BrowserActionManager } from './services/BrowserActionManager';
 import { ChannelsManager } from './services/ChannelsManager';
 import { ClientIdsManager } from './services/ClientIdsManager';
 import { GamesManager } from './services/GamesManager';
+import { LocalStorageManager } from './services/LocalStorageManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
 import { SettingsManager } from './services/SettingsManager';
@@ -13,6 +14,7 @@ import clientIds from './store/clientIds';
 import settings from './store/settings';
 
 const storageManager = new StorageManager();
+const localStorageManager = new LocalStorageManager();
 const clientIdsManager = new ClientIdsManager(clientIds);
 const settingsManager = new SettingsManager(settings, storageManager);
 const gamesManager = new GamesManager(clientIdsManager);
@@ -26,7 +28,7 @@ const channelsManager = new ChannelsManager(
   browserActionManager,
   settingsManager
 );
-const schedulingManager = new SchedulingManager();
+const schedulingManager = new SchedulingManager(localStorageManager);
 const webSocketManager = new WebSocketManager(webSocketConfig, notificationsManager);
 
 settingsManager.hydrate().then(() => {
