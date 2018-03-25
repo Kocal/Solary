@@ -1,10 +1,11 @@
-import { StorageManager } from '../../src/services/StorageManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
+import { StorageManager } from '../../src/services/StorageManager';
+import { Settings } from '../../src/store/settings';
 
-let settings;
-let syncSettings;
-let storageManager;
-let settingsManager;
+let settings: Settings;
+let syncSettings: { [k: string]: any };
+let storageManager: StorageManager;
+let settingsManager: SettingsManager;
 
 describe('SettingsManager', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { LocalStorageManager } from '../../src/services/LocalStorageManager';
 
-let localStorageManager;
+let localStorageManager: LocalStorageManager;
 
 describe('LocalStorageManager', () => {
   beforeEach(() => {
@@ -29,11 +29,11 @@ describe('LocalStorageManager', () => {
 
     test('return null if data is expired', () => {
       // manually expire data
-      const data = JSON.parse(localStorage.getItem('my key'));
-      data.timestamp -= ttl - 5; // offset of 5 seconds
+      const data = JSON.parse(localStorage.getItem('my key') as string);
+      data.timestamp -= ttl + 5; // offset of 5 seconds
       localStorage.setItem('my key', JSON.stringify(data));
 
-      expect(localStorageManager.read()).toBeNull();
+      expect(localStorageManager.read('my key')).toBeNull();
     });
   });
 });

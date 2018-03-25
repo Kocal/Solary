@@ -1,13 +1,13 @@
+import Stream from '../../src/entities/Stream';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
 import { StorageManager } from '../../src/services/StorageManager';
-import Stream from '../../src/entities/Stream';
 import channels from '../../src/store/channels';
 import settings from '../../src/store/settings';
 
-let storageManager;
-let settingsManager;
-let notificationsManager;
+let storageManager: StorageManager;
+let settingsManager: SettingsManager;
+let notificationsManager: NotificationsManager;
 
 describe('NotificationsManager', () => {
   beforeEach(() => {
@@ -38,7 +38,12 @@ describe('NotificationsManager', () => {
     });
 
     test('create notification', () => {
-      const stream = new Stream('League of Legends', 'On détruit les bronzes', 4000);
+      const stream = new Stream(
+        'League of Legends',
+        'On détruit les bronzes',
+        4000,
+        'https://example.com/thumbnail.jpg'
+      );
 
       channel.markAsOnline(stream);
       notificationsManager.show(channel);

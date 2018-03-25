@@ -8,8 +8,8 @@ import clientIds from '../../src/store/clientIds';
 const axiosMock = new AxiosMockAdapter(axios);
 const twitchApiUrl = 'https://api.twitch.tv/helix/games';
 const localStoragePrefix = 'solary_twitch_game_';
-let clientIdsManager = null;
-let gamesManager;
+let clientIdsManager: ClientIdsManager;
+let gamesManager: GamesManager;
 
 axiosMock
   .onGet(twitchApiUrl, { params: { id: '493244' } })
