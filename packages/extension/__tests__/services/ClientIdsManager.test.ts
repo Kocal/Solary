@@ -1,12 +1,6 @@
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 
 describe('BrowserActionManager', () => {
-  describe('constructor()', () => {
-    test('throw an error if there is no clients ids', () => {
-      expect(() => new ClientIdsManager()).toThrowError('« clientIds » should be a non-empty array.');
-    });
-  });
-
   describe('pickOne()', () => {
     test('pick a random client id', () => {
       const clientIds = ['a', 'b', 'c'];

@@ -1,8 +1,9 @@
 import { BrowserActionManager } from '../../src/services/BrowserActionManager';
+import Channel from '../../src/entities/Channel';
 import Stream from '../../src/entities/Stream';
 
-let channels;
-let browserActionManager;
+let channels: Channel[];
+let browserActionManager: BrowserActionManager;
 
 describe('BrowserActionManager', () => {
   beforeEach(() => {

@@ -1,28 +1,30 @@
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
-import * as qs from 'qs';
-
-import { SettingsManager } from '../../src/services/SettingsManager';
-import { StorageManager } from '../../src/services/StorageManager';
+import Channel from '../../src/entities/Channel';
+import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
 import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
-import { BrowserActionManager } from '../../src/services/BrowserActionManager';
+import { SettingsManager } from '../../src/services/SettingsManager';
+import { StorageManager } from '../../src/services/StorageManager';
+import { Settings } from '../../src/store/settings';
 
-let channels;
-let clientIds;
-let settings;
-let storageManager;
-let settingsManager;
-let clientIdsManager;
-let gamesManager;
-let notificationsManager;
-let browserActionManager;
-let channelsManager;
+const qs: any = require('qs');
+
+let channels: Channel[];
+let clientIds: string[];
+let settings: Settings;
+let storageManager: StorageManager;
+let settingsManager: SettingsManager;
+let clientIdsManager: ClientIdsManager;
+let gamesManager: GamesManager;
+let notificationsManager: NotificationsManager;
+let browserActionManager: BrowserActionManager;
+let channelsManager: ChannelsManager;
 
 const axiosMock = new AxiosMockAdapter(axios);
-const paramsSerializer = params => qs.stringify(params, { arrayFormat: 'repeat' });
+const paramsSerializer = (params: object) => qs.stringify(params, { arrayFormat: 'repeat' });
 
 axiosMock
   .onGet('https://api.twitch.tv/helix/streams', { paramsSerializer, params: { user_id: [174955366, 198506129] } })

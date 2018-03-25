@@ -15,4 +15,9 @@ module.exports = {
     '!src/background.ts',
     '!src/options/options.ts',
   ],
+  globals: {
+    'ts-jest': {
+      tsConfigFile: 'tsconfig.test.json',
+    },
+  },
 };

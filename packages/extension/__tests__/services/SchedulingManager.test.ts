@@ -9,8 +9,8 @@ const axiosMock = new AxiosMockAdapter(axios);
 const localStorageKey = 'solary_scheduling';
 const schedulingPageUrl = 'https://www.solary.fr/programme/';
 
-let schedulingManager;
-let localStorageManager;
+let schedulingManager: SchedulingManager;
+let localStorageManager: LocalStorageManager;
 
 axiosMock
   .onGet(schedulingPageUrl)
