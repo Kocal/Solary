@@ -8,9 +8,9 @@
     "strict": true,
     "noImplicitReturns": true,
     "allowJs": true,
-    "types": ["chrome", "node"],
+    "types": ["chrome", "node", "jest"],
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["src/**/*", "types/index.d.ts"],
+  "include": ["src/**/*", "__tests__/**/*", "types/index.d.ts"],
   "exclude": ["node_modules"]
 }
