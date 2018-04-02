@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs"
+  },
+  "types": ["chrome", "node", "jest"],
+  "include": [
+    "src/background.ts",
+    "src/options/options.ts",
+    "src/popup/popup.ts",
+    "src/vue-shims.d.ts",
+    "types/index.d.ts",
+    "__tests__/**/*"
+  ]
+}

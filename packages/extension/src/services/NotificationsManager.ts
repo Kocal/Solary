@@ -1,4 +1,5 @@
 import Channel from '../entities/Channel';
+import { SettingsManager } from './SettingsManager';
 
 const create = (title: string, message: string, id: string = '') => {
   chrome.notifications.create(id, {
@@ -10,11 +11,15 @@ const create = (title: string, message: string, id: string = '') => {
 };
 
 class NotificationsManager {
-  constructor(private channels: Array<Channel>) {
-    this.setupNotificationClickHandler();
+  constructor(private channels: Array<Channel>, private settingsManager: SettingsManager) {
+    chrome.notifications.onClicked.addListener(this.onNotificationClick);
   }
 
   public show(channel: Channel): void {
+    if (this.settingsManager.get('showNotifications') === false) {
+      return;
+    }
+
     if (!channel.stream) {
       return console.error(
         `Le channel ${channel.nickname} n'est pas en ligne, impossible d'afficher une notification.`
@@ -28,18 +33,16 @@ class NotificationsManager {
     create(title, message);
   }
 
-  private setupNotificationClickHandler(): void {
-    chrome.notifications.onClicked.addListener(channelUsername => {
-      const channel = this.findByUsernameOrSolary(channelUsername);
+  private onNotificationClick(channelUsername: string): void {
+    const channel = this.findByUsernameOrSolary(channelUsername);
 
-      if (!channel) {
-        return console.error(`Impossible de trouver le channel ${channelUsername}.`);
-      }
+    if (!channel) {
+      return console.error(`Impossible de trouver le channel ${channelUsername}.`);
+    }
 
-      chrome.tabs.create({
-        url: channel.url(),
-        active: true,
-      });
+    chrome.tabs.create({
+      url: channel.url(),
+      active: true,
     });
   }
 

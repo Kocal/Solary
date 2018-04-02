@@ -4,15 +4,12 @@ const path = require('path');
 const fs = require('fs');
 
 const BUNDLE_DIR = path.join(__dirname, '../dist');
-const bundles = [
-  'background.js',
-  'popup/popup.js',
-];
+const bundles = ['vendor.js', 'background.js', 'popup/popup.js', 'options/options.js'];
 
 const evalRegexForProduction = /;([a-z])=function\(\){return this}\(\);try{\1=\1\|\|Function\("return this"\)\(\)\|\|\(0,eval\)\("this"\)}catch\(t\){"object"==typeof window&&\(\1=window\)}/g;
-const evalRegexForDevelopment = /;\s*\/\/ This works in non-strict mode\s*([a-z])\s*=\s*\(\s*function\(\)\s*\{\s*return this;\s*}\)\(\);\s*try\s*{\s*\/\/\s*This works if eval is allowed(?:\s*|.+){1,14}/g;
+const evalRegexForDevelopment = /;\\r\\n\\r\\n\/\/ This works in non-strict mode(?:.){1,304}/g;
 
-const removeEvals = (file) => {
+const removeEvals = file => {
   console.info(`Removing eval() from ${file}`);
 
   return new Promise((resolve, reject) => {
@@ -31,7 +28,7 @@ const removeEvals = (file) => {
 
       data = data.replace(regex, '=window;');
 
-      fs.writeFile(file, data, (err) => {
+      fs.writeFile(file, data, err => {
         if (err) {
           reject(err);
           return;
@@ -44,7 +41,7 @@ const removeEvals = (file) => {
 };
 
 const main = () => {
-  bundles.forEach((bundle) => {
+  bundles.forEach(bundle => {
     removeEvals(path.join(BUNDLE_DIR, bundle))
       .then(() => console.info(`Bundle ${bundle}: OK`))
       .catch(console.error);

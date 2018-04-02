@@ -8,10 +8,9 @@ node_js:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - yarn global add greenkeeper-lockfile@1
 
 before_script:
-  - greenkeeper-lockfile-update
+  - git fetch --unshallow
   - yarn bootstrap
 
 script:
@@ -20,9 +19,6 @@ script:
   - bash ci/run-server.sh
   - bash ci/test-server.sh
   - bash ci/stop-server.sh
-
-after_script:
-  - greenkeeper-lockfile-upload
 
 before_deploy:
   - export RELEASE_EXTENSION_FILE=$(ls packages/extension/dist-zip/*.zip)

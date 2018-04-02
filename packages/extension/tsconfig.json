@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "rootDir": "src",
+    "outDir": "built",
     "module": "es2015",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
     "allowJs": true,
-    "types": [
-      "chrome",
-      "node"
-    ],
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "types": ["chrome", "node"],
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": [
-    "src/**/*"
+    "src/background.ts",
+    "src/options/options.ts",
+    "src/popup/popup.ts",
+    "src/vue-shims.d.ts",
+    "types/index.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
