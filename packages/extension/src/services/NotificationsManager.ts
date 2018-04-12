@@ -12,7 +12,7 @@ const create = (title: string, message: string, id: string = '') => {
 
 class NotificationsManager {
   constructor(private channels: Array<Channel>, private settingsManager: SettingsManager) {
-    chrome.notifications.onClicked.addListener(this.onNotificationClick);
+    chrome.notifications.onClicked.addListener(this.onNotificationClick.bind(this));
   }
 
   public show(channel: Channel): void {
