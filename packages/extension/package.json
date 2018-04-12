@@ -39,7 +39,7 @@
     "mock-socket": "^7.1.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
-    "ts-jest": "^22.4.1",
+    "ts-jest": "^22.4.2",
     "ts-loader": "^4.2.0",
     "typescript": "^2.7.2",
     "vue-loader": "^14.2.1",
