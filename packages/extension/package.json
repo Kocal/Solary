@@ -38,7 +38,7 @@
     "jest-webextension-mock": "^3.3.0",
     "mock-socket": "^7.1.0",
     "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.7",
+    "sass-loader": "^7.0.1",
     "ts-jest": "^22.4.1",
     "ts-loader": "^4.0.1",
     "typescript": "^2.7.2",
