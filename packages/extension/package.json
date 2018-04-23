@@ -23,7 +23,7 @@
     "@babel/preset-env": "^7.0.0-beta.40",
     "@types/chrome": "^0.0.60",
     "@types/jest": "^22.1.4",
-    "@types/node": "^9.6.4",
+    "@types/node": "^9.6.6",
     "axios-mock-adapter": "^1.14.1",
     "babel-core": "^7.0.0-beta.40",
     "babel-jest": "^22.4.1",
