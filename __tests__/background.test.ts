@@ -1,7 +1,3 @@
-import { WebSocket } from 'mock-socket';
-
-global.WebSocket = WebSocket;
-
 require('../src/background');
 
 describe('background', function() {
