@@ -11,14 +11,14 @@ before_install:
 
 before_script:
   - git fetch --unshallow
-  - yarn bootstrap
+  - yarn
 
 script:
   - bash ci/build-extension.sh
   - bash ci/test-extension.sh
 
 before_deploy:
-  - export RELEASE_EXTENSION_FILE=$(ls packages/extension/dist-zip/*.zip)
+  - export RELEASE_EXTENSION_FILE=$(ls dist-zip/*.zip)
   - echo "Deploying ${RELEASE_EXTENSION_FILE} to GitHub releases"
 
 deploy:

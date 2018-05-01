@@ -1,6 +1,6 @@
 # Solary
 
-> Projects related to the french WebTV [Solary](https://www.solary.fr).
+> Web extension for french WebTV [Solary](https://www.solary.fr).
 
 [![Travis](https://img.shields.io/travis/Kocal/Solary.svg?style=flat-square)](https://travis-ci.org/Kocal/Solary)
 [![Codecov](https://img.shields.io/codecov/c/github/kocal/solary.svg?style=flat-square)](https://codecov.io/gh/Kocal/Solary)
@@ -9,17 +9,12 @@
 [![dependencies Status](https://david-dm.org/kocal/solary/status.svg?style=flat-square)](https://david-dm.org/kocal/solary)
 [![devDependencies Status](https://david-dm.org/kocal/solary/dev-status.svg?style=flat-square)](https://david-dm.org/kocal/solary?type=dev)
 
-**Extension:**
-[![dependencies Status](https://david-dm.org/kocal/solary/status.svg?style=flat-square&path=packages/extension)](https://david-dm.org/kocal/solary?path=packages/extension)
-[![devDependencies Status](https://david-dm.org/kocal/solary/dev-status.svg?style=flat-square&path=packages/extension)](https://david-dm.org/kocal/solary?path=packages/extension&type=dev)
-
 ---
 
 * [Getting started](#getting-started)
   * [Requirements](#requirements)
   * [Bootstraping](#bootstraping)
-* [Projects](#projects)
-  * [Extension](#extension)
+  * [Commands](#commands)
 
 ## Getting started
 
@@ -30,18 +25,9 @@
 
 ### Bootstraping
 
-Just run `lerna bootstrap`, it will install dependencies for all projects located inside `packages` folder.
+Just run `yarn`.
 
-## Projects
-
-### Extension
-
-All builds are located [here](https://solary.kocal.fr/builds) (if I think to put them here...).
-
-* [Extension for Chrome](https://chrome.google.com/webstore/detail/solary/hcbdbiggklmbnbhhmepnebffpmajnkai)
-* [Extension for Firefox](https://solary.kocal.fr/builds/firefox/)
-
-#### Commands
+### Commands
 
 ##### `yarn build`
 

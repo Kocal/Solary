@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { version } = require('../../lerna.json');
+const { version } = require('./package.json');
 
 const config = {
   mode: 'development',
@@ -121,7 +121,7 @@ if (process.env.NODE_ENV === 'production') {
       banner: `Oh, attention, vous êtes devant du code minimifié !
 Ce n'est pas pour cacher du code malveillant, c'est uniquement pour réduire le poids de l'extension.
 
-Fichier original : https://github.com/Kocal/Solary/blob/${gitBranchOrTag}/packages/extension/src/[name].ts`,
+Fichier original : https://github.com/Kocal/Solary/blob/${gitBranchOrTag}/src/[name].ts`,
     }),
   ]);
 }
