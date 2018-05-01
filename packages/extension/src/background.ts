@@ -1,4 +1,3 @@
-import webSocketConfig from './config/webSocket';
 import { BrowserActionManager } from './services/BrowserActionManager';
 import { ChannelsManager } from './services/ChannelsManager';
 import { ClientIdsManager } from './services/ClientIdsManager';
@@ -8,7 +7,6 @@ import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
 import { SettingsManager } from './services/SettingsManager';
 import { StorageManager } from './services/StorageManager';
-import WebSocketManager from './services/WebSocketManager';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
 import settings from './store/settings';
@@ -29,13 +27,11 @@ const channelsManager = new ChannelsManager(
   settingsManager
 );
 const schedulingManager = new SchedulingManager(localStorageManager);
-const webSocketManager = new WebSocketManager(webSocketConfig, notificationsManager);
 
 settingsManager.hydrate().then(() => {
   channelsManager.requestTwitchApi();
   channelsManager.enableAutoRequestTwitchApi();
   schedulingManager.getScheduling();
-  webSocketManager.connect();
 });
 
 chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
