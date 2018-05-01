@@ -16,9 +16,6 @@ before_script:
 script:
   - bash ci/build-extension.sh
   - bash ci/test-extension.sh
-  - bash ci/run-server.sh
-  - bash ci/test-server.sh
-  - bash ci/stop-server.sh
 
 before_deploy:
   - export RELEASE_EXTENSION_FILE=$(ls packages/extension/dist-zip/*.zip)
