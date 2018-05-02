@@ -19,11 +19,12 @@ stages:
 jobs:
   include:
     - stage: install
-      script: curl -o- -L https://yarnpkg.com/install.sh | bash
-    - script: export PATH="$HOME/.yarn/bin:$PATH"
-    - script: yarn global add codecov
-    - script: git fetch --unshallow 
-    - script: yarn
+      script: |
+              curl -o- -L https://yarnpkg.com/install.sh | bash
+              export PATH="$HOME/.yarn/bin:$PATH"
+              yarn global add codecov
+              git fetch --unshallow 
+              yarn
 
     - stage: build
       script: yarn build
