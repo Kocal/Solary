@@ -54,7 +54,7 @@
     "node-sass": "^4.7.2",
     "prettier": "1.12.0",
     "pretty-quick": "^1.4.1",
-    "sass-loader": "^6.0.7",
+    "sass-loader": "^7.0.1",
     "ts-jest": "^22.4.1",
     "ts-loader": "^4.0.1",
     "typescript": "^2.7.2",
