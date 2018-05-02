@@ -20,8 +20,18 @@ before_script:
   - yarn
 
 script:
-  - bash ci/build-extension.sh
-  - bash ci/test-extension.sh
+  - yarn build
+  - yarn build-zip
+  - yarn test && codecov
+  - test -f dist/manifest.json
+  - test -f dist/background.js
+  - test -f dist/vendor.js
+  - test -f dist/vendor.css
+  - test -f dist/popup/popup.js
+  - test -f dist/popup/popup.css
+  - test -f dist/options/options.js
+  - test -f dist/options/options.css
+  - test -f "dist-zip/Solary-v$(node -pe "require('./package.json').version").zip"
 
 before_deploy:
   - export RELEASE_EXTENSION_FILE=$(ls dist-zip/*.zip)
