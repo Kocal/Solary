@@ -27,8 +27,9 @@ jobs:
               yarn
 
     - stage: build
-      script: yarn build
-    - script: yarn build-zip
+      script: |
+              yarn build
+              yarn build-zip
 
     - stage: test
       script: yarn test && codecov
@@ -43,8 +44,9 @@ jobs:
     - script: test -f "dist-zip/Solary-v$(node -pe "require('./package.json').version").zip"
 
     - stage: deploy
-      script: export RELEASE_EXTENSION_FILE=$(ls dist-zip/*.zip)
-    - script: echo "Deploying ${RELEASE_EXTENSION_FILE} to GitHub releases"
+      script: |
+              export RELEASE_EXTENSION_FILE=$(ls dist-zip/*.zip)
+              echo "Deploying ${RELEASE_EXTENSION_FILE} to GitHub releases"
       deploy:
         provider: releases
         api_key:
