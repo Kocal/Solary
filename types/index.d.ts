@@ -1,7 +1,3 @@
-export interface WebSocketConfig {
-  url: string;
-}
-
 export interface Networks {
   facebook?: string;
   twitter?: string;
