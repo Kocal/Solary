@@ -1,7 +1,7 @@
 {
   "name": "solary",
   "private": true,
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "Extension navigateur pour la WebTV Solary",
   "author": "Hugo Alliaume <kocal@live.fr>",
   "license": "MIT",
