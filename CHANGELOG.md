@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file. See [standa
 * **popup:** remove unused and breaking « type="ts" » ([a634316](https://github.com/Kocal/Solary/commit/a634316))
 * **popup:navigation:** fill icons in white ([36cf98e](https://github.com/Kocal/Solary/commit/36cf98e))
 
-### Features
+### Refactor
 
-* add script for publishing new version ([6c1526f](https://github.com/Kocal/Solary/commit/6c1526f))
+* **projects:** remove everything about server project ([ce45016](https://github.com/Kocal/solary/commit/ce45016))
+* **extension:** remove websocket things ([7c92cf0](https://github.com/Kocal/solary/commit/7c92cf0))
+* remove lerna and reorganize project ([c45268e](https://github.com/Kocal/solary/commit/c45268e))
