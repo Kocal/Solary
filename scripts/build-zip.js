@@ -26,7 +26,7 @@ const buildZip = (src, dist, zipFilename) => {
   console.info(`Building ${zipFilename}...`);
 
   return new Promise((resolve, reject) => {
-    zipFolder(src, path.join(dist, zipFilename), (err) => {
+    zipFolder(src, path.join(dist, zipFilename), err => {
       if (err) {
         reject(err);
       } else {

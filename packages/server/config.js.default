@@ -1,4 +1,0 @@
-module.exports = {
-  cert: '/path/to/fullchain.pem',
-  key: '/path/to/privkey.pem',
-};
