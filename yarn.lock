@@ -7486,9 +7486,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-awesome@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-2.3.5.tgz#fe7fcf185cff794cb37a3c45d16eeb851e94fd9c"
+vue-awesome@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-3.0.0.tgz#0b0b37488dd4b7e4b9a269d0e9173cd5ab65ff0f"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.0"
