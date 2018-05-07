@@ -535,9 +535,9 @@
   version "22.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
 
-"@types/node@^10.0.3":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.3.tgz#1f89840c7aac2406cc43a2ecad98fc02a8e130e4"
+"@types/node@^10.0.4":
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.4.tgz#130598ee56e9a1210a53f557d64935571f05390d"
 
 "@vue/component-compiler-utils@^1.2.1":
   version "1.2.1"
