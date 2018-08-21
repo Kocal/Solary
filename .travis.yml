@@ -9,12 +9,14 @@ cache:
   yarn: true
   directories:
     - node_modules
+    - ~/.cache
 
 before_install:
   - npm i -g yarn codecov
 
 install:
   - yarn install --frozen-lockfile
+  - yarn cypress install
 
 before_script:
   - git fetch --unshallow
@@ -23,6 +25,7 @@ script:
   - yarn build
   - yarn build-zip
   - yarn test && codecov
+  - yarn cypress run
   - test -f dist/manifest.json
   - test -f dist/background.js
   - test -f dist/vendor.js
