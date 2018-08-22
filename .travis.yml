@@ -25,7 +25,7 @@ script:
   - yarn build
   - yarn build-zip
   - yarn test && codecov
-  - yarn cypress run
+  - yarn test:e2e
   - test -f dist/manifest.json
   - test -f dist/background.js
   - test -f dist/vendor.js

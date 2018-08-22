@@ -13,6 +13,9 @@
     "watch": "npm run build -- --watch",
     "watch:dev": "npm run build:dev -- --watch",
     "test": "jest",
+    "test:e2e": "start-server-and-test test:e2e:_start-server http://localhost:5000 test:e2e:_run",
+    "test:e2e:_start-server": "yarn serve dist -p 5000",
+    "test:e2e:_run": "yarn cypress run --record",
     "prettier": "prettier '{src,__tests__}/**/*.{ts,vue}'",
     "prettier:write": "npm run prettier -- --write",
     "precommit": "pretty-quick --staged"
@@ -56,6 +59,8 @@
     "prettier": "1.12.1",
     "pretty-quick": "^1.4.1",
     "sass-loader": "^7.0.1",
+    "serve": "^10.0.0",
+    "start-server-and-test": "^1.7.0",
     "ts-jest": "^22.4.1",
     "ts-loader": "^4.3.0",
     "typescript": "^2.7.2",
