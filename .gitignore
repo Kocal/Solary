@@ -3,3 +3,5 @@
 /dist
 /dist-zip
 /coverage
+/cypress/screenshots
+/cypress/videos
