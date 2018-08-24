@@ -1,5 +1,5 @@
 <template>
-  <a :href="channel.url()" class="channel" :class="[{offline: !channel.online}]" target="_blank">
+  <a :href="channel.url()" :data-testid="`stream-${channel.username}`" class="channel" :class="[{offline: !channel.online}]" target="_blank">
     <div v-if="channel.online" class="grid">
       <div class="grid__aside">
         <thumbnail :url="channel.stream.thumbnail_url" :width="300" :height="166" style="display: block">
@@ -13,8 +13,8 @@
         <p class="channel__stream-title">{{ channel.stream.title }}</p>
         <span class="channel__stream-status">
             Joue à
-            <a :href="'https://www.twitch.tv/directory/game/' + channel.stream.game" target="_blank">{{ channel.stream.game }}</a>
-            devant <em>{{ channel.stream.viewers }}</em> viewers
+            <a :href="'https://www.twitch.tv/directory/game/' + encodeURIComponent(channel.stream.game)" target="_blank" data-testid="stream-game">{{ channel.stream.game }}</a>
+            devant <em data-testid="stream-viewers">{{ channel.stream.viewers }}</em> viewers
           </span>
       </div>
     </div>

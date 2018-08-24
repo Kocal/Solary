@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-streams">
     <channel v-for="channel in $root.channels" :key="channel.id" :channel="channel"/>
   </div>
 </template>
