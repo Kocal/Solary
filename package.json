@@ -14,8 +14,10 @@
     "watch:dev": "npm run build:dev -- --watch",
     "test": "jest",
     "test:e2e": "start-server-and-test test:e2e:_start-server http://localhost:5000 test:e2e:_run",
+    "test:e2e:ci": "start-server-and-test test:e2e:_start-server http://localhost:5000 test:e2e:_run:record",
     "test:e2e:_start-server": "yarn serve dist -p 5000",
     "test:e2e:_run": "yarn cypress run",
+    "test:e2e:_run:record": "yarn cypress run --record",
     "prettier": "prettier '{src,__tests__}/**/*.{ts,vue}'",
     "prettier:write": "npm run prettier -- --write",
     "precommit": "pretty-quick --staged"
