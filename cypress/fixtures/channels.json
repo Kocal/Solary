@@ -1,0 +1,29 @@
+[
+  {
+    "id": 174955366,
+    "username": "solary",
+    "nickname": "Solary",
+    "networks": {
+      "twitter": "SolaryTV",
+      "facebook": "SolaryTV",
+      "youtube": "channel/UCb3c6rB0Ru1i9EUcc-a5ZJw"
+    },
+    "online": true,
+    "stream": {
+      "game": "Pokémon Red/Blue",
+      "title": "SACHAKOR OBJECTIF 3 BADGES AUJOURD'HUI !",
+      "viewers": 3742,
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_solary-{width}x{height}.jpg"
+    }
+  },
+  {
+    "id": 198506129,
+    "username": "solaryfortnite",
+    "nickname": "Solary Fortnite",
+    "networks": {
+      "youtube": "channel/UCTmx6aOnNK9O7qoF9_SoR5g"
+    },
+    "online": false,
+    "stream": null
+  }
+]
