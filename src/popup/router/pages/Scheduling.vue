@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <a v-if="imageUrl" :href="pageUrl" target="_blank">
-      <s-image :url="imageUrl"></s-image>
+  <div class="page-scheduling">
+    <a v-if="imageUrl" :href="pageUrl" target="_blank" data-testid="scheduling-url">
+      <s-image :url="imageUrl" data-testid="scheduling-image"/>
     </a>
     <p v-if="error" class="alert alert-error">{{ error }}</p>
   </div>
