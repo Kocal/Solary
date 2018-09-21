@@ -554,9 +554,9 @@
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.8.tgz#d27600e9ba2f371e08695d90a0fe0408d89c7be7"
 
-"@types/chrome@^0.0.65":
-  version "0.0.65"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.65.tgz#bd19a4cff5a7f91ce5e487cfb0c7cca59271a053"
+"@types/chrome@^0.0.72":
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.72.tgz#ab34692f69c806e6f02c0189e4cdb4d4722572c7"
   dependencies:
     "@types/filesystem" "*"
 
