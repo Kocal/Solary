@@ -47,5 +47,5 @@ deploy:
   file: "${RELEASE_EXTENSION_FILE}"
   skip_cleanup: true
   on:
-    repo: Kocal/Solary
+    repo: Kocal-Web-Extensions/Solary
     tags: true
