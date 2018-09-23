@@ -1,10 +1,9 @@
-import { pickTwitchApiKey } from '@kocal/web-extension-library';
+import { getTwitchGame, pickTwitchApiKey } from '@kocal/web-extension-library';
 import axios from 'axios';
 import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
 import Stream from '../entities/Stream';
 import { updateBrowserAction } from './browser-action';
-import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
 import { SettingsManager } from './SettingsManager';
 
@@ -17,7 +16,6 @@ class ChannelsManager {
 
   constructor(
     private channels: Array<Channel>,
-    private gamesManager: GamesManager,
     private notificationsManager: NotificationsManager,
     private settingsManager: SettingsManager
   ) {
@@ -62,14 +60,13 @@ class ChannelsManager {
       const isOnline: boolean = !!onlineChannel;
 
       if (isOnline) {
-        const promise = this.gamesManager
-          .getNameById(onlineChannel.game_id)
+        const promise = getTwitchGame(onlineChannel.game_id)
           .then(game => {
             const wasOffline = !channel.online;
             const titleHasChanged = onlineChannel.title !== (channel.stream && channel.stream.title);
 
             channel.markAsOnline(
-              new Stream(game, onlineChannel.title, onlineChannel.viewer_count, onlineChannel.thumbnail_url)
+              new Stream(game.name, onlineChannel.title, onlineChannel.viewer_count, onlineChannel.thumbnail_url)
             );
 
             if (this.settingsManager.get('showNotifications.atBoot') === false && firstBoot) {

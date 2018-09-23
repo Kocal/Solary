@@ -2,7 +2,6 @@ import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import Channel from '../../src/entities/Channel';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
-import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
 import { StorageManager } from '../../src/services/StorageManager';
@@ -15,7 +14,6 @@ let clientIds: string[];
 let settings: Settings;
 let storageManager: StorageManager;
 let settingsManager: SettingsManager;
-let gamesManager: GamesManager;
 let notificationsManager: NotificationsManager;
 let channelsManager: ChannelsManager;
 
@@ -38,9 +36,8 @@ describe('ChannelsManager', () => {
 
     storageManager = new StorageManager();
     settingsManager = new SettingsManager(settings, storageManager);
-    gamesManager = new GamesManager();
     notificationsManager = new NotificationsManager(channels, settingsManager);
-    channelsManager = new ChannelsManager(channels, gamesManager, notificationsManager, settingsManager);
+    channelsManager = new ChannelsManager(channels, notificationsManager, settingsManager);
   });
 
   describe('requestTwitchApi()', () => {

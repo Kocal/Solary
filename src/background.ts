@@ -1,6 +1,5 @@
 import { registerTwitchApiKeys } from '@kocal/web-extension-library';
 import { ChannelsManager } from './services/ChannelsManager';
-import { GamesManager } from './services/GamesManager';
 import { LocalStorageManager } from './services/LocalStorageManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { SchedulingManager } from './services/SchedulingManager';
@@ -15,9 +14,8 @@ registerTwitchApiKeys(clientIds);
 const storageManager = new StorageManager();
 const localStorageManager = new LocalStorageManager();
 const settingsManager = new SettingsManager(settings, storageManager);
-const gamesManager = new GamesManager();
 const notificationsManager = new NotificationsManager(channels, settingsManager);
-const channelsManager = new ChannelsManager(channels, gamesManager, notificationsManager, settingsManager);
+const channelsManager = new ChannelsManager(channels, notificationsManager, settingsManager);
 const schedulingManager = new SchedulingManager(localStorageManager);
 
 settingsManager.hydrate().then(() => {
