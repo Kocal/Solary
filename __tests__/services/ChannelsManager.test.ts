@@ -1,9 +1,7 @@
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import Channel from '../../src/entities/Channel';
-import { BrowserActionManager } from '../../src/services/BrowserActionManager';
 import { ChannelsManager } from '../../src/services/ChannelsManager';
-import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import { GamesManager } from '../../src/services/GamesManager';
 import { NotificationsManager } from '../../src/services/NotificationsManager';
 import { SettingsManager } from '../../src/services/SettingsManager';
@@ -17,10 +15,8 @@ let clientIds: string[];
 let settings: Settings;
 let storageManager: StorageManager;
 let settingsManager: SettingsManager;
-let clientIdsManager: ClientIdsManager;
 let gamesManager: GamesManager;
 let notificationsManager: NotificationsManager;
-let browserActionManager: BrowserActionManager;
 let channelsManager: ChannelsManager;
 
 const axiosMock = new AxiosMockAdapter(axios);
@@ -42,23 +38,9 @@ describe('ChannelsManager', () => {
 
     storageManager = new StorageManager();
     settingsManager = new SettingsManager(settings, storageManager);
-    clientIdsManager = new ClientIdsManager(clientIds);
-    gamesManager = new GamesManager(clientIdsManager);
+    gamesManager = new GamesManager();
     notificationsManager = new NotificationsManager(channels, settingsManager);
-    browserActionManager = new BrowserActionManager(channels);
-    channelsManager = new ChannelsManager(
-      channels,
-      clientIdsManager,
-      gamesManager,
-      notificationsManager,
-      browserActionManager,
-      settingsManager
-    );
-
-    chrome.notifications.create.mockReset();
-    chrome.browserAction.setBadgeText.mockReset();
-    chrome.browserAction.setBadgeBackgroundColor.mockReset();
-    chrome.browserAction.setTitle.mockReset();
+    channelsManager = new ChannelsManager(channels, gamesManager, notificationsManager, settingsManager);
   });
 
   describe('requestTwitchApi()', () => {

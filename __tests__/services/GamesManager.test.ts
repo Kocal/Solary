@@ -1,14 +1,13 @@
+import { registerTwitchApiKeys } from '@kocal/web-extension-library';
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 
 import { GamesManager } from '../../src/services/GamesManager';
-import { ClientIdsManager } from '../../src/services/ClientIdsManager';
 import clientIds from '../../src/store/clientIds';
 
 const axiosMock = new AxiosMockAdapter(axios);
 const twitchApiUrl = 'https://api.twitch.tv/helix/games';
 const localStoragePrefix = 'solary_twitch_game_';
-let clientIdsManager: ClientIdsManager;
 let gamesManager: GamesManager;
 
 axiosMock
@@ -21,8 +20,8 @@ axiosMock
 
 describe('GamesManager', () => {
   beforeEach(() => {
-    clientIdsManager = new ClientIdsManager(clientIds);
-    gamesManager = new GamesManager(clientIdsManager);
+    registerTwitchApiKeys(clientIds);
+    gamesManager = new GamesManager();
     console.error = jest.fn();
   });
 

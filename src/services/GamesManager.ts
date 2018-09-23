@@ -1,14 +1,12 @@
+import { pickTwitchApiKey } from '@kocal/web-extension-library';
 import axios from 'axios';
 import { TwitchApi } from '../../types';
-import { ClientIdsManager } from './ClientIdsManager';
 
 const read = (id: string): string | null => localStorage.getItem(`solary_twitch_game_${id}`) || null;
 
 const write = (id: string, name: string) => localStorage.setItem(`solary_twitch_game_${id}`, name);
 
 class GamesManager {
-  constructor(private clientIdsManager: ClientIdsManager) {}
-
   public getNameById(id: string): Promise<string> {
     return new Promise((resolve, reject) => {
       const name = read(id);
@@ -39,7 +37,7 @@ class GamesManager {
     const url = 'https://api.twitch.tv/helix/games';
     const config = {
       headers: {
-        'Client-ID': this.clientIdsManager.pickOne(),
+        'Client-ID': pickTwitchApiKey(),
       },
       params: {
         id,

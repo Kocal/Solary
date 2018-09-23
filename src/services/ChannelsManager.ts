@@ -1,9 +1,9 @@
+import { pickTwitchApiKey } from '@kocal/web-extension-library';
 import axios from 'axios';
 import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
 import Stream from '../entities/Stream';
 import { updateBrowserAction } from './browser-action';
-import { ClientIdsManager } from './ClientIdsManager';
 import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
 import { SettingsManager } from './SettingsManager';
@@ -17,7 +17,6 @@ class ChannelsManager {
 
   constructor(
     private channels: Array<Channel>,
-    private clientIdsManager: ClientIdsManager,
     private gamesManager: GamesManager,
     private notificationsManager: NotificationsManager,
     private settingsManager: SettingsManager
@@ -29,7 +28,7 @@ class ChannelsManager {
     const url = 'https://api.twitch.tv/helix/streams';
     const config = {
       headers: {
-        'Client-ID': this.clientIdsManager.pickOne(),
+        'Client-ID': pickTwitchApiKey(),
       },
       params: {
         user_id: this.channels.map(channel => channel.id),
