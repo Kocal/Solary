@@ -3,7 +3,6 @@
   "compilerOptions": {
     "module": "commonjs"
   },
-  "types": ["chrome", "node", "jest"],
   "include": [
     "src/background.ts",
     "src/options/options.ts",
