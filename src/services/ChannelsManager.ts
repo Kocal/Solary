@@ -2,7 +2,7 @@ import axios from 'axios';
 import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
 import Stream from '../entities/Stream';
-import { BrowserActionManager } from './BrowserActionManager';
+import { updateBrowserAction } from './browser-action';
 import { ClientIdsManager } from './ClientIdsManager';
 import { GamesManager } from './GamesManager';
 import { NotificationsManager } from './NotificationsManager';
@@ -20,7 +20,6 @@ class ChannelsManager {
     private clientIdsManager: ClientIdsManager,
     private gamesManager: GamesManager,
     private notificationsManager: NotificationsManager,
-    private browserActionManager: BrowserActionManager,
     private settingsManager: SettingsManager
   ) {
     this.autoRequestTwitchApiInterval = null;
@@ -96,7 +95,7 @@ class ChannelsManager {
 
     return Promise.all(promises).then(() => {
       firstBoot = false;
-      this.browserActionManager.update();
+      updateBrowserAction();
     });
   }
 }

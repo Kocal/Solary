@@ -1,4 +1,3 @@
-import { BrowserActionManager } from './services/BrowserActionManager';
 import { ChannelsManager } from './services/ChannelsManager';
 import { ClientIdsManager } from './services/ClientIdsManager';
 import { GamesManager } from './services/GamesManager';
@@ -17,13 +16,11 @@ const clientIdsManager = new ClientIdsManager(clientIds);
 const settingsManager = new SettingsManager(settings, storageManager);
 const gamesManager = new GamesManager(clientIdsManager);
 const notificationsManager = new NotificationsManager(channels, settingsManager);
-const browserActionManager = new BrowserActionManager(channels);
 const channelsManager = new ChannelsManager(
   channels,
   clientIdsManager,
   gamesManager,
   notificationsManager,
-  browserActionManager,
   settingsManager
 );
 const schedulingManager = new SchedulingManager(localStorageManager);
