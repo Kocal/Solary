@@ -8,9 +8,8 @@
 </template>
 
 <script>
-import { SchedulingManager } from '../../../services/SchedulingManager';
-import { LocalStorageManager } from '../../../services/LocalStorageManager';
 import Image from '../../components/Image.vue';
+import { getScheduling } from '../../../services/scheduling';
 
 export default {
   components: {
@@ -24,11 +23,7 @@ export default {
     };
   },
   created() {
-    const localStorageManager = new LocalStorageManager();
-    const schedulingManager = new SchedulingManager(localStorageManager);
-
-    schedulingManager
-      .getScheduling()
+    getScheduling()
       .then(imageUrl => (this.imageUrl = imageUrl))
       .catch(error => (this.error = error));
   },
