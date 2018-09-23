@@ -5,7 +5,7 @@ import channels from '../../src/store/channels';
 describe('BrowserActionManager', () => {
   describe('constructor()', () => {
     test('set browser action in loading state', () => {
-      expect(chrome.browserAction.setBadgeText).toHabeBeenLastCalledWith({ text: '...' });
+      expect(chrome.browserAction.setBadgeText).toHaveBeenLastCalledWith({ text: '...' });
     });
   });
 
@@ -14,9 +14,9 @@ describe('BrowserActionManager', () => {
       channels[0].markAsOffline();
       updateBrowserAction();
 
-      expect(chrome.browserAction.setBadgeText).toHabeBeenLastCalledWith({ text: 'OFF' });
-      expect(chrome.browserAction.setBadgeBackgroundColor).toHabeBeenLastCalledWith({ color: 'gray' });
-      expect(chrome.browserAction.setTitle).toHabeBeenLastCalledWith({
+      expect(chrome.browserAction.setBadgeText).toHaveBeenLastCalledWith({ text: 'OFF' });
+      expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenLastCalledWith({ color: 'gray' });
+      expect(chrome.browserAction.setTitle).toHaveBeenLastCalledWith({
         title: 'Personne ne stream actuellement sur la TV !',
       });
     });
@@ -27,9 +27,9 @@ describe('BrowserActionManager', () => {
 
       updateBrowserAction();
 
-      expect(chrome.browserAction.setBadgeText).toHabeBeenLastCalledWith({ text: 'ON' });
-      expect(chrome.browserAction.setBadgeBackgroundColor).toHabeBeenLastCalledWith({ color: 'green' });
-      expect(chrome.browserAction.setTitle).toHabeBeenLastCalledWith({
+      expect(chrome.browserAction.setBadgeText).toHaveBeenLastCalledWith({ text: 'ON' });
+      expect(chrome.browserAction.setBadgeBackgroundColor).toHaveBeenLastCalledWith({ color: 'green' });
+      expect(chrome.browserAction.setTitle).toHaveBeenLastCalledWith({
         title: `Solary joue à LoL devant 6000 viewers\nMidi Chapi\n\nSolary Fortnite joue à Fortnite devant 5000 viewers\nYoshi et Hunter`,
       });
     });
