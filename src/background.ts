@@ -3,15 +3,13 @@ import { ChannelsManager } from './services/ChannelsManager';
 import { NotificationsManager } from './services/NotificationsManager';
 import { getScheduling } from './services/scheduling';
 import { SettingsManager } from './services/SettingsManager';
-import { StorageManager } from './services/StorageManager';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
 import settings from './store/settings';
 
 registerTwitchApiKeys(clientIds);
 
-const storageManager = new StorageManager();
-const settingsManager = new SettingsManager(settings, storageManager);
+const settingsManager = new SettingsManager(settings);
 const notificationsManager = new NotificationsManager(settingsManager);
 const channelsManager = new ChannelsManager(channels, notificationsManager, settingsManager);
 

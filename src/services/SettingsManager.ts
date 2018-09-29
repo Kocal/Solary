@@ -1,12 +1,12 @@
+import { readFromSyncStorage, writeToSyncStorage } from '@kocal/web-extension-library';
 import { Settings, SettingsItem } from '../store/settings';
-import { StorageManager } from './StorageManager';
 
 class SettingsManager {
-  constructor(private settings: Settings, private storageManager: StorageManager) {}
+  constructor(private settings: Settings) {}
 
   hydrate(): Promise<void> {
     return new Promise(resolve =>
-      this.storageManager.get('settings').then(items => {
+      readFromSyncStorage('settings').then(items => {
         const { settings } = items;
 
         if (settings !== undefined) {
@@ -42,8 +42,7 @@ class SettingsManager {
     }
 
     return new Promise((resolve, reject) => {
-      this.storageManager
-        .set({ settings: this.getFlattenSettings() })
+      writeToSyncStorage({ settings: this.getFlattenSettings() })
         .then(() => resolve())
         .catch(() => {
           setting.value = previousValue;
