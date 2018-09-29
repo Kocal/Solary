@@ -12,7 +12,7 @@ registerTwitchApiKeys(clientIds);
 
 const storageManager = new StorageManager();
 const settingsManager = new SettingsManager(settings, storageManager);
-const notificationsManager = new NotificationsManager(channels, settingsManager);
+const notificationsManager = new NotificationsManager(settingsManager);
 const channelsManager = new ChannelsManager(channels, notificationsManager, settingsManager);
 
 settingsManager.hydrate().then(() => {

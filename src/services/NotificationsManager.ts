@@ -1,8 +1,22 @@
+import { createNotification, createTab, onNotificationClick } from '@kocal/web-extension-library';
 import Channel from '../entities/Channel';
+import channels from '../store/channels';
 import { SettingsManager } from './SettingsManager';
 
+onNotificationClick((notificationId: string) => {
+  const channel = channels.find(channel => channel.username === notificationId);
+
+  if (!channel) {
+    return console.error(`Impossible de trouver le channel ${notificationId}.`);
+  }
+
+  createTab({
+    url: channel.url(),
+  });
+});
+
 const create = (title: string, message: string, id: string = '') => {
-  chrome.notifications.create(id, {
+  createNotification(id, {
     type: 'basic',
     iconUrl: '../icons/icon_128.png',
     title: title || '',
@@ -11,9 +25,7 @@ const create = (title: string, message: string, id: string = '') => {
 };
 
 class NotificationsManager {
-  constructor(private channels: Array<Channel>, private settingsManager: SettingsManager) {
-    chrome.notifications.onClicked.addListener(this.onNotificationClick.bind(this));
-  }
+  constructor(private settingsManager: SettingsManager) {}
 
   public show(channel: Channel): void {
     if (this.settingsManager.get('showNotifications') === false) {
@@ -27,27 +39,6 @@ class NotificationsManager {
     }
 
     create(`${channel.nickname} est en live sur ${channel.stream.game} !`, channel.stream.title, channel.username);
-  }
-
-  public showByTitleAndMessage(title: string, message: string): void {
-    create(title, message);
-  }
-
-  private onNotificationClick(channelUsername: string): void {
-    const channel = this.findByUsernameOrSolary(channelUsername);
-
-    if (!channel) {
-      return console.error(`Impossible de trouver le channel ${channelUsername}.`);
-    }
-
-    chrome.tabs.create({
-      url: channel.url(),
-      active: true,
-    });
-  }
-
-  private findByUsernameOrSolary(username: String): Channel | undefined {
-    return this.channels.find(c => c.username === username) || this.channels.find(c => c.username === 'solary');
   }
 }
 
