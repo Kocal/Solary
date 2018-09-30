@@ -1,19 +1,15 @@
-import { registerTwitchApiKeys } from '@kocal/web-extension-library';
+import { registerTwitchApiKeys, registerSettings } from '@kocal/web-extension-library';
 import { ChannelsManager } from './services/ChannelsManager';
-import { NotificationsManager } from './services/NotificationsManager';
 import { getScheduling } from './services/scheduling';
-import { SettingsManager } from './services/SettingsManager';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
 import settings from './store/settings';
 
 registerTwitchApiKeys(clientIds);
 
-const settingsManager = new SettingsManager(settings);
-const notificationsManager = new NotificationsManager(settingsManager);
-const channelsManager = new ChannelsManager(channels, notificationsManager, settingsManager);
+const channelsManager = new ChannelsManager(channels);
 
-settingsManager.hydrate().then(() => {
+registerSettings(settings).then(() => {
   channelsManager.requestTwitchApi();
   channelsManager.enableAutoRequestTwitchApi();
   getScheduling();

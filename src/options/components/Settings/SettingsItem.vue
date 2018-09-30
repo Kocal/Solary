@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { settingsManager } from '../../services';
+import { getSettingValue, setSettingValue } from '@kocal/web-extension-library';
+
 import SettingHelp from './SettingHelp';
 
 export default {
@@ -25,21 +26,19 @@ export default {
       required: true,
     },
     size: {
-      type: String,
       default: null,
     },
     disabled: {
-      type: Boolean,
-      required: false,
+      default: false,
     },
   },
   computed: {
     value: {
       get() {
-        return settingsManager.get(this.name);
+        return getSettingValue(this.name);
       },
       set(value) {
-        return settingsManager.set(this.name, value);
+        return setSettingValue(this.name, value);
       },
     },
   },

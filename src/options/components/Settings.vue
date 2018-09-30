@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import { settingsManager } from '../services';
 import SettingsSection from './Settings/SettingsSection';
 
 export default {
   name: 'Settings',
   components: { SettingsSection },
-  data() {
-    return {
-      settings: settingsManager.getSettings(),
-    };
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>

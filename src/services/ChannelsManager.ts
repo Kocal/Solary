@@ -1,11 +1,10 @@
-import { getTwitchGame, pickTwitchApiKey } from '@kocal/web-extension-library';
+import { getSettingValue, getTwitchGame, loadSettings, pickTwitchApiKey } from '@kocal/web-extension-library';
 import axios from 'axios';
 import { TwitchApi } from '../../types';
 import Channel from '../entities/Channel';
 import Stream from '../entities/Stream';
 import { updateBrowserAction } from './browser-action';
-import { NotificationsManager } from './NotificationsManager';
-import { SettingsManager } from './SettingsManager';
+import { createNotificationForChannel } from './notifications';
 
 const qs: any = require('qs');
 
@@ -14,11 +13,7 @@ let firstBoot = true;
 class ChannelsManager {
   private autoRequestTwitchApiInterval: number | null;
 
-  constructor(
-    private channels: Array<Channel>,
-    private notificationsManager: NotificationsManager,
-    private settingsManager: SettingsManager
-  ) {
+  constructor(private channels: Array<Channel>) {
     this.autoRequestTwitchApiInterval = null;
   }
 
@@ -52,8 +47,10 @@ class ChannelsManager {
     }, 1.5 * 60 * 1000);
   }
 
-  private onSuccess(onlineChannels: Array<TwitchApi.Stream>) {
+  private async onSuccess(onlineChannels: Array<TwitchApi.Stream>) {
     const promises: Array<Promise<void>> = [];
+
+    await loadSettings();
 
     this.channels.forEach(channel => {
       const onlineChannel: TwitchApi.Stream = onlineChannels.find(oc => +oc.user_id === channel.id) as TwitchApi.Stream;
@@ -69,16 +66,16 @@ class ChannelsManager {
               new Stream(game.name, onlineChannel.title, onlineChannel.viewer_count, onlineChannel.thumbnail_url)
             );
 
-            if (this.settingsManager.get('showNotifications.atBoot') === false && firstBoot) {
+            if (getSettingValue('showNotifications.atBoot') === false && firstBoot) {
               return;
             }
 
-            if (this.settingsManager.get('showNotifications.onTitleUpdate') === true && titleHasChanged) {
-              return this.notificationsManager.show(channel);
+            if (getSettingValue('showNotifications.onTitleUpdate') === true && titleHasChanged) {
+              return createNotificationForChannel(channel);
             }
 
             if (wasOffline) {
-              this.notificationsManager.show(channel);
+              createNotificationForChannel(channel);
             }
           })
           .catch(console.error);
