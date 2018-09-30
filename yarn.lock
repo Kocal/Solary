@@ -534,12 +534,13 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@kocal/web-extension-library@^1.0.0-alpha.3":
-  version "1.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.0.0-alpha.3.tgz#e149c5a906a15b4a8e0ca72234ba31402bfda267"
+"@kocal/web-extension-library@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.0.0-alpha.5.tgz#21e80d9998dbd11251cdf0a4ffbdc4c03ce14bb8"
   dependencies:
     axios "^0.18.0"
     qs "^6.5.2"
+    webextension-polyfill "^0.3.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -7440,6 +7441,10 @@ webassemblyjs@1.4.3:
     "@webassemblyjs/wasm-parser" "1.4.3"
     "@webassemblyjs/wast-parser" "1.4.3"
     long "^3.2.0"
+
+webextension-polyfill@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.3.1.tgz#fab2aed917a713a5d8221e41febad81c5d0b080f"
 
 webpack-addons@^1.1.5:
   version "1.1.5"
