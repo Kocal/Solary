@@ -22,10 +22,12 @@ export default {
       error: null,
     };
   },
-  created() {
-    getScheduling()
-      .then(imageUrl => (this.imageUrl = imageUrl))
-      .catch(error => (this.error = error));
+  async created() {
+    try {
+      this.imageUrl = await getScheduling();
+    } catch (err) {
+      this.error = error;
+    }
   },
 };
 </script>

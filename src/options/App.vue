@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { registerSettings, getSettings } from '@kocal/web-extension-library';
+import { getSettings, registerSettings } from '@kocal/web-extension-library';
 import settings from '../store/settings';
 import Settings from './components/Settings';
 
@@ -27,16 +27,15 @@ export default {
       error: null,
     };
   },
-  created() {
-    registerSettings(settings)
-      .then(() => {
-        this.loading = false;
-        this.$set(this, 'settings', getSettings());
-      })
-      .catch(error => {
-        this.loading = false;
-        this.error = error;
-      });
+  async created() {
+    try {
+      await registerSettings(settings);
+      this.loading = false;
+      this.$set(this, 'settings', getSettings());
+    } catch (err) {
+      this.loading = false;
+      this.error = error;
+    }
   },
 };
 </script>

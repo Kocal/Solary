@@ -1,4 +1,4 @@
-import { registerTwitchApiKeys, registerSettings } from '@kocal/web-extension-library';
+import { registerSettings, registerTwitchApiKeys } from '@kocal/web-extension-library';
 import { ChannelsManager } from './services/ChannelsManager';
 import { getScheduling } from './services/scheduling';
 import channels from './store/channels';
@@ -9,11 +9,12 @@ registerTwitchApiKeys(clientIds);
 
 const channelsManager = new ChannelsManager(channels);
 
-registerSettings(settings).then(() => {
+(async () => {
+  await registerSettings(settings);
   channelsManager.requestTwitchApi();
   channelsManager.enableAutoRequestTwitchApi();
-  getScheduling();
-});
+  await getScheduling();
+})();
 
 chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
   switch (request.type) {
