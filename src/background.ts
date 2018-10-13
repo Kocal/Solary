@@ -1,6 +1,6 @@
 import { registerSettings, registerTwitchApiKeys } from '@kocal/web-extension-library';
-import { fetchTwitchLiveStreams } from './services/twitch-streams';
 import { getScheduling } from './services/scheduling';
+import { fetchTwitchLiveStreams } from './services/twitch-streams';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
 import settings from './store/settings';

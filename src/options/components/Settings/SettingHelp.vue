@@ -21,7 +21,7 @@ export default {
 
 <style scoped lang="scss">
 $size: 16px;
-$activator-color: #555555;
+$activator-color: #555;
 
 .help {
   margin: 0 4px;

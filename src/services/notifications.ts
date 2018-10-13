@@ -2,7 +2,6 @@ import {
   createNotification as _createNotification,
   createTab,
   getSettingValue,
-  loadSettings,
   onNotificationClick,
 } from '@kocal/web-extension-library';
 import Channel from '../entities/Channel';
