@@ -534,9 +534,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@kocal/web-extension-library@^1.0.0-alpha.5":
-  version "1.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.0.0-alpha.5.tgz#21e80d9998dbd11251cdf0a4ffbdc4c03ce14bb8"
+"@kocal/web-extension-library@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.0.0.tgz#9e578fd03d0bf1cb840e7d93b6eb6c79c7bf2bb3"
+  integrity sha512-RjQHFsBRUJARhvBZZXZ1PlErOk7cp/kr4t16LpAlxJig73JbuKJeX662Sr9FuRJWR/9S9Uks202zNp7cwJtZ2w==
   dependencies:
     axios "^0.18.0"
     qs "^6.5.2"
