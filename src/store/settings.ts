@@ -1,17 +1,6 @@
-interface Settings {
-  [k: string]: SettingsItem;
-}
+import { InterfaceSettings } from '@kocal/web-extension-library';
 
-interface SettingsItem {
-  type: 'boolean';
-  label: string;
-  help?: string;
-  defaultValue?: any;
-  value?: any;
-  children?: Settings;
-}
-
-const settings: Settings = {
+const settings: InterfaceSettings = {
   showNotifications: {
     type: 'boolean',
     label: 'Notifications',
@@ -33,4 +22,3 @@ const settings: Settings = {
 };
 
 export default settings;
-export { Settings, SettingsItem };

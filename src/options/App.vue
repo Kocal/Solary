@@ -3,40 +3,39 @@
     <template v-if="loading">
       Chargement des paramètres...
     </template>
-    <template v-else-if="success">
-      <settings/>
-    </template>
-    <template v-else>
+    <template v-else-if="error">
       {{ error.message }}
+    </template>
+    <template>
+      <settings :settings="settings"/>
     </template>
   </div>
 </template>
 
 <script>
+import { getSettings, registerSettings } from '@kocal/web-extension-library';
+import settings from '../store/settings';
 import Settings from './components/Settings';
-import { settingsManager } from './services';
 
 export default {
   components: { Settings },
   name: 'app',
   data() {
     return {
+      settings: {},
       loading: true,
-      success: false,
       error: null,
     };
   },
-  created() {
-    settingsManager
-      .hydrate()
-      .then(() => {
-        this.success = true;
-        this.loading = false;
-      })
-      .catch(error => {
-        this.error = error;
-        this.loading = false;
-      });
+  async created() {
+    try {
+      await registerSettings(settings);
+      this.loading = false;
+      this.$set(this, 'settings', getSettings());
+    } catch (err) {
+      this.loading = false;
+      this.error = error;
+    }
   },
 };
 </script>

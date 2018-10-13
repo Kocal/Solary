@@ -24,7 +24,6 @@ before_script:
 script:
   - yarn build
   - yarn build-zip
-  - yarn test && codecov
   - yarn test:e2e:ci
   - test -f dist/manifest.json
   - test -f dist/background.js

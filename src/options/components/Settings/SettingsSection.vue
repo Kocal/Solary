@@ -6,7 +6,7 @@
       :key="`${name}.${childName}`"
       :name="`${name}.${childName}`"
       :setting="childSetting"
-      :disabled="!!setting.value === false"
+      :disabled="!setting.value"
     />
   </div>
 </template>

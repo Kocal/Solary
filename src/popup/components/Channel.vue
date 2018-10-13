@@ -66,7 +66,7 @@ export default {
   margin: 0.25em 0;
   font-size: 3.2rem;
   font-weight: 400;
-  color: #ffcc00;
+  color: #fc0;
 }
 
 .channel__stream-title {
@@ -79,7 +79,7 @@ export default {
   font-size: 1.4rem;
 
   > a {
-    color: #ffcc00;
+    color: #fc0;
     transition: color 0.1s linear;
 
     &:hover {
