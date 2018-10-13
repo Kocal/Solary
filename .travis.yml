@@ -3,7 +3,7 @@ dist: trusty
 
 language: node_js
 node_js:
-  - "node"
+  - 'node'
 
 cache:
   yarn: true
@@ -42,8 +42,8 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: NNZIAQpo/DM59eD3tZv7mrUy6Symw/VrhedarMeHylQ+e5/h3qIHT9oVc5Ijv3onarp7ZWGLyAmw+VRT4p/ew2KcFl1NPaWlDDHdEveXYFwhPIbIm3yeay7x8Q9/Yz9rL4RIXN7x4PrCB02slLmQyn3tCFArrOuORWz3Qu+b9mzaJPFgZ7Kn4W+NOg+xvNvZm5RU7oywKva9pjud2KnvrtfKz6JNwPGKZVmB4i0XZFsBof80yxfJw4wvZcKEAVGfxVyrBad/yfTzoZWe4MX2yHkYjTvWqKUW8AsOZjqd6pygQLiR33R+u7Lw4joqjUrIV4glkyYNGwsZclRx1ywmqpY/OH6DOkDWHzzRioXfcaO7rxyHongkrXJOx+WUc+rBkCI6wdC+4tdzvI81N8nH71MH/+63vTyrItxgLrhjMH3TR2K6YlqLQC3yrosdUCLbXXZaGwXuhkdekLDUsLFiJEWQF1es9uxy07Ee9WQ5El3LqPX9aKLln9VWwmffEFZxsfk1jUo/F/4NskQnJ1hOanUKaT7+wgaLEGvLKaVpAtIViQA/m4aaWto9K4MUztogyOpRhscjxI+Z3AyknwKv83nUVhtT3Q1D7dQH6mv5R0E7ttWCBb89ZiIY0pMF2CshQUSN52/omOjpIPTzkxNhy/7XXJ9sB0tr8rfUpdK5fG8=
-  file: "${RELEASE_EXTENSION_FILE}"
+    secure: hsWmvd/SiCPrVUepxy5w98VUKoJFN4Szvbvm1n8iyZMyM6YQa3iocKRIWQDQn3pIfScMoP70RjJ9pz83ERl7TmQlO4oqa3gNzz4QI6jy2n4683KfMdznOUnEgnQhzKdgZgO50yLHfpZb9n3LwlfC3RTVTPvWCYkb8c5eO/0dul68NHRP1K37DUNBJARUQpgwXpD7MVbCwdb9cEf4DB1MDA1EUX5OLDdwI2T4W31ox14wdn971HaQr2KPNkIxWWaIoNJV/pyNdF51I6C0+CjMgMHlkTEdtRqyz6kGKjHXUJVtNy5LHTQLjl7SzhJBFSu3IQHkh4cEPKlLgCQS0ZID2snXM+n5bxYmEBPHOLnTRgme/sDxQ5yXgcUPIqWabbW2T5byFx4rFuZCeKZNriGqwJ0ut/OvQiQTPYd4cFTxnHW5DtSs+zbCk+MZmuXHbLCmUqF+zuR7H3/YGbQDUpKjYTRqY2xN1nPMufuQJ2kDRG2r6dZxkwmGCsT0sEyVS8I6urArGtOZSqIhM8trsXefOjb2Iv3IzouAWAnK1hn7NXYSIM4qQbg2E9VBcDfv7DkH2qiuiCwrxYpm1lMS/7Ip4NCXfbEU7ECKPnU/dF1h6+zkKtgoU1+HvKFpndqLisb5WqE46uU940wl/6BGmk6A6HE96B1r9NDDwoMJef5tZXA=
+  file: '${RELEASE_EXTENSION_FILE}'
   skip_cleanup: true
   on:
     repo: Kocal-Web-Extensions/Solary
