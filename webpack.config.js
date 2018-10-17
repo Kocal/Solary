@@ -76,7 +76,8 @@ const config = {
           contentJson.version = version;
 
           if (config.mode === 'development') {
-            contentJson['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            contentJson['content_security_policy'] =
+              "script-src 'self' 'unsafe-eval' http://localhost:8098; object-src 'self'";
           }
 
           return JSON.stringify(contentJson, null, 2);
