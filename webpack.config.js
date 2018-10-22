@@ -1,5 +1,6 @@
 const childProcess = require('child_process');
 const webpack = require('webpack');
+const ejs = require('ejs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -66,8 +67,8 @@ const config = {
     }),
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'popup/popup.html', to: 'popup/popup.html' },
-      { from: 'options/options.html', to: 'options/options.html' },
+      { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
+      { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
       {
         from: 'manifest.json',
         to: 'manifest.json',
@@ -116,6 +117,12 @@ Ce n'est pas pour cacher du code malveillant, c'est uniquement pour réduire le 
 Fichier original : https://github.com/Kocal/Solary/blob/${gitBranchOrTag}/src/[name].ts`,
     }),
   ]);
+}
+
+function transformHtml(content) {
+  return ejs.render(content.toString(), {
+    ...process.env,
+  });
 }
 
 module.exports = config;
