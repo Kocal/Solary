@@ -2,26 +2,25 @@
 
 > Web extension for french WebTV [Solary](https://www.solary.fr).
 
-[![Travis](https://img.shields.io/travis/Kocal/Solary.svg?style=flat-square)](https://travis-ci.org/Kocal/Solary)
-[![Codecov](https://img.shields.io/codecov/c/github/kocal/solary.svg?style=flat-square)](https://codecov.io/gh/Kocal/Solary)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a35582e96d89bace77b8/maintainability)](https://codeclimate.com/github/Kocal/Solary/maintainability)
-[![DeepScan Grade](https://deepscan.io/api/projects/1639/branches/6092/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&pid=1639&bid=6092)
-[![dependencies Status](https://david-dm.org/kocal/solary/status.svg?style=flat-square)](https://david-dm.org/kocal/solary)
-[![devDependencies Status](https://david-dm.org/kocal/solary/dev-status.svg?style=flat-square)](https://david-dm.org/kocal/solary?type=dev)
+[![Build Status](https://travis-ci.org/Kocal-Web-Extensions/Solary.svg?branch=master)](https://travis-ci.org/Kocal-Web-Extensions/Solary)
+[![Codecov](https://codecov.io/gh/Kocal-Web-Extensions/Solary/branch/1.6/graph/badge.svg)](https://codecov.io/gh/Kocal-Web-Extensions/Solary)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5cf66d0765fc3f806a25/maintainability)](https://codeclimate.com/github/Kocal-Web-Extensions/Solary/maintainability)
+[![dependencies Status](https://david-dm.org/Kocal-Web-Extensions/Solary/status.svg)](https://david-dm.org/Kocal-Web-Extensions/Solary)
+[![devDependencies Status](https://david-dm.org/Kocal-Web-Extensions/Solary/dev-status.svg)](https://david-dm.org/Kocal-Web-Extensions/Solary?type=dev)
 
 ---
 
-* [Getting started](#getting-started)
-  * [Requirements](#requirements)
-  * [Bootstraping](#bootstraping)
-  * [Commands](#commands)
+- [Getting started](#getting-started)
+  - [Requirements](#requirements)
+  - [Bootstraping](#bootstraping)
+  - [Commands](#commands)
 
 ## Getting started
 
 ### Requirements
 
-* Node.js 9+
-* [yarn](https://yarnpkg.com/lang/en/docs/install/)
+- Node.js 9+
+- [yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Bootstraping
 
