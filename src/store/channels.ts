@@ -9,4 +9,8 @@ export default [
   new Channel(198506129, 'solaryfortnite', 'Solary Fortnite', {
     youtube: 'channel/UCTmx6aOnNK9O7qoF9_SoR5g',
   }),
+  new Channel(416031592, 'solaryhs', 'SolaryHS', {
+    youtube: 'channel/UC6fRSPv0qNiwTEUXOS7yAIw',
+  }),
+  new Channel(412354630, 'solaryevent', 'SolaryEvent', {}),
 ];
