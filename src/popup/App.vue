@@ -53,6 +53,8 @@ a {
 
 .router-view {
   margin: 4px;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .solary-gradient {
