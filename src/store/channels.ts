@@ -12,5 +12,4 @@ export default [
   new Channel(416031592, 'solaryhs', 'SolaryHS', {
     youtube: 'channel/UC6fRSPv0qNiwTEUXOS7yAIw',
   }),
-  new Channel(412354630, 'solaryevent', 'SolaryEvent', {}),
 ];
