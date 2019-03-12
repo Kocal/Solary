@@ -6,7 +6,7 @@ import { createNotificationForChannel } from './notifications';
 
 let firstBoot = true;
 
-export const fetchTwitchLiveStreams = async () => {
+export const fetchTwitchLiveStreams = async (): Promise<void> => {
   const { onlineStreams, offlineStreams } = await getTwitchLiveStreams(channels.map(channel => channel.id));
 
   onlineStreams.forEach(onlineStream => {
