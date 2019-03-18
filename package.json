@@ -60,7 +60,7 @@
     "sass-loader": "^7.1.0",
     "serve": "^10.1.2",
     "standard-version": "^5.0.2",
-    "start-server-and-test": "^1.7.11",
+    "start-server-and-test": "^1.7.12",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "vue-loader": "^15.7.0",
