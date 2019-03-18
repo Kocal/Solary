@@ -44,7 +44,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@types/chrome": "^0.0.81",
-    "@types/node": "11.11.1",
+    "@types/node": "11.11.3",
     "babel-core": "^7.0.0-bridge.0",
     "codecov": "^3.2.0",
     "copy-webpack-plugin": "^5.0.1",
