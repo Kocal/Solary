@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.2](https://github.com/Kocal/Solary/compare/v1.10.1...v1.10.2) (2019-04-08)
+
+### Bug Fixes
+
+- **build-zip:** use "archiver" to prevent vulnerability issues from zip-folder ([#284](https://github.com/Kocal/Solary/issues/284)) ([3305f54](https://github.com/Kocal/Solary/commit/3305f54))
+
 # [1.10.0](https://github.com/Kocal/Solary/compare/v1.9.3...v1.10.0) (2019-02-26)
 
 ### Features
