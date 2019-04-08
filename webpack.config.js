@@ -1,7 +1,6 @@
 const childProcess = require('child_process');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { version } = require('./package.json');
@@ -60,6 +59,9 @@ const config = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      global: 'window',
+    }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -83,9 +85,6 @@ const config = {
         },
       },
     ]),
-    new WebpackShellPlugin({
-      onBuildEnd: ['node scripts/remove-evals.js'],
-    }),
   ],
 };
 
