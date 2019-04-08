@@ -41,7 +41,7 @@
     "vue-router": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0",
+    "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.2",
     "@types/chrome": "^0.0.81",
     "@types/node": "11.11.1",
