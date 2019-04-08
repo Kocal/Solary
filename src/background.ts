@@ -1,5 +1,4 @@
 import { registerSettings, registerTwitchApiKeys } from '@kocal/web-extension-library';
-import { getScheduling } from './services/scheduling';
 import { fetchTwitchLiveStreams } from './services/twitch-streams';
 import channels from './store/channels';
 import clientIds from './store/clientIds';
@@ -9,7 +8,7 @@ registerTwitchApiKeys(clientIds);
 
 (async () => {
   await registerSettings(settings);
-  await Promise.all([fetchTwitchLiveStreams(), getScheduling()]);
+  await fetchTwitchLiveStreams();
 
   setInterval(() => {
     fetchTwitchLiveStreams();

@@ -4,15 +4,18 @@
       <li class="divider"></li>
       <router-link to="/streams" tag="li" data-testid="navigation-stream">Stream</router-link>
       <li class="divider"></li>
-      <router-link to="/scheduling" tag="li" data-testid="navigation-scheduling">Programmation</router-link>
-      <li class="divider"></li>
       <li class="icon">
         <a href="https://twitter.com/SolaryTV" target="_blank" title="Twitter" data-testid="socials-twitter">
           <icon name="twitter"></icon>
         </a>
       </li>
       <li class="icon">
-        <a href="https://www.youtube.com/channel/UCb3c6rB0Ru1i9EUcc-a5ZJw" target="_blank" title="YouTube" data-testid="socials-youtube">
+        <a
+          href="https://www.youtube.com/channel/UCb3c6rB0Ru1i9EUcc-a5ZJw"
+          target="_blank"
+          title="YouTube"
+          data-testid="socials-youtube"
+        >
           <icon name="youtube"></icon>
         </a>
       </li>
@@ -96,8 +99,7 @@ li {
     }
   }
 
-  &:first-child,
-  &:nth-child(5) {
+  &:nth-child(3) {
     flex: 1;
   }
 }
