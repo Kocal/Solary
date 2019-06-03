@@ -5300,10 +5300,10 @@ serialize-javascript@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.5.0.tgz#1aa336162c88a890ddad5384baebc93a655161fe"
 
-serve-handler@5.0.8:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/serve-handler/-/serve-handler-5.0.8.tgz#790dbe340dabf1d61bdbaa02ea37dcab372377a8"
-  integrity sha512-pqk0SChbBLLHfMIxQ55czjdiW7tj2cFy53svvP8e5VqEN/uB/QpfiTJ8k1uIYeFTDVoi+FGi5aqXScuu88bymg==
+serve-handler@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/serve-handler/-/serve-handler-6.0.1.tgz#4155c3f8aab265d0240671259aeda5a5bf4fef70"
+  integrity sha512-k/im4Fbx96d8VcrJDjrsagNd9Vq18tVYRDDe90rpNO8Mr76KJF/zES5tBZdlLEbhBXjOs36m9Wl+hRCiDnYfmA==
   dependencies:
     bytes "3.0.0"
     content-disposition "0.5.2"
@@ -5314,10 +5314,10 @@ serve-handler@5.0.8:
     path-to-regexp "2.2.1"
     range-parser "1.2.0"
 
-serve@^10.1.2:
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/serve/-/serve-10.1.2.tgz#805917f2692ed5d8720bbd1981ac3974d38b7d8d"
-  integrity sha512-TVH35uwndRlCqSeX3grR3Ntrjx2aBTeu6sx+zTD2CzN2N/rHuEDTvxiBwWbrellJNyWiQFz2xZmoW+UxV+Zahg==
+serve@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/serve/-/serve-11.0.1.tgz#60893a727563da08654250566e3ad7377a0a3ec3"
+  integrity sha512-kmcR5jOumMcmoDVJk7izj2Gnz+ql4K3Xq1g0l4XX598lLYvbXgfS1oeTgckPVGzsk0MU/dBPHiolRgH0fI7c5g==
   dependencies:
     "@zeit/schemas" "2.6.0"
     ajv "6.5.3"
@@ -5326,7 +5326,7 @@ serve@^10.1.2:
     chalk "2.4.1"
     clipboardy "1.2.3"
     compression "1.7.3"
-    serve-handler "5.0.8"
+    serve-handler "6.0.1"
     update-check "1.5.2"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
