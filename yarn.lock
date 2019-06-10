@@ -6086,10 +6086,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-awesome@^2.3.8:
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-2.3.8.tgz#95ed4fb7f84453603f0931f865238576e55582a4"
-  integrity sha512-X7ttcOJerhqA6iK/UK8/DbFiBrEAFY1abGVWBqGx0kGLwPU1CjG73YfBffvIs14GiqmlNZDR5gGVsiTEc+GLhg==
+vue-awesome@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-3.5.4.tgz#da14ca20a3c6415c72823a7f743022f2dbd0183f"
+  integrity sha512-RRuo08A6mFye2RyLVdnODH5kyLiHANMl9EzKXZXCeMrsP4SY3nyjkQnTGlgbbVOBQuaGBMrFp9HPOJYDaVNk/w==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.0"
