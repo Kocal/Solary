@@ -62,7 +62,7 @@
     "serve": "^10.1.2",
     "standard-version": "^5.0.2",
     "start-server-and-test": "^1.7.13",
-    "ts-loader": "^5.3.3",
+    "ts-loader": "^6.0.4",
     "typescript": "^3.4.3",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
