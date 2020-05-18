@@ -8,18 +8,14 @@
   "typings": "types/index.d.ts",
   "scripts": {
     "release": "standard-version",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --hide-modules",
-    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --hide-modules",
+    "build": "encore prod",
+    "build:dev": "encore dev",
     "build-zip": "node scripts/build-zip.js",
-    "watch": "npm run build -- --watch",
-    "watch:dev": "npm run build:dev -- --watch",
     "test:e2e": "start-server-and-test test:e2e:_start-server http://localhost:5000 test:e2e:_run",
     "test:e2e:ci": "start-server-and-test test:e2e:_start-server http://localhost:5000 test:e2e:_run:record",
     "test:e2e:_start-server": "yarn serve dist -p 5000",
     "test:e2e:_run": "yarn cypress run",
-    "test:e2e:_run:record": "yarn cypress run --record",
-    "prettier": "prettier '{src,__tests__}/**/*.{ts,vue}'",
-    "prettier:write": "npm run prettier -- --write"
+    "test:e2e:_run:record": "yarn cypress run --record"
   },
   "husky": {
     "hooks": {
@@ -36,23 +32,22 @@
   "homepage": "https://github.com/Kocal/Solary#readme",
   "dependencies": {
     "@kocal/web-extension-library": "^1.1.0",
-    "vue": "^2.6.10",
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
     "vue-awesome": "^2.3.8",
     "vue-router": "^3.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "@symfony/webpack-encore": "^0.30.2",
     "@types/chrome": "^0.0.112",
     "@types/node": "^12.12.6",
     "archiver": "^4.0.1",
     "copy-webpack-plugin": "^6.0.1",
-    "cross-env": "^7.0.2",
-    "css-loader": "^3.5.3",
     "cypress": "^4.5.0",
-    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
-    "mini-css-extract-plugin": "^0.9.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "sass": "^1.26.5",
@@ -60,11 +55,9 @@
     "serve": "^11.3.0",
     "standard-version": "^8.0.0",
     "start-server-and-test": "^1.11.0",
-    "ts-loader": "^7.0.4",
+    "ts-loader": "^5.4.5",
     "typescript": "^3.9.2",
     "vue-loader": "^15.9.2",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "vue-template-compiler": "^2.6.11"
   }
 }
