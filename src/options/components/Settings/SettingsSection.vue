@@ -1,6 +1,6 @@
 <template>
   <div>
-    <settings-item :name="name" :setting="setting" size="large"/>
+    <settings-item :name="name" :setting="setting" size="large" />
     <settings-item
       v-for="(childSetting, childName) in (setting.children || {})"
       :key="`${name}.${childName}`"

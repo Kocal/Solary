@@ -1,9 +1,5 @@
 <template>
-  <img
-    :src="url"
-    :class="{loading}"
-    @load="loading = false"
-  >
+  <img :src="url" :class="{ loading }" @load="loading = false" />
 </template>
 
 <script>

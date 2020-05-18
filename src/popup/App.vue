@@ -17,8 +17,8 @@ export default {
   },
   methods: {
     retrieveChannels() {
-      chrome.runtime.sendMessage({ type: 'GET_CHANNELS' }, response => {
-        this.$root.channels = response.data.channels.map(channel => {
+      chrome.runtime.sendMessage({ type: 'GET_CHANNELS' }, (response) => {
+        this.$root.channels = response.data.channels.map((channel) => {
           channel.__proto__ = Channel.prototype;
           return channel;
         });

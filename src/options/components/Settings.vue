@@ -1,11 +1,6 @@
 <template>
   <div>
-    <settings-section
-      v-for="(setting, name) in settings"
-      :key="name"
-      :name="name"
-      :setting="setting"
-    />
+    <settings-section v-for="(setting, name) in settings" :key="name" :name="name" :setting="setting" />
   </div>
 </template>
 

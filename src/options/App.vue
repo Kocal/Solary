@@ -7,7 +7,7 @@
       {{ error.message }}
     </template>
     <template>
-      <settings :settings="settings"/>
+      <settings :settings="settings" />
     </template>
   </div>
 </template>

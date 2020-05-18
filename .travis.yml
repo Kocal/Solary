@@ -11,9 +11,6 @@ cache:
     - node_modules
     - ~/.cache
 
-before_install:
-  - npm i -g yarn codecov
-
 install:
   - yarn install --frozen-lockfile
   - yarn cypress install

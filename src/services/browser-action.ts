@@ -6,9 +6,9 @@ setBadgeText('...');
 
 const buildTitleWhenOnline = (): string => {
   return channels
-    .filter(channel => channel.online)
-    .filter(channel => channel.stream !== null)
-    .map(channel => {
+    .filter((channel) => channel.online)
+    .filter((channel) => channel.stream !== null)
+    .map((channel) => {
       const stream = channel.stream as Stream;
       return `${channel.nickname} joue à ${stream.game} devant ${stream.viewers} viewers\n${stream.title}`;
     })
@@ -16,7 +16,7 @@ const buildTitleWhenOnline = (): string => {
 };
 
 export const updateBrowserAction = () => {
-  if (channels.some(channel => channel.online as boolean)) {
+  if (channels.some((channel) => channel.online as boolean)) {
     markAsOnline();
     setBrowserActionTitle(buildTitleWhenOnline());
   } else {

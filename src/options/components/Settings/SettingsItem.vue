@@ -1,9 +1,9 @@
 <template>
-  <h3 :class="[ size !== null ? `is-${size}` : '' ]">
+  <h3 :class="[size !== null ? `is-${size}` : '']">
     <label class="flex">
-      <input v-if="setting.type === 'boolean'" v-model="value" :disabled="disabled" type="checkbox" class="checkbox">
+      <input v-if="setting.type === 'boolean'" v-model="value" :disabled="disabled" type="checkbox" class="checkbox" />
       <span class="label">{{ setting.label }}</span>
-      <setting-help v-if="setting.help" :help="setting.help"/>
+      <setting-help v-if="setting.help" :help="setting.help" />
     </label>
   </h3>
 </template>
