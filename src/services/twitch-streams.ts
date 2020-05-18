@@ -7,10 +7,10 @@ import { createNotificationForChannel } from './notifications';
 let firstBoot = true;
 
 export const fetchTwitchLiveStreams = async (): Promise<void> => {
-  const { onlineStreams, offlineStreams } = await getTwitchLiveStreams(channels.map(channel => channel.id));
+  const { onlineStreams, offlineStreams } = await getTwitchLiveStreams(channels.map((channel) => channel.id));
 
-  onlineStreams.forEach(onlineStream => {
-    const channel = channels.find(channel => String(channel.id) === onlineStream.user_id) || null;
+  onlineStreams.forEach((onlineStream) => {
+    const channel = channels.find((channel) => String(channel.id) === onlineStream.user_id) || null;
 
     if (channel === null) {
       return;
@@ -36,8 +36,8 @@ export const fetchTwitchLiveStreams = async (): Promise<void> => {
     }
   });
 
-  offlineStreams.forEach(offlineStream => {
-    const channel = channels.find(channel => channel.id === offlineStream) || null;
+  offlineStreams.forEach((offlineStream) => {
+    const channel = channels.find((channel) => channel.id === offlineStream) || null;
 
     if (channel === null) {
       return;

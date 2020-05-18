@@ -3,7 +3,7 @@
     <span class="help__activator">
       <span>?</span>
     </span>
-    <span class="help__popup" v-text="help"/>
+    <span class="help__popup" v-text="help" />
   </span>
 </template>
 

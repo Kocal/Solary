@@ -8,7 +8,7 @@ import Channel from '../entities/Channel';
 import channels from '../store/channels';
 
 onNotificationClick((notificationId: string) => {
-  const channel = channels.find(channel => channel.username === notificationId);
+  const channel = channels.find((channel) => channel.username === notificationId);
 
   if (!channel) {
     return console.error(`Impossible de trouver le channel ${notificationId}.`);

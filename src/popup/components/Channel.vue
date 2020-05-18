@@ -8,7 +8,7 @@
   >
     <div v-if="channel.online" class="grid">
       <div class="grid__aside">
-        <thumbnail :url="channel.stream.thumbnail_url" :width="253" :height="140" style="display: block">
+        <thumbnail :url="channel.stream.thumbnail_url" :width="253" :height="140" style="display: block;">
           <icon-play class="thumbnail__play-button" />
         </thumbnail>
       </div>

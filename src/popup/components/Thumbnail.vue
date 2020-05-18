@@ -6,7 +6,7 @@
       :height="height"
       class="thumbnail__image"
     />
-    <slot/>
+    <slot />
   </div>
 </template>
 

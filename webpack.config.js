@@ -47,7 +47,16 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
@@ -66,34 +75,32 @@ const config = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new CopyWebpackPlugin([
-      { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'popup/popup.html', to: 'popup/popup.html' },
-      { from: 'options/options.html', to: 'options/options.html' },
-      {
-        from: 'manifest.json',
-        to: 'manifest.json',
-        transform(content) {
-          const contentJson = JSON.parse(content);
-          contentJson.version = version;
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'icons', to: 'icons', globOptions: { ignore: ['icon.xcf'] } },
+        { from: 'popup/popup.html', to: 'popup/popup.html' },
+        { from: 'options/options.html', to: 'options/options.html' },
+        {
+          from: 'manifest.json',
+          to: 'manifest.json',
+          transform(content) {
+            const contentJson = JSON.parse(content);
+            contentJson.version = version;
 
-          if (config.mode === 'development') {
-            contentJson['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
-          }
+            if (config.mode === 'development') {
+              contentJson['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            }
 
-          return JSON.stringify(contentJson, null, 2);
+            return JSON.stringify(contentJson, null, 2);
+          },
         },
-      },
-    ]),
+      ],
+    }),
   ],
 };
 
 if (process.env.NODE_ENV === 'production') {
-  const exec = command =>
-    childProcess
-      .execSync(command)
-      .toString()
-      .trim();
+  const exec = (command) => childProcess.execSync(command).toString().trim();
 
   const gitRevision = exec('git rev-parse --abbrev-ref HEAD');
   const gitBranchOrTag = gitRevision === 'HEAD' ? exec('git describe --tags --abbrev=0') : gitRevision;
