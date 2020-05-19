@@ -1,4 +1,4 @@
-import PageStreams from './pages/Streams.vue';
+import PageStreams from './pages/Streams';
 
 export default [
   {

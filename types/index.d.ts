@@ -1,10 +1,12 @@
-export interface Networks {
-  facebook?: string;
-  twitter?: string;
-  youtube?: string;
+declare namespace Solary {
+  interface Networks {
+    facebook?: string;
+    twitter?: string;
+    youtube?: string;
+  }
 }
 
-export namespace TwitchApi {
+declare namespace TwitchApi {
   export interface Stream {
     community_ids: string[];
     game_id: string;

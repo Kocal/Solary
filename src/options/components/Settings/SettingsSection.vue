@@ -15,8 +15,8 @@
 import SettingsItem from './SettingsItem';
 
 export default {
-  components: { SettingsItem },
   name: 'SettingsSection',
+  components: { SettingsItem },
   props: {
     name: {
       type: String,

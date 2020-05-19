@@ -37,6 +37,7 @@ jobs:
 
             -   run: yarn install --frozen-lockfile
             -   run: yarn cypress install
+            -   run: yarn lint
             -   run: yarn build
             -   run: yarn build-zip
             -   run: yarn test:e2e:ci

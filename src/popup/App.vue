@@ -9,24 +9,24 @@
 
 <script>
 import Channel from '../entities/Channel';
-import Navigation from './components/Navigation.vue';
+import Navigation from './components/Navigation';
 
 export default {
   components: {
     Navigation,
   },
+  created() {
+    this.retrieveChannels();
+  },
   methods: {
     retrieveChannels() {
       chrome.runtime.sendMessage({ type: 'GET_CHANNELS' }, (response) => {
         this.$root.channels = response.data.channels.map((channel) => {
-          channel.__proto__ = Channel.prototype;
+          channel.__proto__ = Channel.prototype; // eslint-disable-line no-param-reassign, no-proto
           return channel;
         });
       });
     },
-  },
-  created() {
-    this.retrieveChannels();
   },
 };
 </script>

@@ -14,8 +14,8 @@ import { getSettingValue, setSettingValue } from '@kocal/web-extension-library';
 import SettingHelp from './SettingHelp';
 
 export default {
-  components: { SettingHelp },
   name: 'SettingsItem',
+  components: { SettingHelp },
   props: {
     name: {
       type: String,
@@ -26,9 +26,11 @@ export default {
       required: true,
     },
     size: {
+      type: String,
       default: null,
     },
     disabled: {
+      type: Boolean,
       default: false,
     },
   },

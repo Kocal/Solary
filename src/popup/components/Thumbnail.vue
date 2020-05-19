@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Image from './Image.vue';
+import Image from './Image';
 
 export default {
   components: {

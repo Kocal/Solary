@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Channel from '../../components/Channel.vue';
+import Channel from '../../components/Channel';
 
 export default {
   components: {
