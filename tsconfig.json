@@ -11,11 +11,9 @@
     "allowJs": true
   },
   "include": [
-    "src/background.ts",
-    "src/options/options.ts",
-    "src/popup/popup.ts",
-    "src/vue-shims.d.ts",
-    "types/index.d.ts"
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "types/**/*.d.ts"
   ],
   "exclude": ["node_modules"]
 }

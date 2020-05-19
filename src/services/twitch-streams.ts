@@ -10,7 +10,7 @@ export const fetchTwitchLiveStreams = async (): Promise<void> => {
   const { onlineStreams, offlineStreams } = await getTwitchLiveStreams(channels.map((channel) => channel.id));
 
   onlineStreams.forEach((onlineStream) => {
-    const channel = channels.find((channel) => String(channel.id) === onlineStream.user_id) || null;
+    const channel = channels.find((c) => String(c.id) === onlineStream.user_id) ?? null;
 
     if (channel === null) {
       return;
@@ -28,7 +28,8 @@ export const fetchTwitchLiveStreams = async (): Promise<void> => {
     }
 
     if (getSettingValue('showNotifications.onTitleUpdate') === true && titleHasChanged) {
-      return createNotificationForChannel(channel);
+      createNotificationForChannel(channel);
+      return;
     }
 
     if (wasOffline) {
@@ -37,7 +38,7 @@ export const fetchTwitchLiveStreams = async (): Promise<void> => {
   });
 
   offlineStreams.forEach((offlineStream) => {
-    const channel = channels.find((channel) => channel.id === offlineStream) || null;
+    const channel = channels.find((c) => c.id === offlineStream) ?? null;
 
     if (channel === null) {
       return;

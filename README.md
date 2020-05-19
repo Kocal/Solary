@@ -1,12 +1,8 @@
 # Solary
 
-> Web extension for french WebTV [Solary](https://www.solary.fr).
+> Extension web pour la Web TV [Solary](https://www.solary.fr).
 
-[![Build Status](https://travis-ci.org/Kocal-Web-Extensions/Solary.svg?branch=master)](https://travis-ci.org/Kocal-Web-Extensions/Solary)
-[![Codecov](https://codecov.io/gh/Kocal-Web-Extensions/Solary/branch/1.6/graph/badge.svg)](https://codecov.io/gh/Kocal-Web-Extensions/Solary)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5cf66d0765fc3f806a25/maintainability)](https://codeclimate.com/github/Kocal-Web-Extensions/Solary/maintainability)
-[![dependencies Status](https://david-dm.org/Kocal-Web-Extensions/Solary/status.svg)](https://david-dm.org/Kocal-Web-Extensions/Solary)
-[![devDependencies Status](https://david-dm.org/Kocal-Web-Extensions/Solary/dev-status.svg)](https://david-dm.org/Kocal-Web-Extensions/Solary?type=dev)
+![Test](https://github.com/Kocal/Solary/workflows/Test/badge.svg)
 
 ---
 
@@ -19,7 +15,7 @@
 
 ### Requirements
 
-- Node.js 9+
+- Node.js 10+
 - [yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Bootstraping

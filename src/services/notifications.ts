@@ -7,11 +7,12 @@ import {
 import Channel from '../entities/Channel';
 import channels from '../store/channels';
 
-onNotificationClick((notificationId: string) => {
-  const channel = channels.find((channel) => channel.username === notificationId);
+onNotificationClick((notificationId: string): void => {
+  const channel = channels.find((c) => c.username === notificationId);
 
   if (!channel) {
-    return console.error(`Impossible de trouver le channel ${notificationId}.`);
+    console.error(`Impossible de trouver le channel ${notificationId}.`);
+    return;
   }
 
   createTab({
@@ -19,7 +20,7 @@ onNotificationClick((notificationId: string) => {
   });
 });
 
-export const createNotification = (title: string, message: string, id: string = ''): void => {
+export const createNotification = (title: string, message: string, id = ''): void => {
   if (getSettingValue('showNotifications') === false) {
     return;
   }

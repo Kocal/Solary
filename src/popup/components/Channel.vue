@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import IconPlay from './IconPlay.vue';
-import Thumbnail from './Thumbnail.vue';
+import IconPlay from './IconPlay';
+import Thumbnail from './Thumbnail';
 
 export default {
   components: {

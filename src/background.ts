@@ -6,7 +6,7 @@ import settings from './store/settings';
 
 registerTwitchApiKeys(clientIds);
 
-(async () => {
+(async (): Promise<void> => {
   await registerSettings(settings);
   await fetchTwitchLiveStreams();
 
@@ -15,16 +15,18 @@ registerTwitchApiKeys(clientIds);
   }, 1000 * 60);
 })();
 
-chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
-  switch (request.type) {
-    case 'GET_CHANNELS':
-      sendResponse({
-        data: {
-          channels,
-        },
-      });
-      break;
-    default:
-      sendResponse('Unknown request type.');
+chrome.runtime.onMessage.addListener(
+  (request: { [k: string]: any }, sender: chrome.runtime.MessageSender, sendResponse: Function) => {
+    switch (request.type) {
+      case 'GET_CHANNELS':
+        sendResponse({
+          data: {
+            channels,
+          },
+        });
+        break;
+      default:
+        sendResponse('Unknown request type.');
+    }
   }
-});
+);

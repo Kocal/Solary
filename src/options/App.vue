@@ -18,8 +18,8 @@ import settings from '../store/settings';
 import Settings from './components/Settings';
 
 export default {
+  name: 'App',
   components: { Settings },
-  name: 'app',
   data() {
     return {
       settings: {},
@@ -34,7 +34,7 @@ export default {
       this.$set(this, 'settings', getSettings());
     } catch (err) {
       this.loading = false;
-      this.error = error;
+      this.error = err;
     }
   },
 };
