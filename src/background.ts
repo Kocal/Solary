@@ -1,11 +1,15 @@
 import { registerSettings, registerTwitchApiKey } from '@kocal/web-extension-library';
+import { getTwitchAccessToken } from './services/twitch-authorization';
 import { fetchTwitchLiveStreams } from './services/twitch-streams';
-import { getTwitchApiKey } from './twitch-api-key';
 import channels from './store/channels';
 import settings from './store/settings';
+import { getTwitchApiKey } from './twitch-api-key';
 
-(async (): Promise<void> => {
+(async function app(): Promise<void> {
   registerTwitchApiKey(await getTwitchApiKey());
+  const accessToken = await getTwitchAccessToken();
+  // TODO: register twitch access token
+
   await registerSettings(settings);
   await fetchTwitchLiveStreams();
 
