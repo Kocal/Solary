@@ -1,4 +1,9 @@
-import { registerSettings, registerTwitchApiKey, registerTwitchAccessToken, askTwitchAccessToken } from '@kocal/web-extension-library';
+import {
+  registerSettings,
+  registerTwitchApiKey,
+  registerTwitchAccessToken,
+  askTwitchAccessToken,
+} from '@kocal/web-extension-library';
 import { fetchTwitchLiveStreams } from './services/twitch-streams';
 import channels from './store/channels';
 import settings from './store/settings';
