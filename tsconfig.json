@@ -10,10 +10,6 @@
     "noImplicitReturns": true,
     "allowJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "types/**/*.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "types/**/*.d.ts"],
   "exclude": ["node_modules"]
 }

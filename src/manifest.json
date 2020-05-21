@@ -3,7 +3,7 @@
   "version": null,
   "description": "Extension navigateur pour la WebTV Solary",
   "manifest_version": 2,
-  "permissions": ["notifications", "tabs", "storage", "https://www.solary.fr/"],
+  "permissions": ["notifications", "tabs", "storage", "identity", "https://www.solary.fr/"],
   "applications": {
     "gecko": {
       "id": "solary@kocal.fr"

@@ -842,14 +842,14 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@kocal/web-extension-library@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.1.0.tgz#30bcf2a4acb8b97e322c25b734b36fd8b8a0ef10"
-  integrity sha512-ZQc325oeJua1XWNkaXHxe74//QwW2HXAUaZTTVx0qUQ9isj4pOj0uSGBq7XdKBXttfrF5yRMw4h1XrdI+NjwYQ==
+"@kocal/web-extension-library@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.2.0.tgz#4fae6cb5d804cdcf4aae5e60e1d6bba110a55a5a"
+  integrity sha512-w/HO1v8vqv8eZT5feEemVMuYeQdCoUtYkAQUKFpBNlUEajgf2ju1zDkcXl+IPZyTMuXrOuct+N062UGOFABMkw==
   dependencies:
     axios "^0.18.0"
-    qs "^6.5.2"
-    webextension-polyfill "^0.3.1"
+    qs "^6.9.3"
+    webextension-polyfill "^0.6.0"
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -1060,6 +1060,11 @@
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
+
+"@types/qs@^6.9.3":
+  version "6.9.3"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.3.tgz#b755a0934564a200d3efdf88546ec93c369abd03"
+  integrity sha512-7s9EQWupR1fTc2pSMtXRQ9w9gLOcrJn+h7HOXw4evxyvVqMi4f+q7d2tnFe3ng3SNHjtK+0EzGMGFUQX4/AQRA==
 
 "@types/sinon-chai@3.2.3":
   version "3.2.3"
@@ -7876,7 +7881,12 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.2, qs@~6.5.2:
+qs@^6.9.3:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
+  integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
+
+qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
@@ -9942,9 +9952,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webextension-polyfill@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.3.1.tgz#fab2aed917a713a5d8221e41febad81c5d0b080f"
+webextension-polyfill@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.6.0.tgz#1afd925f3274a0d4848083579b9c0b649a5c6763"
+  integrity sha512-PlYwiX8e4bNZrEeBFxbFFsLtm0SMPxJliLTGdNCA0Bq2XkWrAn2ejUd+89vZm+8BnfFB1BclJyCz3iKsm2atNg==
 
 webpack-cli@^3.0.0:
   version "3.3.11"

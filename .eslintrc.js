@@ -3,7 +3,7 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: './tsconfig.json',
-    extraFileExtensions: ['.vue']
+    extraFileExtensions: ['.vue'],
   },
   extends: [
     'airbnb-base',
@@ -23,19 +23,33 @@ module.exports = {
   },
   rules: {
     'import/prefer-default-export': 'off',
-    'import/extensions': ['error', 'ignorePackages', {
-      js: 'never',
-      ts: 'never',
-      'd.ts': 'never',
-      vue: 'never',
-    }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        ts: 'never',
+        'd.ts': 'never',
+        vue: 'never',
+      },
+    ],
   },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        'no-useless-constructor': 'off'
-      }
-    }
-  ]
+        'no-useless-constructor': 'off',
+        'import/extensions': [
+          'error',
+          'ignorePackages',
+          {
+            js: 'never',
+            ts: 'never',
+            'd.ts': 'never',
+            vue: 'always',
+          },
+        ],
+      },
+    },
+  ],
 };
