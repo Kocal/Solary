@@ -842,10 +842,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@kocal/web-extension-library@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.2.0.tgz#4fae6cb5d804cdcf4aae5e60e1d6bba110a55a5a"
-  integrity sha512-w/HO1v8vqv8eZT5feEemVMuYeQdCoUtYkAQUKFpBNlUEajgf2ju1zDkcXl+IPZyTMuXrOuct+N062UGOFABMkw==
+"@kocal/web-extension-library@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@kocal/web-extension-library/-/web-extension-library-1.2.1.tgz#db838989bed2cad54ddecc7644005af1d2e58a78"
+  integrity sha512-qwNCag33J3B1sb5XDU/LTUH4LUrc8bY35ym9wlJp5lhoxr4AYSOjbI/8PcoCFc7dx7yz++gJqG5r369mrXIOfA==
   dependencies:
     axios "^0.18.0"
     qs "^6.9.3"
