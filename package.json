@@ -32,9 +32,8 @@
   },
   "homepage": "https://github.com/Kocal/Solary#readme",
   "dependencies": {
-    "@kocal/web-extension-library": "^1.1.0",
+    "@kocal/web-extension-library": "^1.2.0",
     "core-js": "^3.6.5",
-    "qs": "^6.9.4",
     "vue": "^2.6.11",
     "vue-awesome": "^2.3.8",
     "vue-router": "^3.0.4"
